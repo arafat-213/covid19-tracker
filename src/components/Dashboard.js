@@ -4,7 +4,14 @@ import DashboardCard from './DashboardCard'
 
 const Dashboard = () => {
 	const {
-		cases: { totalconfirmed, totaldeceased, totalrecovered },
+		cases: {
+			totalconfirmed,
+			totaldeceased,
+			totalrecovered,
+			dailyconfirmed,
+			dailydeceased,
+			dailyrecovered
+		},
 		updateTimeStamp
 	} = useCases()
 
@@ -17,6 +24,7 @@ const Dashboard = () => {
 							className="four wide colum"
 							card="confirmed"
 							count={totalconfirmed}
+							dailyCount={dailyconfirmed}
 						/>
 					</div>
 				</div>
@@ -38,6 +46,7 @@ const Dashboard = () => {
 							className="four wide colum"
 							card="deceased"
 							count={totaldeceased}
+							dailyCount={dailydeceased}
 						/>
 					</div>
 				</div>
@@ -48,11 +57,14 @@ const Dashboard = () => {
 							className="four wide colum"
 							card="recovered"
 							count={totalrecovered}
+							dailyCount={dailyrecovered}
 						/>
 					</div>
 				</div>
 			</div>
-			<h6 className="float-right">{`*Last updated at ${updateTimeStamp}`}</h6>
+			<h6
+				style={{ marginTop: '8px' }}
+				className="float-right">{`*Last updated at ${updateTimeStamp}`}</h6>
 		</div>
 	)
 }

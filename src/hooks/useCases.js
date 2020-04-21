@@ -10,9 +10,7 @@ const useCases = () => {
 		const { cases_time_series: currentCases } = response.data
 		const { length } = currentCases
 
-		const lengthTested = response.data.tested.length
-		const updateTimeStamp =
-			response.data.tested[lengthTested - 1].updatetimestamp
+		const updateTimeStamp = response.data.statewise[0].lastupdatedtime
 
 		setCases(currentCases[length - 1])
 		setUpdateTimeStamp(updateTimeStamp)
@@ -21,7 +19,7 @@ const useCases = () => {
 	useEffect(() => {
 		fetchData()
 	}, [])
-	//console.log(cases)
+	console.log(cases)
 	console.log('time stamp', updateTimeStamp)
 
 	return { cases, updateTimeStamp }
