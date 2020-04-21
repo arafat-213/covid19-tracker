@@ -7,12 +7,11 @@ const useCases = () => {
 
 	const fetchData = async () => {
 		const response = await covidData.get()
-		const { cases_time_series: currentCases } = response.data
-		const { length } = currentCases
+		const currentCases = response.data.statewise[0]
 
 		const updateTimeStamp = response.data.statewise[0].lastupdatedtime
 
-		setCases(currentCases[length - 1])
+		setCases(currentCases)
 		setUpdateTimeStamp(updateTimeStamp)
 	}
 
