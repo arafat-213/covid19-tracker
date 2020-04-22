@@ -1,46 +1,13 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
-
-const data = [
-	{
-		id: '1',
-		state: 'Maharashtra',
-		confirmed: 4666,
-		active: 3862,
-		recovered: 572,
-		deaths: 232
-	},
-	{
-		id: '2',
-		state: 'Gujarat',
-		confirmed: 2066,
-		active: 1858,
-		recovered: 131,
-		deaths: 77
-	},
-	{
-		id: '3',
-		state: 'Delhi',
-		confirmed: 2081,
-		active: 1603,
-		recovered: 431,
-		deaths: 47
-	},
-	{
-		id: '4',
-		state: 'Rajasthan',
-		confirmed: 1659,
-		active: 1404,
-		recovered: 230,
-		deaths: 25
-	}
-]
+import useStateCases from '../hooks/useStateCases'
 
 const columns = [
 	{
 		dataField: 'state',
-		text: 'State/UT'
+		text: 'State/UT',
+		sort: true
 	},
 	{
 		dataField: 'confirmed',
@@ -64,9 +31,9 @@ const columns = [
 	}
 ]
 
-const options = [
+const defaultSort = [
 	{
-		dataField: 'price',
+		dataField: 'confirmed',
 		order: 'desc'
 	}
 ]
@@ -87,14 +54,15 @@ const expandRow = {
 	)
 }
 const StateTable = props => {
+	const data = useStateCases()
 	return (
 		<BootstrapTable
-			keyField="id"
+			keyField="state"
 			data={data}
 			columns={columns}
 			hover
 			bootstrap4
-			defaultSorted={options}
+			defaultSorted={defaultSort}
 			expandRow={expandRow}
 		/>
 	)
