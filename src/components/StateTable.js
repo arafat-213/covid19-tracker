@@ -44,7 +44,8 @@ const expandRow = {
 		<div>
 			<DistrictTable state={row.state} />
 		</div>
-	)
+	),
+	showExpandColumn: true
 }
 
 const StateTable = props => {
@@ -57,6 +58,7 @@ const StateTable = props => {
 			hover
 			bootstrap4
 			condensed
+			striped
 			defaultSorted={defaultSort}
 			expandRow={expandRow}
 		/>

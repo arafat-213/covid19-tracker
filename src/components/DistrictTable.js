@@ -49,7 +49,6 @@ const DistrictTable = props => {
 				data={tableData}
 				hover
 				bootstrap4
-				striped
 				condensed
 			/>
 		</div>
