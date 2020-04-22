@@ -2,6 +2,7 @@ import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import useStateCases from '../hooks/useStateCases'
+import DistrictTable from './DistrictTable'
 
 const columns = [
 	{
@@ -41,10 +42,11 @@ const defaultSort = [
 const expandRow = {
 	renderer: (row, rowIndex) => (
 		<div>
-			<p>{`This Expand row is belong to rowKey ${row.state}`}</p>
+			<DistrictTable state={row.state} />
 		</div>
 	)
 }
+
 const StateTable = props => {
 	const data = useStateCases()
 	return (
@@ -54,6 +56,7 @@ const StateTable = props => {
 			columns={columns}
 			hover
 			bootstrap4
+			condensed
 			defaultSorted={defaultSort}
 			expandRow={expandRow}
 		/>
