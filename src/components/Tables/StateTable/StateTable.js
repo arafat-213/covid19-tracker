@@ -1,8 +1,8 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
-import useStateCases from '../hooks/useStateCases'
-import DistrictTable from './DistrictTable'
+import useStateCases from '../../../hooks/useStateCases'
+import DistrictTable from '../DistrictTable/DistrictTable'
 
 const columns = [
 	{

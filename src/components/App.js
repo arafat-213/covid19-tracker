@@ -1,6 +1,6 @@
 import React from 'react'
-import Dashboard from '../components/Dashboard'
-import StateTable from './StateTable'
+import Dashboard from '../components/Dashboard/Dashboard'
+import StateTable from './Tables/StateTable/StateTable'
 
 const App = () => {
 	return (
