@@ -6,7 +6,7 @@ export default ({ recovered, deaths }) => {
 	if (numRecovered !== 0 && numDeaths !== 0) {
 		return (
 			<div>
-				<p style={{ color: 'green' }}>
+				<p className="text-success">
 					Recovery rate:{' '}
 					{(
 						(numRecovered / (numDeaths + numRecovered)) *
@@ -14,7 +14,7 @@ export default ({ recovered, deaths }) => {
 					).toFixed(2)}{' '}
 					%
 				</p>
-				<p style={{ color: 'red' }}>
+				<p className="text-danger">
 					Fatality rate:{' '}
 					{((numDeaths / (numDeaths + numRecovered)) * 100).toFixed(
 						2

@@ -6,6 +6,12 @@ import DistrictTable from '../DistrictTable/DistrictTable'
 
 const columns = [
 	{
+		dataField: '',
+		isDummy: true,
+		text: '',
+		formatter: () => <span className="accordion-toggle"></span>
+	},
+	{
 		dataField: 'state',
 		text: 'State/UT',
 		sort: true
@@ -83,8 +89,8 @@ const expandRow = {
 		<div>
 			<DistrictTable row={row} />
 		</div>
-	),
-	showExpandColumn: true
+	)
+	// showExpandColumn: true
 }
 
 const StateTable = props => {
