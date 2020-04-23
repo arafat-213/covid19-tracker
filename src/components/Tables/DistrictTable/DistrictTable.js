@@ -1,6 +1,6 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
-import useDistrictCases from '../hooks/useDistrictCases'
+import useDistrictCases from '../../../hooks/useDistrictCases'
 import './DistrictTable.css'
 
 const DistrictTable = props => {

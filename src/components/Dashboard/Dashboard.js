@@ -1,6 +1,6 @@
 import React from 'react'
-import useCases from '../hooks/useCases'
-import DashboardCard from './DashboardCard'
+import useCases from '../../hooks/useCases'
+import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
 
 const Dashboard = () => {
