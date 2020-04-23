@@ -1,6 +1,7 @@
 import React from 'react'
 import useCases from '../hooks/useCases'
 import DashboardCard from './DashboardCard'
+import './DashboardCard.css'
 
 const Dashboard = () => {
 	const {
@@ -19,7 +20,7 @@ const Dashboard = () => {
 		<div>
 			<div className="row">
 				<div className="col-sm-3">
-					<div className="card">
+					<div className="card card-confirmed">
 						<DashboardCard
 							className="four wide colum"
 							card="confirmed"
@@ -28,18 +29,9 @@ const Dashboard = () => {
 						/>
 					</div>
 				</div>
-				<div className="col-sm-3">
-					<div className="card">
-						<DashboardCard
-							className="four wide colum"
-							card="active"
-							count={confirmed - deaths - recovered}
-						/>
-					</div>
-				</div>
 
 				<div className="col-sm-3">
-					<div className="card">
+					<div className="card card-recovered">
 						<DashboardCard
 							className="four wide colum"
 							card="recovered"
@@ -48,11 +40,19 @@ const Dashboard = () => {
 						/>
 					</div>
 				</div>
-
 				<div className="col-sm-3">
-					<div className="card">
+					<div className="card card-active">
 						<DashboardCard
 							className="four wide colum"
+							card="active"
+							count={confirmed - deaths - recovered}
+						/>
+					</div>
+				</div>
+				<div className="col-sm-3 ">
+					<div className="card card-deceased">
+						<DashboardCard
+							className="four wide colum card-deceased"
 							card="deceased"
 							count={deaths}
 							dailyCount={deltadeaths}
