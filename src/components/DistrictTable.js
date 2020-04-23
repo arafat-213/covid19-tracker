@@ -1,7 +1,7 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import useDistrictCases from '../hooks/useDistrictCases'
-
+import './DistrictTable.css'
 const dailyCasesFormatter = (cell, row, rowIndex, formatData) => {
 	let field = formatData.dataField
 	const data = formatData.tableData
@@ -42,11 +42,16 @@ const DistrictTable = props => {
 			dataField: 'confirmed',
 			text: 'Confirmed',
 			sort: true,
+			headerAlign: 'center',
 			formatter: dailyCasesFormatter,
 			formatExtraData: {
 				tableData,
 				dataField: 'confirmed',
 				isUpdate: true
+			},
+			sortFunc: (a, b, order, dataField, rowA, rowB) => {
+				if (order === 'asc') return a - b
+				else return b - a
 			}
 		},
 		{
@@ -85,6 +90,7 @@ const DistrictTable = props => {
 	return (
 		<div>
 			<BootstrapTable
+				wrapperClasses="table-responsive"
 				keyField="district"
 				columns={columns}
 				data={tableData}
