@@ -2,6 +2,7 @@ import React from 'react'
 import useCases from '../../hooks/useCases'
 import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
+import RecFatRate from '../RecFatRate'
 
 const Dashboard = () => {
 	const {
@@ -63,6 +64,7 @@ const Dashboard = () => {
 			<h6
 				style={{ marginTop: '8px' }}
 				className="float-right">{`*Last updated at ${updateTimeStamp}`}</h6>
+			<RecFatRate recovered={recovered} deaths={deaths} />
 		</div>
 	)
 }
