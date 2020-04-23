@@ -40,6 +40,17 @@ const DistrictTable = props => {
 			sort: true
 		},
 		{
+			dataField: 'delta.recovered',
+			isDummy: true,
+			text: '',
+			formatter: (cell, row) =>
+				cell === 0 ? (
+					<span></span>
+				) : (
+					<span style={{ color: 'green' }}>&#8673;{`${cell}`}</span>
+				)
+		},
+		{
 			text: 'Recovered',
 			dataField: 'recovered',
 			sort: true

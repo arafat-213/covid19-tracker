@@ -18,7 +18,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span style={{ color: 'grey' }}>{`+${cell}`}</span>
+				<span style={{ color: '#f6ac15' }}>&#8673;{`${cell}`}</span>
 			)
 	},
 	{
@@ -30,6 +30,17 @@ const columns = [
 		dataField: 'active',
 		text: 'Active',
 		sort: true
+	},
+	{
+		dataField: 'deltarecovered',
+		isDummy: true,
+		text: '',
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span></span>
+			) : (
+				<span style={{ color: 'green' }}>&#8673;{`${cell}`}</span>
+			)
 	},
 	{
 		dataField: 'recovered',
@@ -44,7 +55,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span style={{ color: 'red' }}>{`+${cell}`}</span>
+				<span style={{ color: 'red' }}>&#8673;{`${cell}`}</span>
 			)
 	},
 	{

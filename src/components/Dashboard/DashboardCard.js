@@ -12,12 +12,12 @@ const DashboardCard = props => {
 				<div className="card-title">
 					<h2 className="text-center">{props.count + ''}</h2>
 				</div>
-				<p className="card-text text-center">
+				<p className="card-text text-center h4">
 					{renderDailyCount(props.dailyCount)}
 					<br />
 				</p>
 				<div className="card-text text-nowrap text-center">
-					<p>Total {props.card}</p>
+					<p className="h5">Total {props.card}</p>
 				</div>
 			</div>
 		</div>

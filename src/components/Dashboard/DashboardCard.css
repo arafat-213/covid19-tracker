@@ -3,11 +3,11 @@
 }
 
 .card-confirmed {
-	background: rgb(177, 162, 160);
+	background: rgb(246, 172, 21);
 	background: linear-gradient(
 		45deg,
-		rgba(177, 162, 160, 1) 7%,
-		rgba(101, 77, 76, 1) 100%
+		rgba(246, 172, 21, 1) 0%,
+		rgba(255, 235, 72, 1) 100%
 	);
 }
 
@@ -30,10 +30,10 @@
 }
 
 .card-active {
-	background: rgb(23, 176, 52);
+	background: rgb(103, 209, 242);
 	background: linear-gradient(
 		45deg,
-		rgba(23, 176, 52, 0.8799894957983193) 7%,
-		rgba(237, 41, 31, 0.896796218487395) 100%
+		rgba(103, 209, 242, 1) 0%,
+		rgba(23, 121, 176, 1) 100%
 	);
 }
