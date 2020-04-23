@@ -21,7 +21,7 @@ const DistrictTable = props => {
 		{
 			dataField: 'delta.confirmed',
 			isDummy: true,
-			text: ' ',
+			text: '',
 			formatter: (cell, row) =>
 				cell === 0 ? (
 					<span></span>
@@ -38,6 +38,17 @@ const DistrictTable = props => {
 			text: 'Active',
 			dataField: 'active',
 			sort: true
+		},
+		{
+			dataField: 'delta.recovered',
+			isDummy: true,
+			text: '',
+			formatter: (cell, row) =>
+				cell === 0 ? (
+					<span></span>
+				) : (
+					<span style={{ color: 'green' }}>&#8673;{`${cell}`}</span>
+				)
 		},
 		{
 			text: 'Recovered',
