@@ -3,11 +3,11 @@
 }
 
 .card-confirmed {
-	background: rgb(246, 172, 21);
+	background: rgb(255, 235, 72);
 	background: linear-gradient(
 		45deg,
-		rgba(246, 172, 21, 1) 0%,
-		rgba(255, 235, 72, 1) 100%
+		rgba(255, 235, 72, 1) 0%,
+		rgba(246, 172, 21, 1) 100%
 	);
 }
 

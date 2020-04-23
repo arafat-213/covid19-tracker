@@ -13,7 +13,7 @@ const columns = [
 	{
 		dataField: 'deltaconfirmed',
 		isDummy: true,
-		text: ' ',
+		text: '',
 		formatter: (cell, row) =>
 			cell === 0 ? (
 				<span></span>
