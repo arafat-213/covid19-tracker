@@ -18,7 +18,9 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span style={{ color: '#f6ac15' }}>&#8673;{`${cell}`}</span>
+				<span className="float-right" style={{ color: '#f6ac15' }}>
+					&#8673;{`${cell}`}
+				</span>
 			)
 	},
 	{
@@ -39,7 +41,9 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span style={{ color: 'green' }}>&#8673;{`${cell}`}</span>
+				<span className="float-right" style={{ color: 'green' }}>
+					&#8673;{`${cell}`}
+				</span>
 			)
 	},
 	{
@@ -55,7 +59,9 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span style={{ color: 'red' }}>&#8673;{`${cell}`}</span>
+				<span className="float-right" style={{ color: 'red' }}>
+					&#8673;{`${cell}`}
+				</span>
 			)
 	},
 	{
@@ -88,6 +94,7 @@ const StateTable = props => {
 	return (
 		<BootstrapTable
 			wrapperClasses="table-responsive"
+			classes="table-dark"
 			keyField="state"
 			data={data}
 			columns={columns}

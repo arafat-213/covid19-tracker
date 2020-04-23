@@ -78,10 +78,10 @@ const DistrictTable = props => {
 			<p className="text-right">*Last updated on: {props.time}</p>
 			<BootstrapTable
 				wrapperClasses="table-responsive"
+				classes="table-dark"
 				keyField="district"
 				columns={columns}
 				data={tableData}
-				hover
 				bootstrap4
 				condensed
 			/>
