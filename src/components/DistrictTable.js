@@ -2,24 +2,9 @@ import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import useDistrictCases from '../hooks/useDistrictCases'
 import './DistrictTable.css'
-const dailyCasesFormatter = (cell, row, rowIndex, formatData) => {
-	let field = formatData.dataField
-	const data = formatData.tableData
-	const isUpdate = formatData.isUpdate
-	if (data[rowIndex].delta[field] !== 0 && isUpdate)
-		return (
-			<span>
-				{' '}
-				{`[+${data[rowIndex].delta[field]}] ${data[rowIndex][field]}`}{' '}
-			</span>
-		)
-	return <span> {`${data[rowIndex][field]}`} </span>
-}
 
 const DistrictTable = props => {
 	const response = useDistrictCases()
-	// const Arrdata = Object.entries(response)
-	// console.log(Arrdata)
 	let tableData = []
 	var data = response.filter(obj => obj.state === props.state)
 	if (data[0]) {
@@ -30,60 +15,49 @@ const DistrictTable = props => {
 	const columns = [
 		{
 			dataField: 'district',
-			text: 'District',
-			sort: true,
-			formatter: dailyCasesFormatter,
-			formatExtraData: {
-				tableData,
-				dataField: 'district'
-			}
+			text: 'District'
 		},
 		{
-			dataField: 'confirmed',
+			dataField: 'delta.confirmed',
+			isDummy: true,
+			text: ' ',
+			formatter: (cell, row) =>
+				cell === 0 ? (
+					<span></span>
+				) : (
+					<span style={{ color: 'grey' }}>{`+${cell}`}</span>
+				)
+		},
+		{
 			text: 'Confirmed',
-			sort: true,
-			headerAlign: 'center',
-			formatter: dailyCasesFormatter,
-			formatExtraData: {
-				tableData,
-				dataField: 'confirmed',
-				isUpdate: true
-			},
-			sortFunc: (a, b, order, dataField, rowA, rowB) => {
-				if (order === 'asc') return a - b
-				else return b - a
-			}
+			dataField: 'confirmed',
+			sort: true
 		},
 		{
-			dataField: 'active',
 			text: 'Active',
-			sort: true,
-			formatter: dailyCasesFormatter,
-			formatExtraData: {
-				tableData,
-				dataField: 'active'
-			}
+			dataField: 'active',
+			sort: true
 		},
 		{
-			dataField: 'recovered',
 			text: 'Recovered',
-			sort: true,
-			formatter: dailyCasesFormatter,
-			formatExtraData: {
-				tableData,
-				dataField: 'recovered'
-			}
+			dataField: 'recovered',
+			sort: true
 		},
 		{
-			dataField: 'deceased',
+			dataField: 'delta.deceased',
+			isDummy: true,
+			text: '',
+			formatter: (cell, row) =>
+				cell === 0 ? (
+					<span></span>
+				) : (
+					<span style={{ color: 'red' }}>{`+${cell}`}</span>
+				)
+		},
+		{
 			text: 'Deaths',
-			sort: true,
-			formatter: dailyCasesFormatter,
-			formatExtraData: {
-				tableData,
-				dataField: 'deceased',
-				isUpdate: true
-			}
+			dataField: 'deceased',
+			sort: true
 		}
 	]
 
@@ -92,6 +66,7 @@ const DistrictTable = props => {
 			<BootstrapTable
 				wrapperClasses="table-responsive"
 				keyField="district"
+				// sort={{ dataField: 'district', order: 'desc' }}
 				columns={columns}
 				data={tableData}
 				hover
