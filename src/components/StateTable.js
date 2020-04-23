@@ -11,6 +11,17 @@ const columns = [
 		sort: true
 	},
 	{
+		dataField: 'deltaconfirmed',
+		isDummy: true,
+		text: ' ',
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span></span>
+			) : (
+				<span style={{ color: 'grey' }}>{`+${cell}`}</span>
+			)
+	},
+	{
 		dataField: 'confirmed',
 		text: 'Confirmed',
 		sort: true
@@ -24,6 +35,17 @@ const columns = [
 		dataField: 'recovered',
 		text: 'Recovered',
 		sort: true
+	},
+	{
+		dataField: 'deltadeaths',
+		isDummy: true,
+		text: '',
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span></span>
+			) : (
+				<span style={{ color: 'red' }}>{`+${cell}`}</span>
+			)
 	},
 	{
 		dataField: 'deaths',
@@ -42,7 +64,7 @@ const defaultSort = [
 const expandRow = {
 	renderer: (row, rowIndex) => (
 		<div>
-			<DistrictTable state={row.state} />
+			<DistrictTable state={row.state} time={row.lastupdatedtime} />
 		</div>
 	),
 	showExpandColumn: true
@@ -50,8 +72,11 @@ const expandRow = {
 
 const StateTable = props => {
 	const data = useStateCases()
+	console.log('From state', data)
+
 	return (
 		<BootstrapTable
+			wrapperClasses="table-responsive"
 			keyField="state"
 			data={data}
 			columns={columns}

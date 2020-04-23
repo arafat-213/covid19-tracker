@@ -15,7 +15,8 @@ const DistrictTable = props => {
 	const columns = [
 		{
 			dataField: 'district',
-			text: 'District'
+			text: 'District',
+			sort: true
 		},
 		{
 			dataField: 'delta.confirmed',
@@ -63,10 +64,10 @@ const DistrictTable = props => {
 
 	return (
 		<div>
+			<p className="text-right">*Last updated on: {props.time}</p>
 			<BootstrapTable
 				wrapperClasses="table-responsive"
 				keyField="district"
-				// sort={{ dataField: 'district', order: 'desc' }}
 				columns={columns}
 				data={tableData}
 				hover
