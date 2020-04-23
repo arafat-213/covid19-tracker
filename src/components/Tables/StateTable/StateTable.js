@@ -81,7 +81,7 @@ const defaultSort = [
 const expandRow = {
 	renderer: (row, rowIndex) => (
 		<div>
-			<DistrictTable state={row.state} time={row.lastupdatedtime} />
+			<DistrictTable row={row} />
 		</div>
 	),
 	showExpandColumn: true
@@ -94,7 +94,6 @@ const StateTable = props => {
 	return (
 		<BootstrapTable
 			wrapperClasses="table-responsive"
-			classes="table-dark"
 			keyField="state"
 			data={data}
 			columns={columns}
