@@ -89,6 +89,7 @@ const DistrictTable = ({
 				deaths={deaths}
 				active={active}
 				confirmed={confirmed}
+				state={state}
 			/>
 			<p className="text-right">*Last updated on: {lastupdatedtime}</p>
 			<BootstrapTable

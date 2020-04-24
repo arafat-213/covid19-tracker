@@ -73,6 +73,7 @@ const Dashboard = () => {
 				deaths={deaths}
 				active={active}
 				confirmed={confirmed}
+				state="India"
 			/>
 		</div>
 	)

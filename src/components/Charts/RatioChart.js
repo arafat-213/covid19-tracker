@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CanvasJSReact from './canvasjs.react'
 
-var CanvasJS = CanvasJSReact.CanvasJS
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
-const RatioChart = ({ active, recovered, deaths, confirmed }) => {
+const RatioChart = ({ active, recovered, deaths, confirmed, state }) => {
 	const parsedActive = parseInt(active)
 	const parsedRecovered = parseInt(recovered)
 	const parsedDeaths = parseInt(deaths)
 	const parsedConfirmed = parseInt(confirmed)
-
 	const activePercentage = ((parsedActive / parsedConfirmed) * 100).toFixed(2)
 	const recoveredPercentage = (
 		(parsedRecovered / (parsedRecovered + parsedDeaths)) *
@@ -27,10 +25,10 @@ const RatioChart = ({ active, recovered, deaths, confirmed }) => {
 		},
 		subtitles: [
 			{
-				text: `Covid19-India`,
+				text: `${state}`,
 				verticalAlign: 'center',
-				fontSize: 24,
-				dockInsidePlotArea: true
+				fontSize: 24
+				// dockInsidePlotArea: true
 			}
 		],
 		data: [
@@ -47,6 +45,10 @@ const RatioChart = ({ active, recovered, deaths, confirmed }) => {
 			}
 		]
 	}
+
+	options.subtitles[0].fontSize =
+		state.length > 12 && state.length < 16 ? 18 : 24
+	options.subtitles[0].fontSize = state.length > 16 ? 14 : 24
 
 	return (
 		<div>
