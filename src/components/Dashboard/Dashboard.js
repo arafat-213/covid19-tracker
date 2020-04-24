@@ -20,7 +20,7 @@ const Dashboard = () => {
 
 	return (
 		<div>
-			<div className="card-group">
+			<div className="row">
 				<div className="col-sm-3">
 					<div className="card card-confirmed ">
 						<DashboardCard

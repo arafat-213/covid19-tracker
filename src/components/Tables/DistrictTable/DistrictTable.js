@@ -20,7 +20,7 @@ const columns = [
 			) : (
 				<span
 					className="float-right"
-					style={{ color: 'grey' }}>{`+${cell}`}</span>
+					style={{ color: '#f6ac15' }}>{`+${cell}`}</span>
 			)
 	},
 	{

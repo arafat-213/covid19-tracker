@@ -7,16 +7,6 @@ import DistrictTable from '../DistrictTable/DistrictTable'
 
 const columns = [
 	{
-		dataField: '',
-		isDummy: true,
-		text: '',
-		formatter: () => (
-			<div>
-				<span className="glyphicon glyphicon-chevron-right"></span>
-			</div>
-		)
-	},
-	{
 		dataField: 'state',
 		text: 'State/UT',
 		sort: true
@@ -94,8 +84,15 @@ const expandRow = {
 		<div>
 			<DistrictTable row={row} />
 		</div>
-	)
-	// showExpandColumn: true
+	),
+	showExpandColumn: true,
+	expandColumnRenderer: ({ expanded }) =>
+		expanded ? (
+			<i className="fas fa-caret-down"></i>
+		) : (
+			<i className="fas fa-caret-right"></i>
+		),
+	onExpand: (row, isExpand, rowIndex, e) => {}
 }
 
 const StateTable = props => {

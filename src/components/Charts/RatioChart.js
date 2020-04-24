@@ -21,7 +21,7 @@ const RatioChart = ({ active, recovered, deaths, confirmed, state }) => {
 	const options = {
 		animationEnabled: true,
 		title: {
-			text: 'Total cases'
+			text: 'COVID-19 cases'
 		},
 		subtitles: [
 			{
