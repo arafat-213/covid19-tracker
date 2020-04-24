@@ -1,7 +1,7 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import useDistrictCases from '../../../hooks/useDistrictCases'
-import RecFatRate from '../../RecFatRate'
+import RatioChart from '../../Charts/RatioChart'
 import './DistrictTable.css'
 
 const columns = [
@@ -72,7 +72,7 @@ const columns = [
 ]
 
 const DistrictTable = ({
-	row: { state, lastupdatedtime, recovered, deaths }
+	row: { state, lastupdatedtime, recovered, deaths, active, confirmed }
 }) => {
 	const response = useDistrictCases()
 	let tableData = []
@@ -84,7 +84,12 @@ const DistrictTable = ({
 
 	return (
 		<div>
-			<RecFatRate recovered={recovered} deaths={deaths} />
+			<RatioChart
+				recovered={recovered}
+				deaths={deaths}
+				active={active}
+				confirmed={confirmed}
+			/>
 			<p className="text-right">*Last updated on: {lastupdatedtime}</p>
 			<BootstrapTable
 				wrapperClasses="table-responsive"
