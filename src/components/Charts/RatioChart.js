@@ -5,7 +5,21 @@ var CanvasJS = CanvasJSReact.CanvasJS
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 const RatioChart = ({ active, recovered, deaths, confirmed }) => {
-	const activePercentage = ((active / confirmed) * 100).toFixed(2)
+	const parsedActive = parseInt(active)
+	const parsedRecovered = parseInt(recovered)
+	const parsedDeaths = parseInt(deaths)
+	const parsedConfirmed = parseInt(confirmed)
+
+	const activePercentage = ((parsedActive / parsedConfirmed) * 100).toFixed(2)
+	const recoveredPercentage = (
+		(parsedRecovered / (parsedRecovered + parsedDeaths)) *
+		100
+	).toFixed(2)
+	const deathsPercentage = (
+		(parsedDeaths / (parsedRecovered + parsedDeaths)) *
+		100
+	).toFixed(2)
+
 	const options = {
 		animationEnabled: true,
 		title: {
@@ -13,7 +27,7 @@ const RatioChart = ({ active, recovered, deaths, confirmed }) => {
 		},
 		subtitles: [
 			{
-				text: `${activePercentage}% Active`,
+				text: `Covid19-India`,
 				verticalAlign: 'center',
 				fontSize: 24,
 				dockInsidePlotArea: true
@@ -23,12 +37,12 @@ const RatioChart = ({ active, recovered, deaths, confirmed }) => {
 			{
 				type: 'doughnut',
 				showInLegend: true,
-				indexLabel: '{name}: {y}',
+				indexLabel: `{name}: {y} ({z}%)`,
 				yValueFormatString: '#,###',
 				dataPoints: [
-					{ name: 'Active', y: active },
-					{ name: 'Deaths', y: deaths },
-					{ name: 'Recovered', y: recovered }
+					{ name: 'Active', y: active, z: activePercentage },
+					{ name: 'Deaths', y: deaths, z: deathsPercentage },
+					{ name: 'Recovered', y: recovered, z: recoveredPercentage }
 				]
 			}
 		]

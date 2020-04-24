@@ -88,6 +88,7 @@ const DistrictTable = ({
 			<p className="text-right">*Last updated on: {lastupdatedtime}</p>
 			<BootstrapTable
 				wrapperClasses="table-responsive"
+				headerClasses="thead-dark"
 				keyField="district"
 				columns={columns}
 				data={tableData}

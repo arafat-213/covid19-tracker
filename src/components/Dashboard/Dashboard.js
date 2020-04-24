@@ -2,7 +2,6 @@ import React from 'react'
 import useCases from '../../hooks/useCases'
 import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
-import RecFatRate from '../RecFatRate'
 import RatioChart from '../Charts/RatioChart'
 
 const Dashboard = () => {
@@ -21,7 +20,7 @@ const Dashboard = () => {
 
 	return (
 		<div>
-			<div className="row">
+			<div className="card-group">
 				<div className="col-sm-3">
 					<div className="card card-confirmed ">
 						<DashboardCard
@@ -69,7 +68,6 @@ const Dashboard = () => {
 				style={{ marginTop: '8px' }}
 				className="float-right">{`*Last updated at ${updateTimeStamp}`}</h6>
 			<br />
-			<RecFatRate recovered={recovered} deaths={deaths} />
 			<RatioChart
 				recovered={recovered}
 				deaths={deaths}

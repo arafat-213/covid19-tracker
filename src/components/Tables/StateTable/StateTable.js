@@ -1,6 +1,7 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
+import 'bootstrap/dist/css/bootstrap.css'
 import useStateCases from '../../../hooks/useStateCases'
 import DistrictTable from '../DistrictTable/DistrictTable'
 
@@ -9,7 +10,11 @@ const columns = [
 		dataField: '',
 		isDummy: true,
 		text: '',
-		formatter: () => <span className="accordion-toggle"></span>
+		formatter: () => (
+			<div>
+				<span className="glyphicon glyphicon-chevron-right"></span>
+			</div>
+		)
 	},
 	{
 		dataField: 'state',
@@ -100,6 +105,7 @@ const StateTable = props => {
 	return (
 		<BootstrapTable
 			wrapperClasses="table-responsive"
+			headerClasses="thead-dark"
 			keyField="state"
 			data={data}
 			columns={columns}
