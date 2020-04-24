@@ -3,6 +3,7 @@ import useCases from '../../hooks/useCases'
 import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
 import RatioChart from '../Charts/RatioChart'
+import UpdateTime from '../Messages/UpdateTime'
 
 const Dashboard = () => {
 	const {
@@ -25,7 +26,7 @@ const Dashboard = () => {
 					<div className="card card-confirmed ">
 						<DashboardCard
 							className="four wide colum"
-							card="confirmed"
+							card="Confirmed"
 							count={confirmed}
 							dailyCount={deltaconfirmed}
 						/>
@@ -36,7 +37,7 @@ const Dashboard = () => {
 					<div className="card card-active">
 						<DashboardCard
 							className="four wide colum"
-							card="active"
+							card="Active"
 							count={active}
 						/>
 					</div>
@@ -46,7 +47,7 @@ const Dashboard = () => {
 					<div className="card card-recovered">
 						<DashboardCard
 							className="four wide colum"
-							card="recovered"
+							card="Recovered"
 							count={recovered}
 							dailyCount={deltarecovered}
 						/>
@@ -57,24 +58,27 @@ const Dashboard = () => {
 					<div className="card card-deceased">
 						<DashboardCard
 							className="four wide colum card-deceased"
-							card="deceased"
+							card="Deceased"
 							count={deaths}
 							dailyCount={deltadeaths}
 						/>
 					</div>
 				</div>
 			</div>
-			<h6
-				style={{ marginTop: '8px' }}
-				className="float-right">{`*Last updated at ${updateTimeStamp}`}</h6>
-			<br />
-			<RatioChart
-				recovered={recovered}
-				deaths={deaths}
-				active={active}
-				confirmed={confirmed}
-				state="India"
-			/>
+
+			<div style={{ marginTop: '4px' }}>
+				<UpdateTime time={updateTimeStamp} />
+				<br />
+			</div>
+			<div>
+				<RatioChart
+					recovered={recovered}
+					deaths={deaths}
+					active={active}
+					confirmed={confirmed}
+					state="India"
+				/>
+			</div>
 		</div>
 	)
 }

@@ -37,3 +37,16 @@
 		rgba(23, 121, 176, 1) 100%
 	);
 }
+
+.total-cases {
+	font-weight: 700;
+}
+
+.total-title{
+	font-weight: 500;
+	margin-top: 16px;
+}
+
+.daily-cases{
+	font-weight: 600;
+}

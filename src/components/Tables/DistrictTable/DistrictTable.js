@@ -3,12 +3,14 @@ import BootstrapTable from 'react-bootstrap-table-next'
 import useDistrictCases from '../../../hooks/useDistrictCases'
 import RatioChart from '../../Charts/RatioChart'
 import './DistrictTable.css'
+import UpdateTime from '../../Messages/UpdateTime'
 
 const columns = [
 	{
 		dataField: 'district',
 		text: 'District',
-		sort: true
+		sort: true,
+		classes: 'district-text'
 	},
 	{
 		dataField: 'delta.confirmed',
@@ -18,9 +20,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span
-					className="float-right"
-					style={{ color: '#f6ac15' }}>{`+${cell}`}</span>
+				<span className="float-right daily-confirmed">{`+${cell}`}</span>
 			)
 	},
 	{
@@ -41,7 +41,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right" style={{ color: 'green' }}>
+				<span className="float-right daily-recovered">
 					&#8673;{`${cell}`}
 				</span>
 			)
@@ -91,7 +91,7 @@ const DistrictTable = ({
 				confirmed={confirmed}
 				state={state}
 			/>
-			<p className="text-right">*Last updated on: {lastupdatedtime}</p>
+			<UpdateTime style={{ marginTop: '2px' }} time={lastupdatedtime} />
 			<BootstrapTable
 				wrapperClasses="table-responsive"
 				headerClasses="thead-dark"

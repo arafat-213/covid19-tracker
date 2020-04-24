@@ -4,12 +4,14 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import useStateCases from '../../../hooks/useStateCases'
 import DistrictTable from '../DistrictTable/DistrictTable'
+import '../Table.css'
 
 const columns = [
 	{
 		dataField: 'state',
 		text: 'State/UT',
-		sort: true
+		sort: true,
+		classes: 'district-text'
 	},
 	{
 		dataField: 'deltaconfirmed',
@@ -19,7 +21,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right" style={{ color: '#f6ac15' }}>
+				<span className="float-right daily-confirmed">
 					&#8673;{`${cell}`}
 				</span>
 			)
@@ -42,7 +44,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right" style={{ color: 'green' }}>
+				<span className="float-right daily-recovered">
 					&#8673;{`${cell}`}
 				</span>
 			)
@@ -60,7 +62,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right" style={{ color: 'red' }}>
+				<span className="float-right daily-deceased">
 					&#8673;{`${cell}`}
 				</span>
 			)
@@ -92,7 +94,11 @@ const expandRow = {
 		) : (
 			<i className="fas fa-caret-right"></i>
 		),
-	onExpand: (row, isExpand, rowIndex, e) => {}
+	onExpand: (row, isExpand, rowIndex, e) => { },
+	expandHeaderColumnRenderer: ({ isAnyExpands }) => (
+		// ....
+		<span></span>
+  )
 }
 
 const StateTable = props => {
@@ -111,7 +117,8 @@ const StateTable = props => {
 			condensed
 			striped
 			defaultSorted={defaultSort}
-			expandRow={expandRow}
+			expandRow={ expandRow }
+			bordered={false}
 		/>
 	)
 }
