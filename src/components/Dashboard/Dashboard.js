@@ -5,6 +5,7 @@ import RatioChart from '../Charts/RatioChart'
 import UpdateTime from '../Messages/UpdateTime'
 
 const Dashboard = ({ cases, time, region }) => {
+	const option = [{ minimumIntegerDigits: 1 }]
 	let active,
 		confirmed,
 		recovered,
@@ -44,12 +45,17 @@ const Dashboard = ({ cases, time, region }) => {
 							card="Confirmed"
 							count={
 								confirmed
-									? confirmed.toLocaleString('en-IN')
+									? parseInt(confirmed).toLocaleString(
+											'en-IN',
+											option
+									  )
 									: 'Loading..'
 							}
 							dailyCount={
 								deltaconfirmed
-									? deltaconfirmed.toLocaleString('en-IN')
+									? parseInt(deltaconfirmed).toLocaleString(
+											'en-IN'
+									  )
 									: 'Loading..'
 							}
 						/>
@@ -63,7 +69,7 @@ const Dashboard = ({ cases, time, region }) => {
 							card="Active"
 							count={
 								active
-									? active.toLocaleString('en-IN')
+									? parseInt(active).toLocaleString('en-IN')
 									: 'Loading..'
 							}
 						/>
@@ -77,12 +83,16 @@ const Dashboard = ({ cases, time, region }) => {
 							card="Recovered"
 							count={
 								recovered
-									? recovered.toLocaleString('en-IN')
+									? parseInt(recovered).toLocaleString(
+											'en-IN'
+									  )
 									: 'Loading..'
 							}
 							dailyCount={
 								deltarecovered
-									? deltarecovered.toLocaleString('en-IN')
+									? parseInt(deltarecovered).toLocaleString(
+											'en-IN'
+									  )
 									: 'Loading..'
 							}
 						/>
@@ -96,12 +106,14 @@ const Dashboard = ({ cases, time, region }) => {
 							card="Deceased"
 							count={
 								deaths
-									? deaths.toLocaleString('en-IN')
+									? parseInt(deaths).toLocaleString('en-IN')
 									: 'Loading..'
 							}
 							dailyCount={
 								deltadeaths
-									? deltadeaths.toLocaleString('en-IN')
+									? parseInt(deltadeaths).toLocaleString(
+											'en-IN'
+									  )
 									: 'Loading..'
 							}
 						/>

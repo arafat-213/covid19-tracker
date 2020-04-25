@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Router, Switch, Route } from 'react-router-dom'
 import Dashboard from '../components/Dashboard/Dashboard'
 import StateTable from './Tables/StateTable/StateTable'
 import Footer from './Messages/Footer'
@@ -42,7 +42,6 @@ const App = () => {
 					region={region}
 				/>
 				<Switch>
-					{/* <StateTable /> */}
 					<Route path="/global" exact component={GloablTable} />
 					<Route path="/" exact component={StateTable} />
 				</Switch>
