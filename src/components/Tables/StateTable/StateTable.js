@@ -29,12 +29,24 @@ const columns = [
 	{
 		dataField: 'confirmed',
 		text: 'Confirmed',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
 	},
 	{
 		dataField: 'active',
 		text: 'Active',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
 	},
 	{
 		dataField: 'deltarecovered',
@@ -52,7 +64,13 @@ const columns = [
 	{
 		dataField: 'recovered',
 		text: 'Recovered',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
 	},
 	{
 		dataField: 'deltadeaths',
@@ -70,7 +88,13 @@ const columns = [
 	{
 		dataField: 'deaths',
 		text: 'Deaths',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
 	}
 ]
 
@@ -94,11 +118,11 @@ const expandRow = {
 		) : (
 			<i className="fas fa-caret-right"></i>
 		),
-	onExpand: (row, isExpand, rowIndex, e) => { },
+	onExpand: (row, isExpand, rowIndex, e) => {},
 	expandHeaderColumnRenderer: ({ isAnyExpands }) => (
 		// ....
 		<span></span>
-  )
+	)
 }
 
 const StateTable = props => {
@@ -117,7 +141,7 @@ const StateTable = props => {
 			condensed
 			striped
 			defaultSorted={defaultSort}
-			expandRow={ expandRow }
+			expandRow={expandRow}
 			bordered={false}
 		/>
 	)

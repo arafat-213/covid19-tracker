@@ -26,12 +26,24 @@ const columns = [
 	{
 		text: 'Confirmed',
 		dataField: 'confirmed',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
 	},
 	{
 		text: 'Active',
 		dataField: 'active',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
 	},
 	{
 		dataField: 'delta.recovered',
@@ -49,7 +61,13 @@ const columns = [
 	{
 		text: 'Recovered',
 		dataField: 'recovered',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
 	},
 	{
 		dataField: 'delta.deceased',
@@ -67,7 +85,20 @@ const columns = [
 	{
 		text: 'Deaths',
 		dataField: 'deceased',
-		sort: true
+		sort: true,
+		formatter: (cell, row) =>
+			cell === 0 ? (
+				<span> - </span>
+			) : (
+				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
+			)
+	}
+]
+
+const defaultSort = [
+	{
+		dataField: 'confirmed',
+		order: 'desc'
 	}
 ]
 
@@ -102,6 +133,7 @@ const DistrictTable = ({
 				bootstrap4
 				bordered={false}
 				condensed
+				defaultSorted={defaultSort}
 			/>
 		</div>
 	)
