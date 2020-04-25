@@ -15,9 +15,14 @@ const useCases = () => {
 		setUpdateTimeStamp(updateTimeStamp)
 	}
 
+	let currentCases = null
 	useEffect(() => {
-		fetchData()
-	}, [])
+		// fetchData()
+		covidData
+			.get()
+			.then(response => setCases(response.data.statewise[0]))
+			.catch()
+	}, [currentCases])
 	console.log(cases)
 	console.log('time stamp', updateTimeStamp)
 

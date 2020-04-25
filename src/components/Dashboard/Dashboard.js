@@ -1,23 +1,38 @@
 import React from 'react'
-import useCases from '../../hooks/useCases'
 import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
 import RatioChart from '../Charts/RatioChart'
 import UpdateTime from '../Messages/UpdateTime'
 
-const Dashboard = () => {
-	const {
-		cases: {
+const Dashboard = ({ cases, time, region }) => {
+	let active,
+		confirmed,
+		recovered,
+		deaths,
+		deltaconfirmed,
+		deltarecovered,
+		deltadeaths = 0
+	if (region === 'India') {
+		;({
 			active,
 			confirmed,
-			deaths,
 			recovered,
+			deaths,
 			deltaconfirmed,
-			deltadeaths,
-			deltarecovered
-		},
-		updateTimeStamp
-	} = useCases()
+			deltarecovered,
+			deltadeaths
+		} = cases)
+	} else {
+		;({
+			TotalConfirmed: confirmed,
+			TotalRecovered: recovered,
+			TotalDeaths: deaths,
+			NewConfirmed: deltaconfirmed,
+			NewDeaths: deltadeaths,
+			NewRecovered: deltarecovered
+		} = cases)
+		active = confirmed - recovered - deaths
+	}
 
 	return (
 		<div>
@@ -27,8 +42,16 @@ const Dashboard = () => {
 						<DashboardCard
 							className="four wide colum"
 							card="Confirmed"
-							count={confirmed}
-							dailyCount={deltaconfirmed}
+							count={
+								confirmed
+									? confirmed.toLocaleString('en-IN')
+									: 'Loading..'
+							}
+							dailyCount={
+								deltaconfirmed
+									? deltaconfirmed.toLocaleString('en-IN')
+									: 'Loading..'
+							}
 						/>
 					</div>
 				</div>
@@ -38,7 +61,11 @@ const Dashboard = () => {
 						<DashboardCard
 							className="four wide colum"
 							card="Active"
-							count={active}
+							count={
+								active
+									? active.toLocaleString('en-IN')
+									: 'Loading..'
+							}
 						/>
 					</div>
 				</div>
@@ -48,8 +75,16 @@ const Dashboard = () => {
 						<DashboardCard
 							className="four wide colum"
 							card="Recovered"
-							count={recovered}
-							dailyCount={deltarecovered}
+							count={
+								recovered
+									? recovered.toLocaleString('en-IN')
+									: 'Loading..'
+							}
+							dailyCount={
+								deltarecovered
+									? deltarecovered.toLocaleString('en-IN')
+									: 'Loading..'
+							}
 						/>
 					</div>
 				</div>
@@ -59,15 +94,23 @@ const Dashboard = () => {
 						<DashboardCard
 							className="four wide colum card-deceased"
 							card="Deceased"
-							count={deaths}
-							dailyCount={deltadeaths}
+							count={
+								deaths
+									? deaths.toLocaleString('en-IN')
+									: 'Loading..'
+							}
+							dailyCount={
+								deltadeaths
+									? deltadeaths.toLocaleString('en-IN')
+									: 'Loading..'
+							}
 						/>
 					</div>
 				</div>
 			</div>
 
 			<div style={{ marginTop: '4px' }}>
-				<UpdateTime time={updateTimeStamp} />
+				<UpdateTime time={time} />
 				<br />
 			</div>
 			<div>
@@ -76,11 +119,10 @@ const Dashboard = () => {
 					deaths={deaths}
 					active={active}
 					confirmed={confirmed}
-					state="India"
+					state={region}
 				/>
 			</div>
 		</div>
 	)
 }
-
 export default Dashboard

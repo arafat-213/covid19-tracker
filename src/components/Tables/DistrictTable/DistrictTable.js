@@ -100,6 +100,7 @@ const DistrictTable = ({
 				data={tableData}
 				hover
 				bootstrap4
+				bordered={false}
 				condensed
 			/>
 		</div>
