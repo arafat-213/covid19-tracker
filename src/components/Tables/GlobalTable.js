@@ -87,18 +87,21 @@ const columns = [
 
 const GloablTable = props => {
 	return (
-		<BootstrapTable
-			wrapperClasses="table-responsive"
-			headerClasses="thead-dark"
-			keyField="CountryCode"
-			data={props.data}
-			columns={columns}
-			hover
-			bootstrap4
-			condensed
-			striped
-			bordered={false}
-		/>
+		<div>
+			<h1>Test</h1>
+			<BootstrapTable
+				wrapperClasses="table-responsive"
+				headerClasses="thead-dark"
+				keyField="CountryCode"
+				data={props.data}
+				columns={columns}
+				hover
+				bootstrap4
+				condensed
+				striped
+				bordered={false}
+			/>
+		</div>
 	)
 }
 export default GloablTable
