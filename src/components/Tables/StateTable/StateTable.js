@@ -107,7 +107,7 @@ const defaultSort = [
 
 const expandRow = {
 	renderer: (row, rowIndex) => (
-		<div>
+		<div data-aos="fade-down">
 			<DistrictTable row={row} />
 		</div>
 	),

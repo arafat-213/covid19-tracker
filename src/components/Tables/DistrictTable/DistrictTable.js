@@ -115,14 +115,24 @@ const DistrictTable = ({
 
 	return (
 		<div>
-			<RatioChart
-				recovered={recovered}
-				deaths={deaths}
-				active={active}
-				confirmed={confirmed}
-				state={state}
-			/>
-			<UpdateTime style={{ marginTop: '2px' }} time={lastupdatedtime} />
+			<div data-aos="zoom-in-up" data-aos-once="true">
+				<RatioChart
+					recovered={recovered}
+					deaths={deaths}
+					active={active}
+					confirmed={confirmed}
+					state={state}
+				/>
+			</div>
+			<div
+				data-aos="fade-up-left"
+				data-aos-once="true"
+				data-aos-duration="1000">
+				<UpdateTime
+					style={{ marginTop: '2px' }}
+					time={lastupdatedtime}
+				/>
+			</div>
 			<BootstrapTable
 				wrapperClasses="table-responsive"
 				headerClasses="thead-dark"

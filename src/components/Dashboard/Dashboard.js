@@ -39,7 +39,7 @@ const Dashboard = ({ cases, time, region }) => {
 		<div>
 			<div className="row">
 				<div className="col-sm-3">
-					<div className="card card-confirmed ">
+					<div className="card card-confirmed" data-aos="fade-right">
 						<DashboardCard
 							className="four wide colum"
 							card="Confirmed"
@@ -63,7 +63,7 @@ const Dashboard = ({ cases, time, region }) => {
 				</div>
 
 				<div className="col-sm-3">
-					<div className="card card-active">
+					<div className="card card-active" data-aos="fade-down">
 						<DashboardCard
 							className="four wide colum"
 							card="Active"
@@ -77,7 +77,7 @@ const Dashboard = ({ cases, time, region }) => {
 				</div>
 
 				<div className="col-sm-3">
-					<div className="card card-recovered">
+					<div className="card card-recovered" data-aos="fade-up">
 						<DashboardCard
 							className="four wide colum"
 							card="Recovered"
@@ -100,7 +100,7 @@ const Dashboard = ({ cases, time, region }) => {
 				</div>
 
 				<div className="col-sm-3 ">
-					<div className="card card-deceased">
+					<div className="card card-deceased" data-aos="fade-left">
 						<DashboardCard
 							className="four wide colum card-deceased"
 							card="Deceased"
@@ -121,11 +121,11 @@ const Dashboard = ({ cases, time, region }) => {
 				</div>
 			</div>
 
-			<div style={{ marginTop: '4px' }}>
+			<div style={{ marginTop: '4px' }} data-aos="fade-up-left">
 				<UpdateTime time={time} />
 				<br />
 			</div>
-			<div>
+			<div data-aos="zoom-in-up">
 				<RatioChart
 					recovered={recovered}
 					deaths={deaths}
