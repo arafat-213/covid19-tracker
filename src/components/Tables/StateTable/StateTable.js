@@ -125,8 +125,8 @@ const expandRow = {
 	)
 }
 
-const StateTable = props => {
-	const data = useStateCases()
+const StateTable = ({ data }) => {
+	// const data = useStateCases()
 	console.log('From state', data)
 
 	return (

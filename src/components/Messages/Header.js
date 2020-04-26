@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom'
 const Header = props => {
 	return (
 		<div>
-			<div data-aos="fade-down-right" data-aos-duration="1000">
-				<h1 className="diplay-3">Covid19 Tracker</h1>
-			</div>
-			{/* <nav className="nav justify-content-center">
-				<Link className="nav-link" to="/covid19-tracker/globalTracker">
+			<nav className="nav justify-content-center">
+				<div data-aos="fade-down-right" data-aos-duration="1000">
+					<h5 className="nav-link nav-brand">Covid19 Tracker</h5>
+				</div>
+				<Link className="nav-link" to="/covid19-tracker/global">
 					Global
 				</Link>
 				<Link className="nav-link" to="/covid19-tracker">
 					India
 				</Link>
-			</nav> */}
+			</nav>
 		</div>
 	)
 }
