@@ -103,11 +103,12 @@ const defaultSort = [
 ]
 
 const DistrictTable = ({
-	row: { state, lastupdatedtime, recovered, deaths, active, confirmed }
+	row: { state, lastupdatedtime, recovered, deaths, active, confirmed },
+	data
 }) => {
-	const response = useDistrictCases()
+	// const response = useDistrictCases()
 	let tableData = []
-	var data = response.filter(obj => obj.state === state)
+	data = data.filter(obj => obj.state === state)
 	if (data[0]) {
 		tableData = data[0].districtData
 		console.log('From comp', tableData)

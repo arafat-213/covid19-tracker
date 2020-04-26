@@ -2,7 +2,6 @@ import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import useStateCases from '../../../hooks/useStateCases'
 import DistrictTable from '../DistrictTable/DistrictTable'
 import '../Table.css'
 
@@ -105,45 +104,43 @@ const defaultSort = [
 	}
 ]
 
-const expandRow = {
-	renderer: (row, rowIndex) => (
-		<div data-aos="fade-down">
-			<DistrictTable row={row} />
-		</div>
-	),
-	showExpandColumn: true,
-	expandColumnRenderer: ({ expanded }) =>
-		expanded ? (
-			<i className="fas fa-caret-down"></i>
-		) : (
-			<i className="fas fa-caret-right"></i>
+const StateTable = ({ data, districtData }) => {
+	const expandRow = {
+		renderer: row => (
+			<div data-aos="fade-down">
+				<DistrictTable row={row} data={districtData} />
+			</div>
 		),
-	onExpand: (row, isExpand, rowIndex, e) => {},
-	expandHeaderColumnRenderer: ({ isAnyExpands }) => (
-		// ....
-		<span></span>
-	)
-}
-
-const StateTable = ({ data }) => {
-	// const data = useStateCases()
-	console.log('From state', data)
+		showExpandColumn: true,
+		expandColumnRenderer: ({ expanded }) =>
+			expanded ? (
+				<i className="fas fa-caret-down"></i>
+			) : (
+				<i className="fas fa-caret-right"></i>
+			),
+		expandHeaderColumnRenderer: ({ isAnyExpands }) => (
+			// ....
+			<span></span>
+		)
+	}
 
 	return (
-		<BootstrapTable
-			wrapperClasses="table-responsive"
-			headerClasses="thead-dark"
-			keyField="state"
-			data={data}
-			columns={columns}
-			hover
-			bootstrap4
-			condensed
-			striped
-			defaultSorted={defaultSort}
-			expandRow={expandRow}
-			bordered={false}
-		/>
+		<div data-aos="fade-up" data-aos-duration="3000">
+			<BootstrapTable
+				wrapperClasses="table-responsive"
+				headerClasses="thead-dark"
+				keyField="state"
+				data={data}
+				columns={columns}
+				hover
+				bootstrap4
+				condensed
+				striped
+				defaultSorted={defaultSort}
+				expandRow={expandRow}
+				bordered={false}
+			/>
+		</div>
 	)
 }
 
