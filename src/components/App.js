@@ -5,7 +5,6 @@ import Aos from 'aos'
 import 'aos/dist/aos.css'
 import Header from './Messages/Header'
 import GlobalTracker from './containers/GlobalTracker'
-
 import IndiaTracker from './containers/IndiaTracker'
 
 const App = () => {

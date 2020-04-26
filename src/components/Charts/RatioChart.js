@@ -15,8 +15,6 @@ const RatioChart = ({ active, recovered, deaths, confirmed, state }) => {
 	).toFixed(2)
 	const deathsPercentage = ((parsedDeaths / parsedConfirmed) * 100).toFixed(2)
 
-	console.log('chart state', state, state.length)
-
 	const options = {
 		animationEnabled: true,
 		title: {

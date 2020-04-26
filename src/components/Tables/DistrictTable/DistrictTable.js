@@ -1,6 +1,5 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
-import useDistrictCases from '../../../hooks/useDistrictCases'
 import RatioChart from '../../Charts/RatioChart'
 import './DistrictTable.css'
 import UpdateTime from '../../Messages/UpdateTime'
@@ -111,7 +110,6 @@ const DistrictTable = ({
 	data = data.filter(obj => obj.state === state)
 	if (data[0]) {
 		tableData = data[0].districtData
-		console.log('From comp', tableData)
 	}
 
 	return (
@@ -134,18 +132,20 @@ const DistrictTable = ({
 					time={lastupdatedtime}
 				/>
 			</div>
-			<BootstrapTable
-				wrapperClasses="table-responsive"
-				headerClasses="thead-dark"
-				keyField="district"
-				columns={columns}
-				data={tableData}
-				hover
-				bootstrap4
-				bordered={false}
-				condensed
-				defaultSorted={defaultSort}
-			/>
+			<div data-aos="fade-up" data-aos-duration="1000">
+				<BootstrapTable
+					wrapperClasses="table-responsive"
+					headerClasses="thead-dark"
+					keyField="district"
+					columns={columns}
+					data={tableData}
+					hover
+					bootstrap4
+					bordered={false}
+					condensed
+					defaultSorted={defaultSort}
+				/>
+			</div>
 		</div>
 	)
 }

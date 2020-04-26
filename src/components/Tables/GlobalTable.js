@@ -88,7 +88,6 @@ const columns = [
 const GloablTable = props => {
 	return (
 		<div>
-			<h1>Test</h1>
 			<BootstrapTable
 				wrapperClasses="table-responsive"
 				headerClasses="thead-dark"

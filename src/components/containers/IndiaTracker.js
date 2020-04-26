@@ -22,7 +22,6 @@ const IndiaTracker = () => {
 			const { statewise } = response.data
 
 			_.remove(statewise, obj => obj.state === 'Total')
-			console.log('state wise', response.data)
 
 			// Axios parses data not in a way this app needs
 			// Please don't touch it.
