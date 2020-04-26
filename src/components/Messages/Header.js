@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import './Header.css'
 const Header = props => {
 	return (
 		<div>
@@ -7,12 +8,20 @@ const Header = props => {
 				<div data-aos="fade-down-right" data-aos-duration="1000">
 					<h5 className="nav-link nav-brand">Covid19 Tracker</h5>
 				</div>
-				<Link className="nav-link" to="/covid19-tracker">
+				<NavLink
+					className="nav-link"
+					activeClassName="active"
+					exact
+					to="/covid19-tracker">
 					India
-				</Link>
-				<Link className="nav-link" to="/covid19-tracker/global">
+				</NavLink>
+				<NavLink
+					className="nav-link"
+					activeClassName="active"
+					exact
+					to="/covid19-tracker/global">
 					Global
-				</Link>
+				</NavLink>
 			</nav>
 		</div>
 	)
