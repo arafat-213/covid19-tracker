@@ -70,11 +70,11 @@ const App = () => {
 						render={() => <GloablTable data={countryCases} />}
 					/>
 					<div data-aos="fade-up" data-aos-duration="3000">
-						<Route path="/" component={StateTable} />
+						{/* <Route path="/" component={StateTable} /> */}
 					</div>
 				</Switch>
 			</Router>
-
+			<StateTable />
 			<div data-aos="flip-down">
 				<Footer />
 			</div>
