@@ -19,7 +19,9 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-confirmed">{`+${cell}`}</span>
+				<span className="float-right daily-confirmed">
+					&#8673;{parseInt(cell).toLocaleString('en-IN')}
+				</span>
 			)
 	},
 	{
@@ -53,7 +55,7 @@ const columns = [
 				<span></span>
 			) : (
 				<span className="float-right daily-recovered">
-					&#8673;{`${cell}`}
+					&#8673;{parseInt(cell).toLocaleString('en-IN')}
 				</span>
 			)
 	},
@@ -76,9 +78,9 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span
-					className="float-right"
-					style={{ color: 'red' }}>{`+${cell}`}</span>
+				<span className="float-right daily-deaths">
+					&#8673;{parseInt(cell).toLocaleString('en-IN')}
+				</span>
 			)
 	},
 	{
