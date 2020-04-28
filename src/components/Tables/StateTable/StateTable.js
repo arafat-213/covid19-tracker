@@ -125,7 +125,7 @@ const StateTable = ({ data, districtData }) => {
 	}
 
 	return (
-		<div data-aos="fade-up" data-aos-duration="3000">
+		<div data-aos="fade-up">
 			<BootstrapTable
 				wrapperClasses="table-responsive"
 				headerClasses="thead-dark"

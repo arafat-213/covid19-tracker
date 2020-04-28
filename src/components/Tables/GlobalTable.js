@@ -87,7 +87,7 @@ const columns = [
 
 const GloablTable = props => {
 	return (
-		<div>
+		<div data-aos="fade-up">
 			<BootstrapTable
 				wrapperClasses="table-responsive"
 				headerClasses="thead-dark"
