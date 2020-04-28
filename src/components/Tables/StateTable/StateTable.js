@@ -4,6 +4,8 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import DistrictTable from '../DistrictTable/DistrictTable'
 import '../Table.css'
+import Tested from '../../Messages/Tested'
+import _ from 'lodash'
 
 const columns = [
 	{
@@ -104,11 +106,35 @@ const defaultSort = [
 	}
 ]
 
-const StateTable = ({ data, districtData }) => {
+const StateTable = ({ data, districtData, tested }) => {
 	const expandRow = {
 		renderer: row => (
-			<div data-aos="fade-down">
-				<DistrictTable row={row} data={districtData} />
+			<div>
+				<Tested
+					tested={
+						tested
+							? tested[
+									_.findLastIndex(tested, [
+										'state',
+										row.state
+									]) - 1
+							  ].totaltested
+							: 'Data not available'
+					}
+					time={
+						tested
+							? tested[
+									_.findLastIndex(tested, [
+										'state',
+										row.state
+									]) - 1
+							  ].updatedon
+							: 'Data not available'
+					}
+				/>
+				<div data-aos="fade-down">
+					<DistrictTable row={row} data={districtData} />
+				</div>
 			</div>
 		),
 		showExpandColumn: true,

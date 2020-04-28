@@ -5,6 +5,7 @@ import indiaAPI from '../../api/indiaAPI'
 import _ from 'lodash'
 import districtData from '../../api/districtAPI'
 import Tested from '../Messages/Tested'
+import stateTestingAPI from '../../api/stateTestingAPI'
 
 const IndiaTracker = () => {
 	const [IndiaCases, setIndiaCases] = useState([])
@@ -14,6 +15,7 @@ const IndiaTracker = () => {
 	const [districtCases, setDistrictCases] = useState([])
 	const [IndiaTested, setIndiaTested] = useState(0)
 	const [testUpdatedTime, setTestUpdatedTime] = useState()
+	const [stateTestNumbers, setStateTestNumbers] = useState(0)
 
 	useEffect(() => {
 		const fetchData = async region => {
@@ -41,6 +43,12 @@ const IndiaTracker = () => {
 			const districtResponse = await districtData.get()
 			const data = districtResponse.data
 			setDistrictCases(data)
+
+			//Fetching state test numbers
+			const {
+				data: { states_tested_data }
+			} = await stateTestingAPI.get()
+			setStateTestNumbers(states_tested_data)
 		}
 		fetchData(region)
 	}, [region])
@@ -53,7 +61,11 @@ const IndiaTracker = () => {
 				region={region}
 			/>
 			<Tested tested={IndiaTested} time={testUpdatedTime} />
-			<StateTable data={stateCases} districtData={districtCases} />
+			<StateTable
+				data={stateCases}
+				districtData={districtCases}
+				tested={stateTestNumbers}
+			/>
 		</div>
 	)
 }
