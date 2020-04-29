@@ -5,13 +5,16 @@ import Dashboard from '../Dashboard/Dashboard'
 import Tested from '../Messages/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
+import districtAPI from '../../api/districtAPI'
 import _ from 'lodash'
+import DistrictTable from '../Tables/DistrictTable/DistrictTable'
 
 const StateTracker = props => {
 	let { id: statecode } = useParams()
 	console.log(props)
 	const [statecases, setStatecases] = useState([])
 	const [updatedTimeStamp, setUpdatedTimeStamp] = useState('')
+	const [districtCases, setDistrictCases] = useState([])
 	const [region, setRegion] = useState(null)
 	const [tested, setTested] = useState(0)
 
@@ -24,6 +27,10 @@ const StateTracker = props => {
 			setStatecases(cases)
 			setUpdatedTimeStamp(cases.lastupdatedtime)
 			setRegion(cases.state)
+
+			// Fetching district cases
+			const { data } = await districtAPI.get()
+			setDistrictCases(data)
 
 			//Fetching state test numbers
 			const {
@@ -51,6 +58,8 @@ const StateTracker = props => {
 					region={region ? region : 'Loading..'}
 				/>
 			</div>
+
+			<DistrictTable row={statecases} data={districtCases} />
 		</div>
 	)
 }

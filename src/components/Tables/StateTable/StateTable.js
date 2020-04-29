@@ -6,6 +6,7 @@ import DistrictTable from '../DistrictTable/DistrictTable'
 import '../Table.css'
 import Tested from '../../Messages/Tested'
 import _ from 'lodash'
+import { Link } from 'react-router-dom'
 
 const columns = [
 	{
@@ -106,12 +107,19 @@ const defaultSort = [
 	}
 ]
 
-const StateTable = ({ data, districtData, tested }) => {
+const StateTable = ({ data, districtData }) => {
 	const expandRow = {
 		renderer: row => (
 			<div>
-				<div data-aos="fade-down">
-					<DistrictTable row={row} data={districtData} />
+				<div>
+					<p>
+						<Link to={`/covid19-tracker/state/${row.statecode}`}>
+							Visit State Page
+						</Link>
+					</p>
+					<div data-aos="fade-down">
+						<DistrictTable row={row} data={districtData} />
+					</div>
 				</div>
 			</div>
 		),

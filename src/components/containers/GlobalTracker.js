@@ -13,7 +13,6 @@ const GlobalTracker = () => {
 		const fetchData = async () => {
 			const response = await globalAPI.get(`/summary`)
 			setGlobalCases(response.data.Global)
-			console.log('Global', GlobalCases)
 
 			setUpdateTimeStamp(response.data.Date)
 			setRegion('Global')

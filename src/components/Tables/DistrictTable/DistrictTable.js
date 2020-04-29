@@ -1,6 +1,5 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
-import RatioChart from '../../Charts/RatioChart'
 import './DistrictTable.css'
 import UpdateTime from '../../Messages/UpdateTime'
 import { Link } from 'react-router-dom'
@@ -126,13 +125,7 @@ const DistrictTable = ({
 					time={lastupdatedtime}
 				/>
 			</div>
-			<div>
-				<p>
-					<Link to={`/covid19-tracker/state/${statecode}`}>
-						Visit State Page
-					</Link>
-				</p>
-			</div>
+
 			<div data-aos="fade-up" data-aos-duration="1000">
 				<BootstrapTable
 					wrapperClasses="table-responsive"
