@@ -5,7 +5,6 @@ import RatioChart from '../Charts/RatioChart'
 import UpdateTime from '../Messages/UpdateTime'
 
 const Dashboard = ({ cases, time, region }) => {
-	const option = [{ minimumIntegerDigits: 1 }]
 	let active,
 		confirmed,
 		recovered,
@@ -46,8 +45,7 @@ const Dashboard = ({ cases, time, region }) => {
 							count={
 								confirmed
 									? parseInt(confirmed).toLocaleString(
-											'en-IN',
-											option
+											'en-IN'
 									  )
 									: 'Loading..'
 							}

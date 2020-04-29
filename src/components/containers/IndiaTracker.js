@@ -4,6 +4,8 @@ import StateTable from '../Tables/StateTable/StateTable'
 import indiaAPI from '../../api/indiaAPI'
 import _ from 'lodash'
 import districtData from '../../api/districtAPI'
+import Tested from '../Messages/Tested'
+import stateTestingAPI from '../../api/stateTestingAPI'
 
 const IndiaTracker = () => {
 	const [IndiaCases, setIndiaCases] = useState([])
@@ -11,16 +13,21 @@ const IndiaTracker = () => {
 	const [region, setRegion] = useState('India')
 	const [stateCases, setStateCases] = useState([])
 	const [districtCases, setDistrictCases] = useState([])
+	const [IndiaTested, setIndiaTested] = useState(0)
+	const [testUpdatedTime, setTestUpdatedTime] = useState()
+	const [stateTestNumbers, setStateTestNumbers] = useState(0)
 
 	useEffect(() => {
 		const fetchData = async region => {
 			const response = await indiaAPI.get()
+			console.log(response.data)
 			setIndiaCases(response.data.statewise[0])
 			setUpdateTimeStamp(response.data.statewise[0].lastupdatedtime)
 			setRegion('India')
 
-			const { statewise } = response.data
-
+			const { statewise, tested } = response.data
+			setIndiaTested(tested[tested.length - 1].totalsamplestested)
+			setTestUpdatedTime(tested[tested.length - 1].updatetimestamp)
 			_.remove(statewise, obj => obj.state === 'Total')
 
 			// Axios parses data not in a way this app needs
@@ -36,9 +43,16 @@ const IndiaTracker = () => {
 			const districtResponse = await districtData.get()
 			const data = districtResponse.data
 			setDistrictCases(data)
+
+			//Fetching state test numbers
+			const {
+				data: { states_tested_data }
+			} = await stateTestingAPI.get()
+			setStateTestNumbers(states_tested_data)
 		}
 		fetchData(region)
 	}, [region])
+
 	return (
 		<div>
 			<Dashboard
@@ -46,7 +60,12 @@ const IndiaTracker = () => {
 				time={updateTimeStamp}
 				region={region}
 			/>
-			<StateTable data={stateCases} districtData={districtCases} />
+			<Tested tested={IndiaTested} time={testUpdatedTime} />
+			<StateTable
+				data={stateCases}
+				districtData={districtCases}
+				tested={stateTestNumbers}
+			/>
 		</div>
 	)
 }
