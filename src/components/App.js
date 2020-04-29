@@ -6,6 +6,7 @@ import 'aos/dist/aos.css'
 import Header from './Messages/Header'
 import GlobalTracker from './containers/GlobalTracker'
 import IndiaTracker from './containers/IndiaTracker'
+import StateTracker from './containers/StateTracker'
 
 const App = () => {
 	/*Intializing Animation on scroll libraryy */
@@ -27,6 +28,11 @@ const App = () => {
 						path="/covid19-tracker"
 						exact
 						render={() => <IndiaTracker />}
+					/>
+					<Route
+						path="/covid19-tracker/state/:id"
+						exact
+						render={() => <StateTracker />}
 					/>
 				</Switch>
 			</Router>

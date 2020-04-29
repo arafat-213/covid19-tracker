@@ -3,6 +3,7 @@ import BootstrapTable from 'react-bootstrap-table-next'
 import RatioChart from '../../Charts/RatioChart'
 import './DistrictTable.css'
 import UpdateTime from '../../Messages/UpdateTime'
+import { Link } from 'react-router-dom'
 
 const columns = [
 	{
@@ -104,7 +105,15 @@ const defaultSort = [
 ]
 
 const DistrictTable = ({
-	row: { state, lastupdatedtime, recovered, deaths, active, confirmed },
+	row: {
+		state,
+		lastupdatedtime,
+		recovered,
+		deaths,
+		active,
+		confirmed,
+		statecode
+	},
 	data
 }) => {
 	// const response = useDistrictCases()
@@ -133,6 +142,13 @@ const DistrictTable = ({
 					style={{ marginTop: '2px' }}
 					time={lastupdatedtime}
 				/>
+			</div>
+			<div>
+				<p>
+					<Link to={`/covid19-tracker/state/${statecode}`}>
+						Visit State Page
+					</Link>
+				</p>
 			</div>
 			<div data-aos="fade-up" data-aos-duration="1000">
 				<BootstrapTable
