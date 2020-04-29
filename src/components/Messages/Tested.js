@@ -1,28 +1,31 @@
 import React from 'react'
+import './Tested.css'
 
 const Tested = ({ tested, time, region, source }) => {
 	return (
-		<div className="card">
-			<blockquote className="blockquote mb-0">
-				<div className="card-header">
-					<p>{region ? region : 'Loading...'}</p>
-				</div>
-				<div className="card-body">
-					<p>
-						Number of samples tested:{' '}
-						{parseInt(tested).toLocaleString('en-IN')}
+		<div>
+			<div className="row">
+				<div className="col">
+					<p className="display-4 region-title text-center">
+						{region ? region : 'Loading...'}
 					</p>
-					<footer className="blockquote-footer">As of {time}</footer>
-					<footer className="blockquote-footer">
+					<footer>As of {time}</footer>
+				</div>
+				<div className="col">
+					<div className="col card-body">
+						<div className="display-4 test-numbers">
+							{parseInt(tested).toLocaleString('en-IN')}
+						</div>
+						<p>Number of samples tested</p>
 						<a
 							href={source}
 							target="_blank"
 							rel="noopener noreferrer">
 							source
 						</a>
-					</footer>
+					</div>
 				</div>
-			</blockquote>
+			</div>
 		</div>
 	)
 }

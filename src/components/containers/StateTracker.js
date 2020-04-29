@@ -42,13 +42,12 @@ const StateTracker = props => {
 	}, [])
 	return (
 		<div>
-			{/* <Tested tested="1000" time={updatedTimeStamp} region="Gujarat" /> */}
+			{getTestNumber(tested, region)}
 			<Dashboard
 				region={region ? region : 'India'}
 				cases={statecases}
 				time={updatedTimeStamp}
 			/>
-			{getTestNumber(tested, region)}
 			<div data-aos="zoom-in-up">
 				<RatioChart
 					recovered={statecases.recovered}

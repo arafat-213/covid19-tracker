@@ -17,6 +17,7 @@ const IndiaTracker = () => {
 	const [IndiaTested, setIndiaTested] = useState(0)
 	const [testUpdatedTime, setTestUpdatedTime] = useState()
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
+	const [TestedSource, setTestedSource] = useState('')
 
 	useEffect(() => {
 		const fetchData = async region => {
@@ -29,6 +30,7 @@ const IndiaTracker = () => {
 			const { statewise, tested } = response.data
 			setIndiaTested(tested[tested.length - 1].totalsamplestested)
 			setTestUpdatedTime(tested[tested.length - 1].updatetimestamp)
+			setTestedSource(tested[tested.length - 1].source)
 			_.remove(statewise, obj => obj.state === 'Total')
 
 			// Axios parses data not in a way this app needs
@@ -56,6 +58,12 @@ const IndiaTracker = () => {
 
 	return (
 		<div>
+			<Tested
+				tested={IndiaTested}
+				time={testUpdatedTime}
+				region="India"
+				source={TestedSource}
+			/>
 			<Dashboard
 				cases={IndiaCases}
 				time={updateTimeStamp}
@@ -70,11 +78,6 @@ const IndiaTracker = () => {
 					region="India"
 				/>
 			</div>
-			<Tested
-				tested={IndiaTested}
-				time={testUpdatedTime}
-				region="India"
-			/>
 			<StateTable
 				data={stateCases}
 				districtData={districtCases}
