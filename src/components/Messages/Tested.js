@@ -12,7 +12,7 @@ const Tested = ({ tested, time, region, source }) => {
 					<footer>As of {time}</footer>
 				</div>
 				<div className="col">
-					<div className="col card-body">
+					<div className="col card-body text-right">
 						<div className="h3 test-numbers">
 							{parseInt(tested).toLocaleString('en-IN')}
 						</div>
