@@ -12,17 +12,7 @@ const Dashboard = ({ cases, time, region }) => {
 		deltaconfirmed,
 		deltarecovered,
 		deltadeaths = 0
-	if (region === 'India') {
-		;({
-			active,
-			confirmed,
-			recovered,
-			deaths,
-			deltaconfirmed,
-			deltarecovered,
-			deltadeaths
-		} = cases)
-	} else {
+	if (region === 'Global') {
 		;({
 			TotalConfirmed: confirmed,
 			TotalRecovered: recovered,
@@ -32,6 +22,16 @@ const Dashboard = ({ cases, time, region }) => {
 			NewRecovered: deltarecovered
 		} = cases)
 		active = confirmed - recovered - deaths
+	} else {
+		;({
+			active,
+			confirmed,
+			recovered,
+			deaths,
+			deltaconfirmed,
+			deltarecovered,
+			deltadeaths
+		} = cases)
 	}
 
 	return (

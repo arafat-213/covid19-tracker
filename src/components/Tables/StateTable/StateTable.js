@@ -110,28 +110,6 @@ const StateTable = ({ data, districtData, tested }) => {
 	const expandRow = {
 		renderer: row => (
 			<div>
-				<Tested
-					tested={
-						tested
-							? tested[
-									_.findLastIndex(tested, [
-										'state',
-										row.state
-									]) - 1
-							  ].totaltested
-							: 'Data not available'
-					}
-					time={
-						tested
-							? tested[
-									_.findLastIndex(tested, [
-										'state',
-										row.state
-									]) - 1
-							  ].updatedon
-							: 'Data not available'
-					}
-				/>
 				<div data-aos="fade-down">
 					<DistrictTable row={row} data={districtData} />
 				</div>

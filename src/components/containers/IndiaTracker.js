@@ -60,7 +60,11 @@ const IndiaTracker = () => {
 				time={updateTimeStamp}
 				region={region}
 			/>
-			<Tested tested={IndiaTested} time={testUpdatedTime} />
+			<Tested
+				tested={IndiaTested}
+				time={testUpdatedTime}
+				region="India"
+			/>
 			<StateTable
 				data={stateCases}
 				districtData={districtCases}
