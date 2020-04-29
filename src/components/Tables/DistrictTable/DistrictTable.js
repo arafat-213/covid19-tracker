@@ -105,15 +105,7 @@ const defaultSort = [
 ]
 
 const DistrictTable = ({
-	row: {
-		state,
-		lastupdatedtime,
-		recovered,
-		deaths,
-		active,
-		confirmed,
-		statecode
-	},
+	row: { state, lastupdatedtime, statecode },
 	data
 }) => {
 	// const response = useDistrictCases()
@@ -125,15 +117,6 @@ const DistrictTable = ({
 
 	return (
 		<div>
-			<div data-aos="zoom-in-up" data-aos-once="true">
-				<RatioChart
-					recovered={recovered}
-					deaths={deaths}
-					active={active}
-					confirmed={confirmed}
-					state={state}
-				/>
-			</div>
 			<div
 				data-aos="fade-up-left"
 				data-aos-once="true"

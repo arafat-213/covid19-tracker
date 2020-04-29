@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import globalAPI from '../../api/globalAPI'
 import Dashboard from '../Dashboard/Dashboard'
 import GloablTable from '../Tables/GlobalTable'
+import RatioChart from '../Charts/RatioChart'
 const GlobalTracker = () => {
 	const [GlobalCases, setGlobalCases] = useState([])
 	const [updateTimeStamp, setUpdateTimeStamp] = useState('')
@@ -12,6 +13,8 @@ const GlobalTracker = () => {
 		const fetchData = async () => {
 			const response = await globalAPI.get(`/summary`)
 			setGlobalCases(response.data.Global)
+			console.log('Global', GlobalCases)
+
 			setUpdateTimeStamp(response.data.Date)
 			setRegion('Global')
 			const country = response.data.Countries.sort(
@@ -30,6 +33,19 @@ const GlobalTracker = () => {
 				time={updateTimeStamp}
 				region={region}
 			/>
+			<div data-aos="zoom-in-up">
+				<RatioChart
+					recovered={GlobalCases.TotalRecovered}
+					deaths={GlobalCases.TotalDeaths}
+					active={
+						GlobalCases.TotalConfirmed -
+						GlobalCases.TotalRecovered -
+						GlobalCases.TotalDeaths
+					}
+					confirmed={GlobalCases.TotalConfirmed}
+					region="Global"
+				/>
+			</div>
 			<GloablTable data={countryCases} />
 		</div>
 	)

@@ -6,6 +6,7 @@ import _ from 'lodash'
 import districtData from '../../api/districtAPI'
 import Tested from '../Messages/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
+import RatioChart from '../Charts/RatioChart'
 
 const IndiaTracker = () => {
 	const [IndiaCases, setIndiaCases] = useState([])
@@ -60,6 +61,15 @@ const IndiaTracker = () => {
 				time={updateTimeStamp}
 				region={region}
 			/>
+			<div data-aos="zoom-in-up">
+				<RatioChart
+					recovered={IndiaCases.recovered}
+					deaths={IndiaCases.deaths}
+					active={IndiaCases.active}
+					confirmed={IndiaCases.confirmed}
+					region="India"
+				/>
+			</div>
 			<Tested
 				tested={IndiaTested}
 				time={testUpdatedTime}

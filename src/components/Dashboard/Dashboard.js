@@ -124,13 +124,13 @@ const Dashboard = ({ cases, time, region }) => {
 				<br />
 			</div>
 			<div data-aos="zoom-in-up">
-				<RatioChart
+				{/* <RatioChart
 					recovered={recovered}
 					deaths={deaths}
 					active={active}
 					confirmed={confirmed}
 					state={region}
-				/>
+				/> */}
 			</div>
 		</div>
 	)
