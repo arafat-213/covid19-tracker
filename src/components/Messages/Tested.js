@@ -6,17 +6,17 @@ const Tested = ({ tested, time, region, source }) => {
 		<div>
 			<div className="row">
 				<div className="col">
-					<p className="display-4 region-title text-center">
+					<p className="display-4 region-title">
 						{region ? region : 'Loading...'}
 					</p>
 					<footer>As of {time}</footer>
 				</div>
 				<div className="col">
 					<div className="col card-body">
-						<div className="display-4 test-numbers">
+						<div className="h3 test-numbers">
 							{parseInt(tested).toLocaleString('en-IN')}
 						</div>
-						<p>Number of samples tested</p>
+						<p>Samples tested</p>
 						<a
 							href={source}
 							target="_blank"
