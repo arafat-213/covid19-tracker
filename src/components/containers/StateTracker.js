@@ -9,9 +9,8 @@ import districtAPI from '../../api/districtAPI'
 import _ from 'lodash'
 import DistrictTable from '../Tables/DistrictTable/DistrictTable'
 
-const StateTracker = props => {
+const StateTracker = () => {
 	let { id: statecode } = useParams()
-	console.log(props)
 	const [statecases, setStatecases] = useState([])
 	const [updatedTimeStamp, setUpdatedTimeStamp] = useState('')
 	const [districtCases, setDistrictCases] = useState([])
@@ -39,7 +38,7 @@ const StateTracker = props => {
 			setTested(states_tested_data)
 		}
 		fetchData()
-	}, [])
+	}, [statecode])
 	return (
 		<div>
 			{getTestNumber(tested, region)}
@@ -65,16 +64,11 @@ const StateTracker = props => {
 
 const getTestNumber = (tested, region) => {
 	let index = _.findLastIndex(tested, ['state', region])
-	console.log(index)
-	console.log('tested', tested)
-
 	let totaltested = 0,
 		updatedon = '',
 		source = ''
 	if (tested && index !== -1) {
 		totaltested = tested[index].totaltested
-		console.log('total tested', totaltested)
-
 		if (!totaltested) {
 			totaltested = tested[index - 1].totaltested
 			updatedon = tested[index - 1].updatedon

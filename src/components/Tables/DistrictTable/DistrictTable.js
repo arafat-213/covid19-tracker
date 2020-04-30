@@ -2,7 +2,6 @@ import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import './DistrictTable.css'
 import UpdateTime from '../../Messages/UpdateTime'
-import { Link } from 'react-router-dom'
 
 const columns = [
 	{

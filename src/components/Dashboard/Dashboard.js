@@ -1,7 +1,6 @@
 import React from 'react'
 import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
-import RatioChart from '../Charts/RatioChart'
 import UpdateTime from '../Messages/UpdateTime'
 
 const Dashboard = ({ cases, time, region }) => {

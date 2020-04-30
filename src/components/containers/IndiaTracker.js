@@ -22,7 +22,6 @@ const IndiaTracker = () => {
 	useEffect(() => {
 		const fetchData = async region => {
 			const response = await indiaAPI.get()
-			console.log(response.data)
 			setIndiaCases(response.data.statewise[0])
 			setUpdateTimeStamp(response.data.statewise[0].lastupdatedtime)
 			setRegion('India')
