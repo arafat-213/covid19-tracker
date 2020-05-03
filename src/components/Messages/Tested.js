@@ -9,14 +9,13 @@ const Tested = ({ tested, time, region, source }) => {
 					<p className="display-4 region-title">
 						{region ? region : 'Loading...'}
 					</p>
-					<p className="test-text">As of {time}</p>
 				</div>
 				<div className="col">
 					<div className="col card-body text-right">
-						<div className="h3 test-numbers">
+						<div className="h3 test-numbers mb-0">
 							{parseInt(tested).toLocaleString('en-IN')}
 						</div>
-						<p className="test-text">
+						<p className="test-text mb-0">
 							Samples tested{' '}
 							<a
 								href={source}
@@ -25,6 +24,7 @@ const Tested = ({ tested, time, region, source }) => {
 								<i className="fas fa-link"></i>
 							</a>
 						</p>
+						<p className="test-text">As of {time}</p>
 					</div>
 				</div>
 			</div>

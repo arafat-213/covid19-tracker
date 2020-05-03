@@ -36,10 +36,12 @@ const Dashboard = ({ cases, time, region }) => {
 	return (
 		<div>
 			<div className="row">
-				<div className="col-sm-3">
-					<div className="card card-confirmed" data-aos="fade-right">
+				<div className="col-lg-3 col-sm-6">
+					<div
+						className="card card-confirmed m-1"
+						data-aos="fade-right">
 						<DashboardCard
-							className="four wide colum"
+							// className="four wide colum"
 							card="Confirmed"
 							count={
 								confirmed
@@ -59,10 +61,10 @@ const Dashboard = ({ cases, time, region }) => {
 					</div>
 				</div>
 
-				<div className="col-sm-3">
-					<div className="card card-active" data-aos="fade-down">
+				<div className="col-lg-3 col-sm-6">
+					<div className="card card-active  m-1" data-aos="fade-down">
 						<DashboardCard
-							className="four wide colum"
+							// className="four wide colum"
 							card="Active"
 							count={
 								active
@@ -73,10 +75,10 @@ const Dashboard = ({ cases, time, region }) => {
 					</div>
 				</div>
 
-				<div className="col-sm-3">
-					<div className="card card-recovered" data-aos="fade-up">
+				<div className="col-lg-3 col-sm-6">
+					<div className="card card-recovered m-1" data-aos="fade-up">
 						<DashboardCard
-							className="four wide colum"
+							// className="four wide colum"
 							card="Recovered"
 							count={
 								recovered
@@ -96,10 +98,12 @@ const Dashboard = ({ cases, time, region }) => {
 					</div>
 				</div>
 
-				<div className="col-sm-3 ">
-					<div className="card card-deceased" data-aos="fade-left">
+				<div className="col-lg-3 col-sm-6">
+					<div
+						className="card card-deceased m-1"
+						data-aos="fade-left">
 						<DashboardCard
-							className="four wide colum card-deceased"
+							// className="four wide colum card-deceased"
 							card="Deceased"
 							count={
 								deaths
@@ -122,15 +126,7 @@ const Dashboard = ({ cases, time, region }) => {
 				<UpdateTime time={time} />
 				<br />
 			</div>
-			<div data-aos="zoom-in-up">
-				{/* <RatioChart
-					recovered={recovered}
-					deaths={deaths}
-					active={active}
-					confirmed={confirmed}
-					state={region}
-				/> */}
-			</div>
+			<div data-aos="zoom-in-up"></div>
 		</div>
 	)
 }

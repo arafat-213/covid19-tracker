@@ -77,7 +77,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-deaths">
+				<span className="float-right daily-deceased">
 					&#8673;{parseInt(cell).toLocaleString('en-IN')}
 				</span>
 			)
