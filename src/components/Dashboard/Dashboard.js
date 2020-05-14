@@ -38,7 +38,7 @@ const Dashboard = ({ cases, time, region }) => {
 			<div className="row">
 				<div className="col-lg-3 col-sm-6">
 					<div
-						className="card card-confirmed m-1"
+						className="card card-confirmed m-1 m-l-0"
 						data-aos="fade-right">
 						<DashboardCard
 							// className="four wide colum"
@@ -62,7 +62,9 @@ const Dashboard = ({ cases, time, region }) => {
 				</div>
 
 				<div className="col-lg-3 col-sm-6">
-					<div className="card card-active  m-1" data-aos="fade-down">
+					<div
+						className="card card-active  m-1  m-l-0"
+						data-aos="fade-down">
 						<DashboardCard
 							// className="four wide colum"
 							card="Active"
@@ -76,7 +78,9 @@ const Dashboard = ({ cases, time, region }) => {
 				</div>
 
 				<div className="col-lg-3 col-sm-6">
-					<div className="card card-recovered m-1" data-aos="fade-up">
+					<div
+						className="card card-recovered m-1 m-l-0"
+						data-aos="fade-up">
 						<DashboardCard
 							// className="four wide colum"
 							card="Recovered"
@@ -100,7 +104,7 @@ const Dashboard = ({ cases, time, region }) => {
 
 				<div className="col-lg-3 col-sm-6">
 					<div
-						className="card card-deceased m-1"
+						className="card card-deceased m-1 m-l-0"
 						data-aos="fade-left">
 						<DashboardCard
 							// className="four wide colum card-deceased"

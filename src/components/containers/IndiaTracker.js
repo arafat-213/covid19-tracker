@@ -7,6 +7,7 @@ import districtData from '../../api/districtAPI'
 import Tested from '../Messages/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
+import CurveChart from '../Charts/CurveChart'
 
 const IndiaTracker = () => {
 	const [IndiaCases, setIndiaCases] = useState([])
@@ -18,11 +19,13 @@ const IndiaTracker = () => {
 	const [testUpdatedTime, setTestUpdatedTime] = useState()
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
 	const [TestedSource, setTestedSource] = useState('')
+	const [casesTimeline, setCasesTimeline] = useState([])
 
 	useEffect(() => {
 		const fetchData = async region => {
 			const response = await indiaAPI.get()
 			setIndiaCases(response.data.statewise[0])
+			setCasesTimeline(response.data.cases_time_series)
 			setUpdateTimeStamp(response.data.statewise[0].lastupdatedtime)
 			setRegion('India')
 
@@ -54,13 +57,12 @@ const IndiaTracker = () => {
 		}
 		fetchData(region)
 	}, [region])
-
 	return (
 		<div>
 			<Tested
 				tested={IndiaTested}
 				time={testUpdatedTime}
-				region="India"
+				region='India'
 				source={TestedSource}
 			/>
 			<Dashboard
@@ -68,14 +70,17 @@ const IndiaTracker = () => {
 				time={updateTimeStamp}
 				region={region}
 			/>
-			<div data-aos="zoom-in-up">
+			<div data-aos='zoom-in-up'>
 				<RatioChart
 					recovered={IndiaCases.recovered}
 					deaths={IndiaCases.deaths}
 					active={IndiaCases.active}
 					confirmed={IndiaCases.confirmed}
-					region="India"
+					region='India'
 				/>
+			</div>
+			<div>
+				<CurveChart cases={casesTimeline} />
 			</div>
 			<StateTable
 				data={stateCases}
