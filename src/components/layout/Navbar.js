@@ -69,7 +69,7 @@ const Navbar = () => {
 								className='nav-link'
 								activeClassName='active'
 								exact
-								to='/'>
+								to='/covid19-tracker/about'>
 								About Me
 							</NavLink>
 						</li>
