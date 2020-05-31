@@ -1,0 +1,13 @@
+.question {
+	color: #0779e4;
+}
+
+.answer {
+	color: #323232;
+}
+
+h5 > a {
+	color: #767676;
+	text-decoration: underline;
+	background: #f6f6f6;
+}

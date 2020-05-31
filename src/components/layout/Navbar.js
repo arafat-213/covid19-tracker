@@ -81,7 +81,7 @@ const Navbar = () => {
 								className='nav-link'
 								activeClassName='active'
 								exact
-								to='/'>
+								to='/covid19-tracker/faq'>
 								FAQ
 							</NavLink>
 						</li>

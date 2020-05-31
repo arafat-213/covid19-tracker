@@ -9,6 +9,8 @@ import StateTracker from './containers/StateTracker'
 import './App.css'
 import Navbar from './layout/Navbar'
 import NotFound from './layout/NotFound'
+import AboutMe from './Pages/AboutMe'
+import FAQ from './Pages/FAQ'
 
 const App = () => {
 	/*Intializing Animation on scroll libraryy */
@@ -38,6 +40,12 @@ const App = () => {
 						exact
 						render={() => <StateTracker />}
 					/>
+					<Route
+						path='/covid19-tracker/about'
+						exact
+						component={AboutMe}
+					/>
+					<Route path='/covid19-tracker/faq' exact component={FAQ} />
 					<Route component={NotFound} />
 				</Switch>
 			</Router>
