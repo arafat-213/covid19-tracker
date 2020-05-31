@@ -1,0 +1,22 @@
+/* .active {
+	border: 1px solid #0779e4;
+} */
+/* .nav-link:hover {
+	background-color: #f0f0f0; }
+	  */
+.nav {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.nav-item {
+	padding: 2px 4px;
+}
+
+.nav-item:hover {
+	border: 1px solid #0779e4;
+}
+
+.active {
+	color: #0779e4;
+}

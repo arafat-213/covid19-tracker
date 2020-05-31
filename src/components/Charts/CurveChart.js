@@ -13,10 +13,7 @@ const CurveChart = ({ cases }) => {
 			text: 'COVID-19 cases',
 			fontSize: 20
 		},
-		aspectRatio: 10,
-		tooltips: {
-			intersect: true
-		}
+		maintainAspectRatio: false
 	}
 
 	useEffect(() => {
@@ -25,7 +22,6 @@ const CurveChart = ({ cases }) => {
 		setTotaldeceased(cases.map(obj => Number.parseInt(obj.totaldeceased)))
 		setDates(cases.map(obj => obj.date))
 	}, [cases])
-	console.log('state', totalconfirmed)
 
 	// const dataSet = [
 	// 	{
@@ -52,25 +48,25 @@ const CurveChart = ({ cases }) => {
 				borderColor: 'rgba(0,0,0,1)',
 				borderWidth: 2,
 				data: totalconfirmed
-			},
-			{
-				label: 'Recovered',
-				fill: false,
-				lineTension: 0,
-				backgroundColor: 'rgba(23, 176, 52, 1)',
-				borderColor: 'rgba(0,0,0,1)',
-				borderWidth: 2,
-				data: cases.map(obj => obj.totalrecovered)
-			},
-			{
-				label: 'Deceased',
-				fill: false,
-				lineTension: 0,
-				backgroundColor: 'rgba(236, 73, 64, 1)',
-				borderColor: 'rgba(0,0,0,1)',
-				borderWidth: 2,
-				data: cases.map(obj => obj.totaldeceased)
 			}
+			// {
+			// 	label: 'Recovered',
+			// 	fill: false,
+			// 	lineTension: 0,
+			// 	backgroundColor: 'rgba(23, 176, 52, 1)',
+			// 	borderColor: 'rgba(0,0,0,1)',
+			// 	borderWidth: 2,
+			// 	data: totalrecovered
+			// },
+			// {
+			// 	label: 'Deceased',
+			// 	fill: false,
+			// 	lineTension: 0,
+			// 	backgroundColor: 'rgba(236, 73, 64, 1)',
+			// 	borderColor: 'rgba(0,0,0,1)',
+			// 	borderWidth: 2,
+			// 	data: totaldeceased
+			// }
 		]
 	}
 	return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import './DistrictTable.css'
-import UpdateTime from '../../Messages/UpdateTime'
+import UpdateTime from '../../layout/UpdateTime'
 
 const columns = [
 	{
@@ -18,7 +18,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-confirmed">
+				<span className='float-right daily-confirmed'>
 					&#8673;{parseInt(cell).toLocaleString('en-IN')}
 				</span>
 			)
@@ -53,7 +53,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-recovered">
+				<span className='float-right daily-recovered'>
 					&#8673;{parseInt(cell).toLocaleString('en-IN')}
 				</span>
 			)
@@ -77,7 +77,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-deceased">
+				<span className='float-right daily-deceased'>
 					&#8673;{parseInt(cell).toLocaleString('en-IN')}
 				</span>
 			)
@@ -116,20 +116,23 @@ const DistrictTable = ({
 	return (
 		<div>
 			<div
-				data-aos="fade-up-left"
-				data-aos-once="true"
-				data-aos-duration="1000">
+				data-aos='fade-up-left'
+				data-aos-once='true'
+				data-aos-duration='1000'>
 				<UpdateTime
 					style={{ marginTop: '2px' }}
 					time={lastupdatedtime}
 				/>
 			</div>
 
-			<div data-aos="fade-up" data-aos-duration="1000">
+			<div
+				data-aos='fade-up'
+				data-aos-duration='1000'
+				data-aos-once='true'>
 				<BootstrapTable
-					wrapperClasses="table-responsive"
-					headerClasses="thead-dark"
-					keyField="district"
+					wrapperClasses='table-responsive'
+					headerClasses='thead-dark'
+					keyField='district'
 					columns={columns}
 					data={tableData}
 					hover

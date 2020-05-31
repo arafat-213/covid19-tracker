@@ -4,10 +4,12 @@ import StateTable from '../Tables/StateTable/StateTable'
 import indiaAPI from '../../api/indiaAPI'
 import _ from 'lodash'
 import districtData from '../../api/districtAPI'
-import Tested from '../Messages/Tested'
+import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
-import CurveChart from '../Charts/CurveChart'
+// import CurveChart from '../Charts/CurveChart'
+// import RChart from '../Charts/RChart'
+// import TotalConfirmed from '../Charts/TotalConfirmed'
 
 const IndiaTracker = () => {
 	const [IndiaCases, setIndiaCases] = useState([])
@@ -19,13 +21,13 @@ const IndiaTracker = () => {
 	const [testUpdatedTime, setTestUpdatedTime] = useState()
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
 	const [TestedSource, setTestedSource] = useState('')
-	const [casesTimeline, setCasesTimeline] = useState([])
+	// const [casesTimeline, setCasesTimeline] = useState([])
 
 	useEffect(() => {
-		const fetchData = async region => {
+		const fetchData = async () => {
 			const response = await indiaAPI.get()
 			setIndiaCases(response.data.statewise[0])
-			setCasesTimeline(response.data.cases_time_series)
+			// setCasesTimeline(response.data.cases_time_series)
 			setUpdateTimeStamp(response.data.statewise[0].lastupdatedtime)
 			setRegion('India')
 
@@ -55,8 +57,8 @@ const IndiaTracker = () => {
 			} = await stateTestingAPI.get()
 			setStateTestNumbers(states_tested_data)
 		}
-		fetchData(region)
-	}, [region])
+		fetchData()
+	}, [])
 	return (
 		<div>
 			<Tested
@@ -79,14 +81,25 @@ const IndiaTracker = () => {
 					region='India'
 				/>
 			</div>
+			{/* <div style={{ height: '400px' }}>
+				<RChart
+					recovered={IndiaCases.recovered}
+					deaths={IndiaCases.deaths}
+					active={IndiaCases.active}
+					confirmed={IndiaCases.confirmed}
+					region='India'
+				/>
+			</div> */}
 			<div>
-				<CurveChart cases={casesTimeline} />
+				<StateTable
+					data={stateCases}
+					districtData={districtCases}
+					tested={stateTestNumbers}
+				/>
 			</div>
-			<StateTable
-				data={stateCases}
-				districtData={districtCases}
-				tested={stateTestNumbers}
-			/>
+			{/* <div style={{ height: '400px' }}>
+				<TotalConfirmed cases={casesTimeline} label='confirmed' />
+			</div> */}
 		</div>
 	)
 }

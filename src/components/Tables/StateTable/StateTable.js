@@ -21,7 +21,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-confirmed">
+				<span className='float-right daily-confirmed'>
 					&#8673;{`${cell}`}
 				</span>
 			)
@@ -56,7 +56,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-recovered">
+				<span className='float-right daily-recovered'>
 					&#8673;{`${cell}`}
 				</span>
 			)
@@ -80,7 +80,7 @@ const columns = [
 			cell === 0 ? (
 				<span></span>
 			) : (
-				<span className="float-right daily-deceased">
+				<span className='float-right daily-deceased'>
 					&#8673;{`${cell}`}
 				</span>
 			)
@@ -115,7 +115,7 @@ const StateTable = ({ data, districtData }) => {
 							Visit State Page
 						</Link>
 					</p>
-					<div data-aos="fade-down">
+					<div data-aos='fade-down' data-aos-once='true'>
 						<DistrictTable row={row} data={districtData} />
 					</div>
 				</div>
@@ -124,9 +124,9 @@ const StateTable = ({ data, districtData }) => {
 		showExpandColumn: true,
 		expandColumnRenderer: ({ expanded }) =>
 			expanded ? (
-				<i className="fas fa-caret-down"></i>
+				<i className='fas fa-caret-down'></i>
 			) : (
-				<i className="fas fa-caret-right"></i>
+				<i className='fas fa-caret-right'></i>
 			),
 		expandHeaderColumnRenderer: ({ isAnyExpands }) => (
 			// ....
@@ -135,11 +135,14 @@ const StateTable = ({ data, districtData }) => {
 	}
 
 	return (
-		<div data-aos="fade-up">
+		<div
+			data-aos='fade-up'
+			data-aos-once='true'
+			style={{ marginTop: '16px' }}>
 			<BootstrapTable
-				wrapperClasses="table-responsive"
-				headerClasses="thead-dark"
-				keyField="state"
+				wrapperClasses='table-responsive'
+				headerClasses='thead-dark'
+				keyField='state'
 				data={data}
 				columns={columns}
 				hover

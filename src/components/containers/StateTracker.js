@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import indiaAPI from '../../api/indiaAPI'
 import Dashboard from '../Dashboard/Dashboard'
-import Tested from '../Messages/Tested'
+import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
 import districtAPI from '../../api/districtAPI'
@@ -47,7 +47,7 @@ const StateTracker = () => {
 				cases={statecases}
 				time={updatedTimeStamp}
 			/>
-			<div data-aos="zoom-in-up">
+			<div data-aos='zoom-in-up'>
 				<RatioChart
 					recovered={statecases.recovered}
 					deaths={statecases.deaths}

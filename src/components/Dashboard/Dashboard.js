@@ -1,7 +1,7 @@
 import React from 'react'
 import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
-import UpdateTime from '../Messages/UpdateTime'
+import UpdateTime from '../layout/UpdateTime'
 
 const Dashboard = ({ cases, time, region }) => {
 	let active,
@@ -35,14 +35,14 @@ const Dashboard = ({ cases, time, region }) => {
 
 	return (
 		<div>
-			<div className="row">
-				<div className="col-lg-3 col-sm-6">
+			<div className='row'>
+				<div className='col-lg-3 col-sm-6'>
 					<div
-						className="card card-confirmed m-1 m-l-0"
-						data-aos="fade-right">
+						className='card card-confirmed m-1 m-l-0'
+						data-aos='fade-right'>
 						<DashboardCard
 							// className="four wide colum"
-							card="Confirmed"
+							card='Confirmed'
 							count={
 								confirmed
 									? parseInt(confirmed).toLocaleString(
@@ -61,13 +61,13 @@ const Dashboard = ({ cases, time, region }) => {
 					</div>
 				</div>
 
-				<div className="col-lg-3 col-sm-6">
+				<div className='col-lg-3 col-sm-6'>
 					<div
-						className="card card-active  m-1  m-l-0"
-						data-aos="fade-down">
+						className='card card-active  m-1  m-l-0'
+						data-aos='fade-down'>
 						<DashboardCard
 							// className="four wide colum"
-							card="Active"
+							card='Active'
 							count={
 								active
 									? parseInt(active).toLocaleString('en-IN')
@@ -77,13 +77,13 @@ const Dashboard = ({ cases, time, region }) => {
 					</div>
 				</div>
 
-				<div className="col-lg-3 col-sm-6">
+				<div className='col-lg-3 col-sm-6'>
 					<div
-						className="card card-recovered m-1 m-l-0"
-						data-aos="fade-up">
+						className='card card-recovered m-1 m-l-0'
+						data-aos='fade-up'>
 						<DashboardCard
 							// className="four wide colum"
-							card="Recovered"
+							card='Recovered'
 							count={
 								recovered
 									? parseInt(recovered).toLocaleString(
@@ -102,13 +102,13 @@ const Dashboard = ({ cases, time, region }) => {
 					</div>
 				</div>
 
-				<div className="col-lg-3 col-sm-6">
+				<div className='col-lg-3 col-sm-6'>
 					<div
-						className="card card-deceased m-1 m-l-0"
-						data-aos="fade-left">
+						className='card card-deceased m-1 m-l-0'
+						data-aos='fade-left'>
 						<DashboardCard
 							// className="four wide colum card-deceased"
-							card="Deceased"
+							card='Deceased'
 							count={
 								deaths
 									? parseInt(deaths).toLocaleString('en-IN')
@@ -126,11 +126,11 @@ const Dashboard = ({ cases, time, region }) => {
 				</div>
 			</div>
 
-			<div style={{ marginTop: '4px' }} data-aos="fade-up-left">
+			<div style={{ marginTop: '4px' }} data-aos='fade-up-left'>
 				<UpdateTime time={time} />
 				<br />
 			</div>
-			<div data-aos="zoom-in-up"></div>
+			<div data-aos='zoom-in-up'></div>
 		</div>
 	)
 }
