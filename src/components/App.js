@@ -8,6 +8,7 @@ import IndiaTracker from './containers/IndiaTracker'
 import StateTracker from './containers/StateTracker'
 import './App.css'
 import Navbar from './layout/Navbar'
+import NotFound from './layout/NotFound'
 
 const App = () => {
 	/*Intializing Animation on scroll libraryy */
@@ -37,6 +38,7 @@ const App = () => {
 						exact
 						render={() => <StateTracker />}
 					/>
+					{/* <Route component={NotFound} /> */}
 				</Switch>
 			</Router>
 
