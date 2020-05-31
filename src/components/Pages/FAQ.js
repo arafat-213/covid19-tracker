@@ -1,11 +1,17 @@
 import React from 'react'
 import './Pages.css'
+import { Link } from 'react-router-dom'
 
 const FAQ = () => {
 	return (
 		<div>
 			<h4 className='question'>Who are you?</h4>
-			<h5 className='answer'>Find it out here.</h5>
+			<h5 className='answer'>
+				Find it out{` `}
+				<Link exact to='/covid19-tracker/about'>
+					here.
+				</Link>
+			</h5>
 
 			<h4 className='question'>
 				What are your sources? How is data gathered for this website

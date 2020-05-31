@@ -31,7 +31,7 @@ const AboutMe = () => {
 					</a>
 				</span>
 				<span>
-					<a href='https://https://www.linkedin.com/in/arafat213/'>
+					<a href='https://linkedin.com/in/arafat213/'>
 						<i className='fab fa-linkedin fa-3x social-media'></i>
 					</a>
 				</span>
