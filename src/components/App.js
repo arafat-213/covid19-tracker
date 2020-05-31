@@ -38,7 +38,7 @@ const App = () => {
 						exact
 						render={() => <StateTracker />}
 					/>
-					{/* <Route component={NotFound} /> */}
+					<Route component={NotFound} />
 				</Switch>
 			</Router>
 
