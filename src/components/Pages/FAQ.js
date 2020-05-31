@@ -48,6 +48,21 @@ const FAQ = () => {
 				from official government sites only. Hence, Data in India tab is
 				updated more frequently and is generally more recent.
 			</h5>
+
+			<h4 className='question'>Where can I get this coronavirus icon?</h4>
+			<h5 className='answer'>
+				Icon was made by{' '}
+				<a
+					href='https://www.flaticon.com/authors/freepik'
+					title='Freepik'>
+					Freepik
+				</a>{' '}
+				from{' '}
+				<a href='https://www.flaticon.com/' title='Flaticon'>
+					{' '}
+					www.flaticon.com
+				</a>{' '}
+			</h5>
 		</div>
 	)
 }

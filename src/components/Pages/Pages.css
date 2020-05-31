@@ -28,3 +28,12 @@ h5 > a {
 	height: 200px;
 	width: 200px;
 }
+.social-media {
+	margin: 4px;
+	margin-top: 12px;
+	color: black;
+}
+
+.social-media:hover {
+	color: #0779e4;
+}
