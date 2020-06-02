@@ -7,6 +7,7 @@ import districtData from '../../api/districtAPI'
 import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
+import LineChart from '../Charts/LineChart'
 // import CurveChart from '../Charts/CurveChart'
 // import RChart from '../Charts/RChart'
 // import TotalConfirmed from '../Charts/TotalConfirmed'
@@ -21,13 +22,14 @@ const IndiaTracker = () => {
 	const [testUpdatedTime, setTestUpdatedTime] = useState()
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
 	const [TestedSource, setTestedSource] = useState('')
-	// const [casesTimeline, setCasesTimeline] = useState([])
+	const [casesTimeline, setCasesTimeline] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await indiaAPI.get()
 			setIndiaCases(response.data.statewise[0])
-			// setCasesTimeline(response.data.cases_time_series)
+			setCasesTimeline(response.data.cases_time_series)
+
 			setUpdateTimeStamp(response.data.statewise[0].lastupdatedtime)
 			setRegion('India')
 
@@ -59,6 +61,7 @@ const IndiaTracker = () => {
 		}
 		fetchData()
 	}, [])
+
 	return (
 		<div>
 			<Tested
@@ -80,6 +83,9 @@ const IndiaTracker = () => {
 					confirmed={IndiaCases.confirmed}
 					region='India'
 				/>
+			</div>
+			<div>
+				<LineChart cases={casesTimeline} category='confirmed' />
 			</div>
 			{/* <div style={{ height: '400px' }}>
 				<RChart

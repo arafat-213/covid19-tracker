@@ -9,3 +9,5 @@ export const RECOVERED_DARK = 'rgba(23, 176, 52, 1)'
 export const ACTIVE_LIGHT = 'rgba(103, 209, 242, 1)'
 export const ACTIVE = 'rgba(63, 165, 209, 1)'
 export const ACTIVE_DARK = 'rgba(23, 121, 176, 1)'
+
+export const CONFIRMED = '#f6ac15'

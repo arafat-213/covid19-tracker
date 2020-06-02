@@ -8,9 +8,7 @@ const FAQ = () => {
 			<h4 className='question'>Who are you?</h4>
 			<h5 className='answer'>
 				Find it out{` `}
-				<Link exact to='/covid19-tracker/about'>
-					here.
-				</Link>
+				<Link to='/covid19-tracker/about'>here.</Link>
 			</h5>
 
 			<h4 className='question'>
