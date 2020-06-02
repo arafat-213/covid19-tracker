@@ -36,12 +36,12 @@ const RatioChart = ({ active, recovered, deaths, confirmed, region }) => {
 			{
 				type: 'doughnut',
 				showInLegend: true,
-				indexLabel: `({z}%)`,
-				indexLabelPlacement: 'inside',
+				indexLabel: `{z}%`,
+				// indexLabelPlacement: 'inside',
 				yValueFormatString: '#,###',
 				dataPoints: [
 					{
-						name: 'Active',
+						name: `Active`,
 						y: active,
 						z: activePercentage
 					},
