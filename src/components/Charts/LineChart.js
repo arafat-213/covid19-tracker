@@ -39,31 +39,31 @@ const LineChart = ({ cases }) => {
 			dailyRecoveredList.push({
 				x: index + 1,
 				y: Number.parseInt(cases[index].dailyrecovered),
-				label: cases[index].data
+				label: cases[index].date
 			})
 			// Daily new deceased
 			dailyDeceasedList.push({
 				x: index + 1,
 				y: Number.parseInt(cases[index].dailydeceased),
-				label: cases[index].data
+				label: cases[index].date
 			})
 			// Total confirmed
 			totalConfirmedList.push({
 				x: index + 1,
 				y: Number.parseInt(cases[index].totalconfirmed),
-				label: cases[index].data
+				label: cases[index].date
 			})
 			// Total recovered
 			totalRecoveredList.push({
 				x: index + 1,
 				y: Number.parseInt(cases[index].totalrecovered),
-				label: cases[index].data
+				label: cases[index].date
 			})
 			// Total deceased
 			totalDeceasedList.push({
 				x: index + 1,
 				y: Number.parseInt(cases[index].totaldeceased),
-				label: cases[index].data
+				label: cases[index].date
 			})
 
 			setDailyConfirmed(dailyConfirmedList)
@@ -76,7 +76,7 @@ const LineChart = ({ cases }) => {
 	}
 	const dailyOptions = {
 		title: {
-			text: 'Daily New',
+			text: 'Daily',
 			fontFamily: 'Quicksand',
 			fontWeight: 600
 		},
