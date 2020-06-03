@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard/Dashboard'
 import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
+import StateLineChart from '../Charts/StateLineChart'
 import districtAPI from '../../api/districtAPI'
 import _ from 'lodash'
 import DistrictTable from '../Tables/DistrictTable/DistrictTable'
@@ -55,6 +56,10 @@ const StateTracker = () => {
 					confirmed={statecases.confirmed}
 					region={region ? region : 'Loading..'}
 				/>
+			</div>
+
+			<div>
+				<StateLineChart statecode={statecode.toLowerCase()} />
 			</div>
 
 			<DistrictTable row={statecases} data={districtCases} />

@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { CONFIRMED, RECOVERED, DECEASED } from '../../utils/colors'
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
-const LineChart = ({ cases }) => {
+const IndiaLineChart = ({ cases }) => {
 	const [dailyConfirmed, setDailyConfirmed] = useState([])
 	const [dailyRecovered, setDailyRecovered] = useState([])
 	const [dailyDeceased, setDailyDeceased] = useState([])
@@ -189,4 +189,4 @@ const LineChart = ({ cases }) => {
 	)
 }
 
-export default LineChart
+export default IndiaLineChart

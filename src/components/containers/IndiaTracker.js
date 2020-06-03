@@ -7,7 +7,7 @@ import districtData from '../../api/districtAPI'
 import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
-import LineChart from '../Charts/LineChart'
+import IndiaLineChart from '../Charts/IndiaLineChart'
 // import CurveChart from '../Charts/CurveChart'
 // import RChart from '../Charts/RChart'
 // import TotalConfirmed from '../Charts/TotalConfirmed'
@@ -85,7 +85,7 @@ const IndiaTracker = () => {
 				/>
 			</div>
 			<div>
-				<LineChart cases={casesTimeline} category='confirmed' />
+				<IndiaLineChart cases={casesTimeline} category='confirmed' />
 			</div>
 			{/* <div style={{ height: '400px' }}>
 				<RChart
