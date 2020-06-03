@@ -11,6 +11,9 @@ import Navbar from './layout/Navbar'
 import NotFound from './layout/NotFound'
 import AboutMe from './Pages/AboutMe'
 import FAQ from './Pages/FAQ'
+// Redux
+import { Provider } from 'react-redux'
+import store from '../store'
 
 const App = () => {
 	/*Intializing Animation on scroll libraryy */
@@ -19,45 +22,47 @@ const App = () => {
 	}, [])
 
 	return (
-		<div className='container page-container'>
-			<div className='content-wrap'>
-				<Router>
-					<div>
-						<Navbar />
-					</div>
-					<Switch>
-						<Route
-							path='/covid19-tracker/global'
-							exact
-							component={GlobalTracker}
-						/>
-						<Route
-							path='/covid19-tracker'
-							exact
-							render={() => <IndiaTracker />}
-						/>
-						<Route
-							path='/covid19-tracker/state/:id'
-							exact
-							render={() => <StateTracker />}
-						/>
-						<Route
-							path='/covid19-tracker/about'
-							exact
-							component={AboutMe}
-						/>
-						<Route
-							path='/covid19-tracker/faq'
-							exact
-							component={FAQ}
-						/>
-						<Route component={NotFound} />
-					</Switch>
-				</Router>
+		<Provider store={store}>
+			<div className='container page-container'>
+				<div className='content-wrap'>
+					<Router>
+						<div>
+							<Navbar />
+						</div>
+						<Switch>
+							<Route
+								path='/covid19-tracker/global'
+								exact
+								component={GlobalTracker}
+							/>
+							<Route
+								path='/covid19-tracker'
+								exact
+								render={() => <IndiaTracker />}
+							/>
+							<Route
+								path='/covid19-tracker/state/:id'
+								exact
+								render={() => <StateTracker />}
+							/>
+							<Route
+								path='/covid19-tracker/about'
+								exact
+								component={AboutMe}
+							/>
+							<Route
+								path='/covid19-tracker/faq'
+								exact
+								component={FAQ}
+							/>
+							<Route component={NotFound} />
+						</Switch>
+					</Router>
 
-				<Footer />
+					<Footer />
+				</div>
 			</div>
-		</div>
+		</Provider>
 	)
 }
 
