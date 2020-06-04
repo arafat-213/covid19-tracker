@@ -2,36 +2,12 @@ import React from 'react'
 import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
 import UpdateTime from '../layout/UpdateTime'
+import { connect } from 'react-redux'
 
-const Dashboard = ({ cases, time, region }) => {
-	let active,
-		confirmed,
-		recovered,
-		deaths,
-		deltaconfirmed,
-		deltarecovered,
-		deltadeaths = 0
-	if (region === 'Global') {
-		;({
-			TotalConfirmed: confirmed,
-			TotalRecovered: recovered,
-			TotalDeaths: deaths,
-			NewConfirmed: deltaconfirmed,
-			NewDeaths: deltadeaths,
-			NewRecovered: deltarecovered
-		} = cases)
-		active = confirmed - recovered - deaths
-	} else {
-		;({
-			active,
-			confirmed,
-			recovered,
-			deaths,
-			deltaconfirmed,
-			deltarecovered,
-			deltadeaths
-		} = cases)
-	}
+const Dashboard = ({ india, global, time, region }) => {
+	let data = region === 'India' ? india : global
+	const { delta, total, loading } = data
+	console.log(data)
 
 	return (
 		<div>
@@ -44,15 +20,15 @@ const Dashboard = ({ cases, time, region }) => {
 							// className="four wide colum"
 							card='Confirmed'
 							count={
-								confirmed
-									? parseInt(confirmed).toLocaleString(
+								!loading
+									? parseInt(total.confirmed).toLocaleString(
 											'en-IN'
 									  )
 									: 'Loading..'
 							}
 							dailyCount={
-								deltaconfirmed
-									? parseInt(deltaconfirmed).toLocaleString(
+								!loading && delta.confirmed
+									? parseInt(delta.confirmed).toLocaleString(
 											'en-IN'
 									  )
 									: 'Loading..'
@@ -69,8 +45,21 @@ const Dashboard = ({ cases, time, region }) => {
 							// className="four wide colum"
 							card='Active'
 							count={
-								active
-									? parseInt(active).toLocaleString('en-IN')
+								!loading
+									? (
+											total.confirmed -
+											total.recovered -
+											total.deceased
+									  ).toLocaleString('en-IN')
+									: 'Loading..'
+							}
+							dailyCount={
+								!loading
+									? (
+											delta.confirmed -
+											delta.recovered -
+											delta.deceased
+									  ).toLocaleString('en-IN')
 									: 'Loading..'
 							}
 						/>
@@ -85,15 +74,15 @@ const Dashboard = ({ cases, time, region }) => {
 							// className="four wide colum"
 							card='Recovered'
 							count={
-								recovered
-									? parseInt(recovered).toLocaleString(
+								!loading
+									? parseInt(total.recovered).toLocaleString(
 											'en-IN'
 									  )
 									: 'Loading..'
 							}
 							dailyCount={
-								deltarecovered
-									? parseInt(deltarecovered).toLocaleString(
+								!loading
+									? parseInt(delta.recovered).toLocaleString(
 											'en-IN'
 									  )
 									: 'Loading..'
@@ -110,13 +99,15 @@ const Dashboard = ({ cases, time, region }) => {
 							// className="four wide colum card-deceased"
 							card='Deceased'
 							count={
-								deaths
-									? parseInt(deaths).toLocaleString('en-IN')
+								!loading
+									? parseInt(total.deceased).toLocaleString(
+											'en-IN'
+									  )
 									: 'Loading..'
 							}
 							dailyCount={
-								deltadeaths
-									? parseInt(deltadeaths).toLocaleString(
+								!loading
+									? parseInt(delta.deceased).toLocaleString(
 											'en-IN'
 									  )
 									: 'Loading..'
@@ -134,4 +125,12 @@ const Dashboard = ({ cases, time, region }) => {
 		</div>
 	)
 }
-export default Dashboard
+
+const mapStateToProps = (state, ownProps) => {
+	return {
+		india: state.india.dashboard,
+		global: state.global.dashboard
+	}
+}
+
+export default connect(mapStateToProps)(Dashboard)

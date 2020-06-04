@@ -5,7 +5,9 @@ import {
 } from '../actions/types'
 
 const initialState = {
-	total: {},
+	dashboard: {
+		loading: true
+	},
 	countries: [],
 	timeStamp: '',
 	region: 'Global'
@@ -17,7 +19,10 @@ export default function (state = initialState, action) {
 		case GET_GLOBAL_DASHBOARD:
 			return {
 				...state,
-				total: payload
+				dashboard: {
+					...payload,
+					loading: false
+				}
 			}
 		case GET_GLOBAL_TIMESTAMP:
 			return {

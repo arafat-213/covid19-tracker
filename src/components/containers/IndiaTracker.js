@@ -8,11 +8,14 @@ import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
 import IndiaLineChart from '../Charts/IndiaLineChart'
-// import CurveChart from '../Charts/CurveChart'
-// import RChart from '../Charts/RChart'
-// import TotalConfirmed from '../Charts/TotalConfirmed'
+// Redux
+import { connect } from 'react-redux'
+import { getIndiaDashboard } from '../../actions/india'
 
-const IndiaTracker = () => {
+const IndiaTracker = ({
+	getIndiaDashboard,
+	dashboard: { delta, meta, total }
+}) => {
 	const [IndiaCases, setIndiaCases] = useState([])
 	const [updateTimeStamp, setUpdateTimeStamp] = useState('')
 	const [region, setRegion] = useState('India')
@@ -26,6 +29,7 @@ const IndiaTracker = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
+			getIndiaDashboard()
 			const response = await indiaAPI.get()
 			setIndiaCases(response.data.statewise[0])
 			setCasesTimeline(response.data.cases_time_series)
@@ -70,11 +74,7 @@ const IndiaTracker = () => {
 				region='India'
 				source={TestedSource}
 			/>
-			<Dashboard
-				cases={IndiaCases}
-				time={updateTimeStamp}
-				region={region}
-			/>
+			<Dashboard time={updateTimeStamp} region='India' />
 			<div data-aos='zoom-in-up'>
 				<RatioChart
 					recovered={IndiaCases.recovered}
@@ -110,4 +110,10 @@ const IndiaTracker = () => {
 	)
 }
 
-export default IndiaTracker
+const mapStateToProps = (state, ownProps) => {
+	return {
+		dashboard: state.india.dashboard
+	}
+}
+
+export default connect(mapStateToProps, { getIndiaDashboard })(IndiaTracker)

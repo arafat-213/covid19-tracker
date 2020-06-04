@@ -8,24 +8,25 @@ import { getGlobalDashboard } from '../../actions/global'
 
 const GlobalTracker = ({
 	getGlobalDashboard,
-	global: { total, timeStamp, countries, region }
+	global: {
+		dashboard: { total },
+		timeStamp,
+		countries,
+		region
+	}
 }) => {
 	useEffect(() => {
 		getGlobalDashboard()
 	}, [])
 	return (
 		<div>
-			<Dashboard cases={total} time={timeStamp} region={region} />
+			<Dashboard time={timeStamp} region={region} />
 			<div data-aos='zoom-in-up'>
 				<RatioChart
-					recovered={total.TotalRecovered}
-					deaths={total.TotalDeaths}
-					active={
-						total.TotalConfirmed -
-						total.TotalRecovered -
-						total.TotalDeaths
-					}
-					confirmed={total.TotalConfirmed}
+					recovered={total.recovered}
+					deaths={total.deceased}
+					active={total.confirmed - total.recovered - total.deceased}
+					confirmed={total.confirmed}
 					region={region}
 				/>
 			</div>

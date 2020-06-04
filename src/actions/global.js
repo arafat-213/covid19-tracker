@@ -7,9 +7,30 @@ import globalAPI from '../api/globalAPI'
 
 export const getGlobalDashboard = () => async dispatch => {
 	const response = await globalAPI.get(`/summary`)
+	const {
+		NewConfirmed,
+		NewRecovered,
+		NewDeaths,
+		TotalConfirmed,
+		TotalDeaths,
+		TotalRecovered
+	} = response.data['Global']
+	const total = {
+		delta: {
+			confirmed: NewConfirmed,
+			recovered: NewRecovered,
+			deceased: NewDeaths
+		},
+		total: {
+			confirmed: TotalConfirmed,
+			deceased: TotalDeaths,
+			recovered: TotalRecovered,
+			active: TotalConfirmed - TotalRecovered - TotalDeaths
+		}
+	}
 	dispatch({
 		type: GET_GLOBAL_DASHBOARD,
-		payload: response.data['Global']
+		payload: total
 	})
 	dispatch({
 		type: GET_GLOBAL_TIMESTAMP,
