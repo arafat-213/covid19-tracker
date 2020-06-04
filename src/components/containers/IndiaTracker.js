@@ -26,7 +26,7 @@ const IndiaTracker = ({
 
 	useEffect(() => {
 		const fetchData = async () => {
-			getIndiaDashboard()
+			getIndiaDashboard('2020-03-21')
 			const response = await indiaAPI.get()
 			setIndiaCases(response.data.statewise[0])
 			setCasesTimeline(response.data.cases_time_series)
