@@ -2,7 +2,7 @@ import React from 'react'
 import './DashboardCard.css'
 const renderDailyCount = dailyCount => {
 	if (parseInt(dailyCount) >= 0) return <small>{`[+${dailyCount}]`}</small>
-	return <small>{`[-${dailyCount}]`}</small>
+	return <small>{`[${dailyCount}]`}</small>
 }
 const DashboardCard = props => {
 	return (

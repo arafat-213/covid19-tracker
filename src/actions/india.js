@@ -11,7 +11,7 @@ export const getIndiaDashboard = () => async dispatch => {
 
 	// Delete total and unassigned states' data
 	delete res.data['TT']
-	delete res.data['UN']
+	// delete res.data['UN']
 	dispatch({
 		type: GET_INDIA_STATES,
 		payload: res.data

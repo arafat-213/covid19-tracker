@@ -15,6 +15,7 @@ import { getIndiaDashboard } from '../../actions/india'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
+	dashboard,
 	dashboard: { delta, meta, total },
 	loading
 }) => {
@@ -27,7 +28,7 @@ const IndiaTracker = ({
 
 	useEffect(() => {
 		const fetchData = async () => {
-			getIndiaDashboard('2020-03-21')
+			getIndiaDashboard()
 			const response = await indiaAPI.get()
 			setIndiaCases(response.data.statewise[0])
 			setCasesTimeline(response.data.cases_time_series)
@@ -77,7 +78,11 @@ const IndiaTracker = ({
 						region='India'
 						source={meta.tested['source']}
 					/>
-					<Dashboard time={meta.last_updated} region='India' />
+					<Dashboard
+						time={meta.last_updated}
+						data={dashboard}
+						region='India'
+					/>
 					<div data-aos='zoom-in-up'>
 						<RatioChart
 							recovered={total.recovered}
