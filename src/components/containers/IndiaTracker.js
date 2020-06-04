@@ -8,6 +8,7 @@ import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
 import IndiaLineChart from '../Charts/IndiaLineChart'
+import moment from 'moment'
 // Redux
 import { connect } from 'react-redux'
 import { getIndiaDashboard } from '../../actions/india'
@@ -65,11 +66,18 @@ const IndiaTracker = ({
 				<Fragment>
 					<Tested
 						tested={total.tested}
-						time={meta.tested['last_updated']}
+						newTest={parseInt(delta.tested).toLocaleString('en-IN')}
+						time={moment
+							.duration(
+								new moment().diff(
+									new moment(meta.tested.last_updated)
+								)
+							)
+							.humanize()}
 						region='India'
 						source={meta.tested['source']}
 					/>
-					<Dashboard time={updateTimeStamp} region='India' />
+					<Dashboard time={meta.last_updated} region='India' />
 					<div data-aos='zoom-in-up'>
 						<RatioChart
 							recovered={total.recovered}

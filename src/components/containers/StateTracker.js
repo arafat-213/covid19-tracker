@@ -8,6 +8,7 @@ import RatioChart from '../Charts/RatioChart'
 import StateLineChart from '../Charts/StateLineChart'
 import districtAPI from '../../api/districtAPI'
 import _ from 'lodash'
+import moment from 'moment'
 import DistrictTable from '../Tables/DistrictTable/DistrictTable'
 
 const StateTracker = () => {
@@ -85,7 +86,9 @@ const getTestNumber = (tested, region) => {
 		return (
 			<Tested
 				tested={totaltested ? totaltested : 'Loading..'}
-				time={updatedon}
+				time={moment
+					.duration(new moment().diff(new moment(updatedon)))
+					.humanize()}
 				region={region}
 				source={source}
 			/>

@@ -15,6 +15,7 @@ export const getGlobalDashboard = () => async dispatch => {
 		TotalDeaths,
 		TotalRecovered
 	} = response.data['Global']
+	const last_updated = response.data.Date
 	const total = {
 		delta: {
 			confirmed: NewConfirmed,
@@ -26,6 +27,9 @@ export const getGlobalDashboard = () => async dispatch => {
 			deceased: TotalDeaths,
 			recovered: TotalRecovered,
 			active: TotalConfirmed - TotalRecovered - TotalDeaths
+		},
+		meta: {
+			last_updated
 		}
 	}
 	dispatch({

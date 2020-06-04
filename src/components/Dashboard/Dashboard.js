@@ -3,12 +3,15 @@ import DashboardCard from '../Dashboard/DashboardCard'
 import './DashboardCard.css'
 import UpdateTime from '../layout/UpdateTime'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
 const Dashboard = ({ india, global, time, region }) => {
+	// TODO: Pass the dashboard data from trackers as props
 	let data = region === 'India' ? india : global
-	const { delta, total, loading } = data
+	const { delta = {}, total, loading, meta } = data
 	if (!loading) {
 		// Handles NaN and undefined values
+		delta.confirmed = delta.confirmed || 0
 		delta.recovered = delta.recovered || 0
 		delta.deceased = delta.deceased || 0
 	}
@@ -93,7 +96,13 @@ const Dashboard = ({ india, global, time, region }) => {
 				'Loading....'
 			)}
 			<div style={{ marginTop: '4px' }} data-aos='fade-up-left'>
-				<UpdateTime time={time} />
+				<UpdateTime
+					time={moment
+						.duration(
+							new moment().diff(new moment(meta.last_updated))
+						)
+						.humanize()}
+				/>
 				<br />
 			</div>
 			<div data-aos='zoom-in-up'></div>
