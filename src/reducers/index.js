@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import global from './global'
 import india from './india'
-import state from './state'
+import timeline from './timeline'
 
-export default combineReducers({ india, state, global })
+export default combineReducers({ india, timeline, global })

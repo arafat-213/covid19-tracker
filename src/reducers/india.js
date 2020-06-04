@@ -10,8 +10,6 @@ const initialState = {
 export default function (state = initialState, action) {
 	const { type, payload } = action
 	switch (type) {
-		case 'INDIA_TIMELINE':
-			return { ...state, dashboard: payload, loading: false }
 		case GET_INDIA_DASHBOARD:
 			return { ...state, dashboard: payload, loading: false }
 		case GET_INDIA_STATES:

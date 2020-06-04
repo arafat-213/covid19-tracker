@@ -12,9 +12,13 @@ import moment from 'moment'
 // Redux
 import { connect } from 'react-redux'
 import { getIndiaDashboard } from '../../actions/india'
+import { getEntireTimeline, getStateTimeLine } from '../../actions/timeline'
+import DailyCumulative from '../Charts/DailyCumulative'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
+	getEntireTimeline,
+	getStateTimeLine,
 	dashboard,
 	dashboard: { delta, meta, total },
 	loading
@@ -96,11 +100,14 @@ const IndiaTracker = ({
 							region='India'
 						/>
 					</div>
-					<div>
+					{/* <div>
 						<IndiaLineChart
 							cases={casesTimeline}
 							category='confirmed'
 						/>
+					</div> */}
+					<div>
+						<DailyCumulative statecode={'TT'} />
 					</div>
 					<div>
 						<StateTable
@@ -122,4 +129,8 @@ const mapStateToProps = (state, ownProps) => {
 	}
 }
 
-export default connect(mapStateToProps, { getIndiaDashboard })(IndiaTracker)
+export default connect(mapStateToProps, {
+	getIndiaDashboard,
+	getEntireTimeline,
+	getStateTimeLine
+})(IndiaTracker)

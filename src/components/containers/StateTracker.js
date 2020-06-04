@@ -3,16 +3,15 @@ import { useParams } from 'react-router-dom'
 import indiaAPI from '../../api/indiaAPI'
 import Dashboard from '../Dashboard/Dashboard'
 import Tested from '../layout/Tested'
-import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
 import StateLineChart from '../Charts/StateLineChart'
 import districtAPI from '../../api/districtAPI'
-import _ from 'lodash'
 import moment from 'moment'
 import DistrictTable from '../Tables/DistrictTable/DistrictTable'
 // Redux
 import { connect } from 'react-redux'
 import { getIndiaDashboard } from '../../actions/india'
+import DailyCumulative from '../Charts/DailyCumulative'
 
 const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 	let { id: statecode } = useParams()
@@ -25,10 +24,8 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 		meta: { tested = {} }
 	} = dashboard
 	const [statecases, setStatecases] = useState([])
-	const [updatedTimeStamp, setUpdatedTimeStamp] = useState('')
 	const [districtCases, setDistrictCases] = useState([])
 	const [region, setRegion] = useState(null)
-	// const [tested, setTested] = useState(0)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -39,7 +36,6 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 			} = await indiaAPI.get()
 			const cases = statewise.find(state => state.statecode === statecode)
 			setStatecases(cases)
-			setUpdatedTimeStamp(cases.lastupdatedtime)
 			setRegion(cases.state)
 
 			// Fetching district cases
@@ -64,12 +60,10 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 						region={region}
 						source={tested.source}
 					/>
-					{/* {getTestNumber(tested, region)} */}
-
 					<Dashboard
 						region={region ? region : 'India'}
 						data={dashboard}
-						time={updatedTimeStamp}
+						time={meta.last_updated}
 					/>
 					<div data-aos='zoom-in-up'>
 						<RatioChart
@@ -86,7 +80,7 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 					</div>
 
 					<div>
-						<StateLineChart statecode={statecode.toLowerCase()} />
+						<DailyCumulative statecode={statecode} />
 					</div>
 
 					<DistrictTable row={statecases} data={districtCases} />
