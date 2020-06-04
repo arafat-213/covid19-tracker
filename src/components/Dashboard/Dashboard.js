@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 const Dashboard = ({ india, global, time, region }) => {
 	let data = region === 'India' ? india : global
 	const { delta, total, loading } = data
-	console.log(data)
 	if (delta) {
 		// Handles NaN and undefined values
 		delta.recovered = delta.recovered || 0

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import Dashboard from '../Dashboard/Dashboard'
 import StateTable from '../Tables/StateTable/StateTable'
 import indiaAPI from '../../api/indiaAPI'
@@ -14,17 +14,13 @@ import { getIndiaDashboard } from '../../actions/india'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
-	dashboard: { delta, meta, total }
+	dashboard: { delta, meta, total, loading }
 }) => {
 	const [IndiaCases, setIndiaCases] = useState([])
 	const [updateTimeStamp, setUpdateTimeStamp] = useState('')
-	const [region, setRegion] = useState('India')
 	const [stateCases, setStateCases] = useState([])
 	const [districtCases, setDistrictCases] = useState([])
-	const [IndiaTested, setIndiaTested] = useState(0)
-	const [testUpdatedTime, setTestUpdatedTime] = useState()
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
-	const [TestedSource, setTestedSource] = useState('')
 	const [casesTimeline, setCasesTimeline] = useState([])
 
 	useEffect(() => {
@@ -35,12 +31,8 @@ const IndiaTracker = ({
 			setCasesTimeline(response.data.cases_time_series)
 
 			setUpdateTimeStamp(response.data.statewise[0].lastupdatedtime)
-			setRegion('India')
 
-			const { statewise, tested } = response.data
-			setIndiaTested(tested[tested.length - 1].totalsamplestested)
-			setTestUpdatedTime(tested[tested.length - 1].updatetimestamp)
-			setTestedSource(tested[tested.length - 1].source)
+			const { statewise } = response.data
 			_.remove(statewise, obj => obj.state === 'Total')
 
 			// Axios parses data not in a way this app needs
@@ -68,44 +60,39 @@ const IndiaTracker = ({
 
 	return (
 		<div>
-			<Tested
-				tested={IndiaTested}
-				time={testUpdatedTime}
-				region='India'
-				source={TestedSource}
-			/>
-			<Dashboard time={updateTimeStamp} region='India' />
-			<div data-aos='zoom-in-up'>
-				<RatioChart
-					recovered={IndiaCases.recovered}
-					deaths={IndiaCases.deaths}
-					active={IndiaCases.active}
-					confirmed={IndiaCases.confirmed}
-					region='India'
-				/>
-			</div>
-			<div>
-				<IndiaLineChart cases={casesTimeline} category='confirmed' />
-			</div>
-			{/* <div style={{ height: '400px' }}>
-				<RChart
-					recovered={IndiaCases.recovered}
-					deaths={IndiaCases.deaths}
-					active={IndiaCases.active}
-					confirmed={IndiaCases.confirmed}
-					region='India'
-				/>
-			</div> */}
-			<div>
-				<StateTable
-					data={stateCases}
-					districtData={districtCases}
-					tested={stateTestNumbers}
-				/>
-			</div>
-			{/* <div style={{ height: '400px' }}>
-				<TotalConfirmed cases={casesTimeline} label='confirmed' />
-			</div> */}
+			{!loading && (
+				<Fragment>
+					<Tested
+						tested={total.tested}
+						time={meta.tested['last_updated']}
+						region='India'
+						source={meta.tested['source']}
+					/>
+					<Dashboard time={updateTimeStamp} region='India' />
+					<div data-aos='zoom-in-up'>
+						<RatioChart
+							recovered={IndiaCases.recovered}
+							deaths={IndiaCases.deaths}
+							active={IndiaCases.active}
+							confirmed={IndiaCases.confirmed}
+							region='India'
+						/>
+					</div>
+					<div>
+						<IndiaLineChart
+							cases={casesTimeline}
+							category='confirmed'
+						/>
+					</div>
+					<div>
+						<StateTable
+							data={stateCases}
+							districtData={districtCases}
+							tested={stateTestNumbers}
+						/>
+					</div>
+				</Fragment>
+			)}
 		</div>
 	)
 }

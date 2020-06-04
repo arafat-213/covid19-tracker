@@ -1,11 +1,10 @@
-import { GET_INDIA_DASHBOARD } from '../actions/types'
+import { GET_INDIA_DASHBOARD, GET_INDIA_TIMESTAMP } from '../actions/types'
 
 const initialState = {
 	dashboard: {
 		loading: true
 	},
 	states: [],
-	timestamp: '',
 	region: 'India'
 }
 
