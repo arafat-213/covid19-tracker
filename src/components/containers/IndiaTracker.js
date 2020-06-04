@@ -14,7 +14,8 @@ import { getIndiaDashboard } from '../../actions/india'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
-	dashboard: { delta, meta, total, loading }
+	dashboard: { delta, meta, total },
+	loading
 }) => {
 	const [IndiaCases, setIndiaCases] = useState([])
 	const [updateTimeStamp, setUpdateTimeStamp] = useState('')
@@ -71,10 +72,14 @@ const IndiaTracker = ({
 					<Dashboard time={updateTimeStamp} region='India' />
 					<div data-aos='zoom-in-up'>
 						<RatioChart
-							recovered={IndiaCases.recovered}
-							deaths={IndiaCases.deaths}
-							active={IndiaCases.active}
-							confirmed={IndiaCases.confirmed}
+							recovered={total.recovered}
+							deaths={total.deceased}
+							active={
+								total.confirmed -
+								total.recovered -
+								total.deceased
+							}
+							confirmed={total.confirmed}
 							region='India'
 						/>
 					</div>
@@ -99,7 +104,8 @@ const IndiaTracker = ({
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		dashboard: state.india.dashboard
+		dashboard: state.india.dashboard,
+		loading: state.india.loading
 	}
 }
 
