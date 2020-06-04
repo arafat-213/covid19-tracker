@@ -18,17 +18,25 @@ const GlobalTracker = ({
 	useEffect(() => {
 		getGlobalDashboard()
 	}, [])
+	console.table(total)
+
 	return (
 		<div>
 			<Dashboard time={timeStamp} region={region} />
 			<div data-aos='zoom-in-up'>
-				<RatioChart
-					recovered={total.recovered}
-					deaths={total.deceased}
-					active={total.confirmed - total.recovered - total.deceased}
-					confirmed={total.confirmed}
-					region={region}
-				/>
+				{total && (
+					<RatioChart
+						recovered={total['recovered']}
+						deaths={total['deceased']}
+						active={
+							total['confirmed'] -
+							total['recovered'] -
+							total['deceased']
+						}
+						confirmed={total['confirmed']}
+						region={region}
+					/>
+				)}
 			</div>
 			<GloablTable data={countries} />
 		</div>

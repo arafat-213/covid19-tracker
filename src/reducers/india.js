@@ -3,7 +3,10 @@ import { GET_INDIA_DASHBOARD } from '../actions/types'
 const initialState = {
 	dashboard: {
 		loading: true
-	}
+	},
+	states: [],
+	timestamp: '',
+	region: 'India'
 }
 
 export default function (state = initialState, action) {
