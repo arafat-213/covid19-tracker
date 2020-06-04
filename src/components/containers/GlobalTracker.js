@@ -9,7 +9,7 @@ import { getGlobalDashboard } from '../../actions/global'
 const GlobalTracker = ({
 	getGlobalDashboard,
 	global: {
-		dashboard: { total },
+		dashboard: { total, loading },
 		timeStamp,
 		countries,
 		region
@@ -24,7 +24,7 @@ const GlobalTracker = ({
 		<div>
 			<Dashboard time={timeStamp} region={region} />
 			<div data-aos='zoom-in-up'>
-				{total && (
+				{!loading && (
 					<RatioChart
 						recovered={total['recovered']}
 						deaths={total['deceased']}
