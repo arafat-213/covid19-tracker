@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react'
 import CanvasJSReact from './canvasjs.react'
 import { useEffect } from 'react'
-import { CONFIRMED, RECOVERED, DECEASED } from '../../utils/colors'
+import { CONFIRMED, RECOVERED, DECEASED, ACTIVE } from '../../utils/colors'
 
 import { connect } from 'react-redux'
 import { getEntireTimeline } from '../../actions/timeline'
@@ -29,6 +29,8 @@ const DailyCumulative = ({
 			dailyDeceased = [],
 			totalConfirmed = [],
 			totalRecovered = [],
+			dailyActive = [],
+			totalActive = [],
 			totalDeceased = []
 		let arr = Object.entries(timeline)
 		for (let i = 0; i < arr.length; i++) {
@@ -37,6 +39,15 @@ const DailyCumulative = ({
 				y: arr[i][1].delta.confirmed || 0,
 				label: arr[i][0]
 			})
+			dailyActive.push({
+				x: i + 1,
+				y:
+					(arr[i][1].delta.confirmed || 0) -
+					(arr[i][1].delta.recovered || 0) -
+					(arr[i][1].delta.deceased || 0),
+				label: arr[i][0]
+			})
+
 			dailyRecovered.push({
 				x: i + 1,
 				y: arr[i][1].delta.recovered || 0,
@@ -52,6 +63,14 @@ const DailyCumulative = ({
 				y: arr[i][1].total.confirmed || 0,
 				label: arr[i][0]
 			})
+			totalActive.push({
+				x: i + 1,
+				y:
+					(arr[i][1].total.confirmed || 0) -
+					(arr[i][1].total.recovered || 0) -
+					(arr[i][1].total.deceased || 0),
+				label: arr[i][0]
+			})
 			totalRecovered.push({
 				x: i + 1,
 				y: arr[i][1].total.recovered || 0,
@@ -63,8 +82,18 @@ const DailyCumulative = ({
 				label: arr[i][0]
 			})
 		}
-		setDailyData({ dailyConfirmed, dailyRecovered, dailyDeceased })
-		setTotalData({ totalConfirmed, totalRecovered, totalDeceased })
+		setDailyData({
+			dailyConfirmed,
+			dailyRecovered,
+			dailyDeceased,
+			dailyActive
+		})
+		setTotalData({
+			totalConfirmed,
+			totalRecovered,
+			totalDeceased,
+			totalActive
+		})
 	}
 
 	const dailyOptions = {
@@ -91,6 +120,15 @@ const DailyCumulative = ({
 				showInLegend: true,
 				markerSize: 0,
 				dataPoints: dailyData.dailyConfirmed
+			},
+			{
+				type: 'spline',
+				color: ACTIVE,
+				axisYType: 'secondary',
+				name: 'Active',
+				showInLegend: true,
+				markerSize: 0,
+				dataPoints: dailyData.dailyActive
 			},
 			{
 				type: 'spline',
@@ -129,6 +167,15 @@ const DailyCumulative = ({
 				showInLegend: true,
 				markerSize: 0,
 				dataPoints: totalData.totalConfirmed
+			},
+			{
+				type: 'spline',
+				color: ACTIVE,
+				axisYType: 'secondary',
+				name: 'Active',
+				showInLegend: true,
+				markerSize: 0,
+				dataPoints: totalData.totalActive
 			},
 			{
 				type: 'spline',
