@@ -39,7 +39,7 @@ const DailyCumulative = ({
 			dailyConfirmed.push({
 				x: i + 1,
 				y: arr[i][1].delta.confirmed || 0,
-				label: moment(arr[i][0]).format('Do MMM')
+				label: moment(arr[i][0]).format('D MMM')
 			})
 			dailyActive.push({
 				x: i + 1,
@@ -63,25 +63,25 @@ const DailyCumulative = ({
 			totalConfirmed.push({
 				x: i + 1,
 				y: arr[i][1].total.confirmed || 0,
-				label: arr[i][0]
+				label: moment(arr[i][0]).format('D MMM')
 			})
 			totalActive.push({
 				x: i + 1,
 				y:
 					(arr[i][1].total.confirmed || 0) -
 					(arr[i][1].total.recovered || 0) -
-					(arr[i][1].total.deceased || 0),
-				label: arr[i][0]
+					(arr[i][1].total.deceased || 0)
+				// label: arr[i][0]
 			})
 			totalRecovered.push({
 				x: i + 1,
-				y: arr[i][1].total.recovered || 0,
-				label: arr[i][0]
+				y: arr[i][1].total.recovered || 0
+				// label: arr[i][0]
 			})
 			totalDeceased.push({
 				x: i + 1,
-				y: arr[i][1].total.deceased || 0,
-				label: arr[i][0]
+				y: arr[i][1].total.deceased || 0
+				// label: arr[i][0]
 			})
 		}
 		setDailyData({
