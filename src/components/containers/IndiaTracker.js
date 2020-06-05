@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 import { getIndiaDashboard } from '../../actions/india'
 import { getEntireTimeline, getStateTimeLine } from '../../actions/timeline'
 import { getNotifications } from '../../actions/notification'
+import LoadingPage from '../Pages/LoadingPage'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
@@ -72,7 +73,9 @@ const IndiaTracker = ({
 
 	return (
 		<div>
-			{!loading && (
+			{loading ? (
+				<LoadingPage />
+			) : (
 				<Fragment>
 					<div className={`mx-auto`} style={{ width: '60px' }}>
 						<i
