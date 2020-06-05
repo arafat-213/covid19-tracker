@@ -8,10 +8,10 @@ import StateLineChart from '../Charts/StateLineChart'
 import districtAPI from '../../api/districtAPI'
 import moment from 'moment'
 import DistrictTable from '../Tables/DistrictTable/DistrictTable'
+// import DailyCumulative from '../Charts/DailyCumulative'
 // Redux
 import { connect } from 'react-redux'
 import { getIndiaDashboard } from '../../actions/india'
-import DailyCumulative from '../Charts/DailyCumulative'
 
 const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 	let { id: statecode } = useParams()
@@ -80,7 +80,7 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 					</div>
 
 					<div>
-						<DailyCumulative statecode={statecode} />
+						<StateLineChart statecode={statecode.toLowerCase()} />
 					</div>
 
 					<DistrictTable row={statecases} data={districtCases} />

@@ -70,20 +70,32 @@ const IndiaTracker = ({
 		fetchData()
 	}, [])
 
-	const bellIcons = ['far fa-bell', 'far fa-bell-slash']
 	return (
 		<div>
 			{!loading && (
 				<Fragment>
-					<div
-						className='mx-auto'
-						style={{ width: '20px' }}
-						onClick={() =>
-							setExpandNotifications(!expandNotifications)
-						}>
-						<i class='far fa-bell'></i>
+					<div className={`mx-auto`} style={{ width: '60px' }}>
+						<i
+							title='Latest notifications'
+							onClick={() =>
+								setExpandNotifications(!expandNotifications)
+							}
+							className={`far ${
+								expandNotifications
+									? 'fa-bell-slash'
+									: 'fa-bell'
+							} `}></i>
+						<i
+							className='far fa-calendar-times mx-2'
+							style={{ color: '#C0C0C0' }}
+							title='Dashboard for past dates, coming soon'></i>
 					</div>
-					{expandNotifications && <Notification />}
+
+					{expandNotifications && (
+						<div data-aos='fade-up' data-aos-duration='750'>
+							<Notification />
+						</div>
+					)}
 					<Tested
 						tested={total.tested}
 						newTest={parseInt(delta.tested).toLocaleString('en-IN')}

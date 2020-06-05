@@ -2,6 +2,7 @@ import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import './DistrictTable.css'
 import UpdateTime from '../../layout/UpdateTime'
+import moment from 'moment'
 
 const columns = [
 	{
@@ -119,10 +120,10 @@ const DistrictTable = ({
 				data-aos='fade-up-left'
 				data-aos-once='true'
 				data-aos-duration='1000'>
-				<UpdateTime
+				{/* <UpdateTime
 					style={{ marginTop: '2px' }}
-					time={lastupdatedtime}
-				/>
+					time={moment(lastupdatedtime).fromNow()}
+				/> */}
 			</div>
 
 			<div

@@ -110,11 +110,15 @@ const StateTable = ({ data, districtData }) => {
 		renderer: row => (
 			<div>
 				<div>
-					<p>
-						<Link to={`/covid19-tracker/state/${row.statecode}`}>
-							Visit State Page
-						</Link>
-					</p>
+					{' '}
+					{row.statecode !== 'UN' && (
+						<p>
+							<Link
+								to={`/covid19-tracker/state/${row.statecode}`}>
+								Visit State Page
+							</Link>
+						</p>
+					)}
 					<div data-aos='fade-down' data-aos-once='true'>
 						<DistrictTable row={row} data={districtData} />
 					</div>
@@ -126,7 +130,9 @@ const StateTable = ({ data, districtData }) => {
 			expanded ? (
 				<i className='fas fa-caret-down'></i>
 			) : (
-				<i className='fas fa-caret-right'></i>
+				<i
+					className='fas fa-caret-right'
+					title='click here to view distrcit wise cases'></i>
 			),
 		expandHeaderColumnRenderer: ({ isAnyExpands }) => (
 			// ....
