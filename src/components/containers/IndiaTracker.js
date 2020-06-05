@@ -9,16 +9,19 @@ import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
 import IndiaLineChart from '../Charts/IndiaLineChart'
 import moment from 'moment'
+import DailyCumulative from '../Charts/DailyCumulative'
+import Notification from '../../components/layout/Notifications'
 // Redux
 import { connect } from 'react-redux'
 import { getIndiaDashboard } from '../../actions/india'
 import { getEntireTimeline, getStateTimeLine } from '../../actions/timeline'
-import DailyCumulative from '../Charts/DailyCumulative'
+import { getNotifications } from '../../actions/notification'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
 	getEntireTimeline,
 	getStateTimeLine,
+	getNotifications,
 	dashboard,
 	dashboard: { delta, meta, total },
 	loading
@@ -29,10 +32,12 @@ const IndiaTracker = ({
 	const [districtCases, setDistrictCases] = useState([])
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
 	const [casesTimeline, setCasesTimeline] = useState([])
+	const [expandNotifications, setExpandNotifications] = useState(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
 			getIndiaDashboard()
+			getNotifications()
 			const response = await indiaAPI.get()
 			setIndiaCases(response.data.statewise[0])
 			setCasesTimeline(response.data.cases_time_series)
@@ -65,10 +70,20 @@ const IndiaTracker = ({
 		fetchData()
 	}, [])
 
+	const bellIcons = ['far fa-bell', 'far fa-bell-slash']
 	return (
 		<div>
 			{!loading && (
 				<Fragment>
+					<div
+						className='mx-auto'
+						style={{ width: '20px' }}
+						onClick={() =>
+							setExpandNotifications(!expandNotifications)
+						}>
+						<i class='far fa-bell'></i>
+					</div>
+					{expandNotifications && <Notification />}
 					<Tested
 						tested={total.tested}
 						newTest={parseInt(delta.tested).toLocaleString('en-IN')}
@@ -132,5 +147,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
 	getIndiaDashboard,
 	getEntireTimeline,
-	getStateTimeLine
+	getStateTimeLine,
+	getNotifications
 })(IndiaTracker)

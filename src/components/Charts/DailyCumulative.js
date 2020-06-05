@@ -21,6 +21,7 @@ const DailyCumulative = ({
 	useEffect(() => {
 		getEntireTimeline(statecode)
 		generateData()
+		// this.chart.render()
 	}, [loading, statecode])
 
 	const generateData = () => {
