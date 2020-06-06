@@ -10,16 +10,15 @@ html {
 $baseColor: #fff;
 $fontColor: #f0f;
 
-body {
-	background: $baseColor;
-	text-align: center;
-	font-family: 'Comfortaa', cursive;
+.spinner-div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 svg {
 	width: 100px;
 	height: 100px;
 	margin: 20px;
-	display: inline-block;
 }
 h1 {
 	text-align: center;
