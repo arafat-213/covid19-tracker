@@ -7,32 +7,31 @@ import districtData from '../../api/districtAPI'
 import Tested from '../layout/Tested'
 import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
-import IndiaLineChart from '../Charts/IndiaLineChart'
 import moment from 'moment'
 import DailyCumulative from '../Charts/DailyCumulative'
 import Notification from '../../components/layout/Notifications'
 // Redux
 import { connect } from 'react-redux'
-import { getIndiaDashboard } from '../../actions/india'
+import { getIndiaDashboard, getPastDashboard } from '../../actions/india'
 import { getEntireTimeline, getStateTimeLine } from '../../actions/timeline'
 import { getNotifications } from '../../actions/notification'
 import LoadingPage from '../Pages/LoadingPage'
+import StateTablev2 from '../Tables/StateTable/StateTablev2'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
-	getEntireTimeline,
-	getStateTimeLine,
+	getPastDashboard,
 	getNotifications,
 	dashboard,
-	dashboard: { delta, meta, total },
+	dashboard: { delta = {}, meta = {}, total = {} },
 	loading
 }) => {
-	const [IndiaCases, setIndiaCases] = useState([])
-	const [updateTimeStamp, setUpdateTimeStamp] = useState('')
+	// const [IndiaCases, setIndiaCases] = useState([])
+	// const [updateTimeStamp, setUpdateTimeStamp] = useState('')
 	const [stateCases, setStateCases] = useState([])
 	const [districtCases, setDistrictCases] = useState([])
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
-	const [casesTimeline, setCasesTimeline] = useState([])
+	// const [casesTimeline, setCasesTimeline] = useState([])
 	const [expandNotifications, setExpandNotifications] = useState(false)
 
 	useEffect(() => {
@@ -40,10 +39,6 @@ const IndiaTracker = ({
 			getIndiaDashboard()
 			getNotifications()
 			const response = await indiaAPI.get()
-			setIndiaCases(response.data.statewise[0])
-			setCasesTimeline(response.data.cases_time_series)
-
-			setUpdateTimeStamp(response.data.statewise[0].lastupdatedtime)
 
 			const { statewise } = response.data
 			_.remove(statewise, obj => obj.state === 'Total')
@@ -77,7 +72,7 @@ const IndiaTracker = ({
 				<LoadingPage />
 			) : (
 				<Fragment>
-					<div className={`mx-auto`} style={{ width: '60px' }}>
+					<div className={`mx-auto `} style={{ width: '60px' }}>
 						<i
 							title='Latest notifications'
 							onClick={() =>
@@ -89,9 +84,11 @@ const IndiaTracker = ({
 									: 'fa-bell'
 							} `}></i>
 						<i
-							className='far fa-calendar-times mx-2'
 							style={{ color: '#C0C0C0' }}
-							title='Dashboard for past dates, coming soon'></i>
+							className='far fa-calendar-times mx-2'
+							title='Dashboard for past dates, coming soon'>
+							{' '}
+						</i>
 					</div>
 
 					{expandNotifications && (
@@ -113,7 +110,7 @@ const IndiaTracker = ({
 						source={meta.tested['source']}
 					/>
 					<Dashboard
-						time={meta.last_updated}
+						// time={meta.last_updated}
 						data={dashboard}
 						region='India'
 					/>
@@ -139,12 +136,16 @@ const IndiaTracker = ({
 					<div>
 						<DailyCumulative statecode={'TT'} />
 					</div>
+
 					<div>
 						<StateTable
 							data={stateCases}
 							districtData={districtCases}
 							tested={stateTestNumbers}
 						/>
+					</div>
+					<div className='table-responsive'>
+						<StateTablev2 />
 					</div>
 				</Fragment>
 			)}
@@ -163,5 +164,6 @@ export default connect(mapStateToProps, {
 	getIndiaDashboard,
 	getEntireTimeline,
 	getStateTimeLine,
-	getNotifications
+	getNotifications,
+	getPastDashboard
 })(IndiaTracker)
