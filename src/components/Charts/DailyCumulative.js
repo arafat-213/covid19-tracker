@@ -99,11 +99,13 @@ const DailyCumulative = ({
 	}
 
 	const dailyOptions = {
+		animationEnabled: true,
 		title: {
 			text: 'Daily',
 			fontFamily: 'Quicksand',
 			fontWeight: 600
 		},
+		exportEnabled: true,
 		toolTip: {
 			shared: true
 		},

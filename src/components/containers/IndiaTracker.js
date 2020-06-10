@@ -114,7 +114,7 @@ const IndiaTracker = ({
 						data={dashboard}
 						region='India'
 					/>
-					<div data-aos='zoom-in-up'>
+					<div>
 						<RatioChart
 							recovered={total.recovered}
 							deaths={total.deceased}
