@@ -51,7 +51,7 @@ const Navbar = () => {
 					<ul className='nav navbar-nav mx-auto'>
 						<li
 							className='nav-item navbar-brand'
-							data-aos='fade-down-right'
+							data-aos='fade-down'
 							data-aos-duration='1000'
 							data-toggle='collapse'
 							data-target='.navbar-collapse.show'>
