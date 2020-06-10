@@ -64,7 +64,9 @@ const Dashboard = ({ data: { total, delta = {}, meta = {} } }) => {
 							// className="four wide colum"
 							card='Recovered'
 							count={parseInt(total.recovered)}
-							dailyCount={parseInt(delta.recovered)}
+							dailyCount={parseInt(
+								delta.recovered
+							).toLocaleString('en-IN')}
 						/>
 					</div>
 				</div>
