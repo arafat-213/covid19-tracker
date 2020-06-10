@@ -100,6 +100,7 @@ const DailyCumulative = ({
 
 	const dailyOptions = {
 		animationEnabled: true,
+		animationDuration: 4000,
 		title: {
 			text: 'Daily',
 			fontFamily: 'Quicksand',
