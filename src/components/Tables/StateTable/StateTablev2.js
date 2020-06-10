@@ -1,17 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { useEffect } from 'react'
 import stateNames from '../../../utils/stateNames.js'
 const StateTablev2 = ({ data, loading }) => {
-	useEffect(() => {
-		delete data['loading']
-	}, [data])
-	console.log(stateNames[0])
-
 	return (
 		!loading &&
 		data && (
-			<table className='table table-hover table-condensed table-striped'>
+			<table className='table table-hover table-sm table-condensed table-striped'>
 				<thead className='thead-dark'>
 					<tr>
 						<th colSpan='2' width='30%'>
@@ -36,7 +30,9 @@ const StateTablev2 = ({ data, loading }) => {
 					{data.map(
 						province =>
 							province[1].total && (
-								<tr key={province[0]}>
+								<tr
+									key={province[0]}
+									onClick={() => console.log(province[0])}>
 									<td>
 										<i className='fas fa-caret-right'></i>
 									</td>
@@ -89,9 +85,9 @@ const StateTablev2 = ({ data, loading }) => {
 												(province[1].delta.deceased ||
 													0) >=
 											0 ? (
-												<>&#8673;</>
+												<span>&#8673;</span>
 											) : (
-												<>&#8675;</>
+												<span>&#8675;</span>
 											)}
 
 											{(
@@ -178,6 +174,10 @@ const StateTablev2 = ({ data, loading }) => {
 			</table>
 		)
 	)
+}
+
+const DistrictTable = () => {
+	return <p>Test</p>
 }
 
 const mapStateToProps = (state, ownProps) => {
