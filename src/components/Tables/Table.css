@@ -12,12 +12,12 @@
 	color: red;
 }
 
-.daily-confirmed {
+.daily-active {
 	font-weight: 700;
 	color: #f6ac15;
 }
 
-.daily-active {
+.daily-confirmed {
 	font-weight: 700;
 	color: rgba(63, 165, 209, 1);
 }

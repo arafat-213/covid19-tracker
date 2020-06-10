@@ -1,5 +1,6 @@
 import React from 'react'
 import CanvasJSReact from './canvasjs.react'
+import { ACTIVE, DECEASED, RECOVERED } from '../../utils/colors'
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
@@ -43,10 +44,21 @@ const RatioChart = ({ active, recovered, deaths, confirmed, region }) => {
 					{
 						name: `Active`,
 						y: active,
-						z: activePercentage
+						z: activePercentage,
+						color: ACTIVE
 					},
-					{ name: 'Deaths', y: deaths, z: deathsPercentage },
-					{ name: 'Recovered', y: recovered, z: recoveredPercentage }
+					{
+						name: 'Deaths',
+						y: deaths,
+						z: deathsPercentage,
+						color: DECEASED
+					},
+					{
+						name: 'Recovered',
+						y: recovered,
+						z: recoveredPercentage,
+						color: RECOVERED
+					}
 				]
 			}
 		]
