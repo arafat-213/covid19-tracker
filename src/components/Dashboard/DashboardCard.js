@@ -15,7 +15,7 @@ const DashboardCard = props => {
 						<CountUp
 							start={0}
 							end={props.count}
-							duration={2.75}
+							duration={2.0}
 							separator=','
 						/>
 					</h2>
