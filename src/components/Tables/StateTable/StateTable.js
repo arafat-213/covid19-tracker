@@ -38,6 +38,27 @@ const columns = [
 			)
 	},
 	{
+		dataField: 'deltaactive',
+		isDummy: true,
+		text: '',
+		formatter: (cell, row) => {
+			let deltaActive =
+				(row.deltaconfirmed || 0) -
+				(row.deltarecovered || 0) -
+				(row.deltadeaths || 0)
+			let arrow =
+				deltaActive > 0 ? <span>&#8673;</span> : <span>&#8675;</span>
+			return deltaActive === 0 ? (
+				<span></span>
+			) : (
+				<span className='float-right daily-active'>
+					<span>{arrow}</span>
+					{`${deltaActive}`}
+				</span>
+			)
+		}
+	},
+	{
 		dataField: 'active',
 		text: 'Active',
 		sort: true,
@@ -111,7 +132,15 @@ const StateTable = ({ data, districtData }) => {
 			<div>
 				<div>
 					{' '}
-					{row.statecode !== 'UN' && (
+					{row.statecode === 'UN' ? (
+						<p>
+							MoHFW website reports that these are the ""cases
+							that are being reassigned to states"" [Jun 8] : 519
+							cases were added to this category today at 9:30 AM.
+							After that, MoHFW reduced 1352 cases. In effect 773
+							cases were reduced from this category.
+						</p>
+					) : (
 						<p>
 							<Link
 								to={`/covid19-tracker/state/${row.statecode}`}>

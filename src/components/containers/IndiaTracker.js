@@ -12,7 +12,7 @@ import DailyCumulative from '../Charts/DailyCumulative'
 import Notification from '../../components/layout/Notifications'
 // Redux
 import { connect } from 'react-redux'
-import { getIndiaDashboard, getPastDashboard } from '../../actions/india'
+import { getIndiaDashboard } from '../../actions/india'
 import { getEntireTimeline, getStateTimeLine } from '../../actions/timeline'
 import { getNotifications } from '../../actions/notification'
 import LoadingPage from '../Pages/LoadingPage'
@@ -145,7 +145,7 @@ const IndiaTracker = ({
 						/>
 					</div>
 					<div className='table-responsive'>
-						<StateTablev2 />
+						{/* <StateTablev2 /> */}
 					</div>
 				</Fragment>
 			)}
@@ -164,6 +164,6 @@ export default connect(mapStateToProps, {
 	getIndiaDashboard,
 	getEntireTimeline,
 	getStateTimeLine,
-	getNotifications,
-	getPastDashboard
+	getNotifications
+	// getPastDashboard
 })(IndiaTracker)

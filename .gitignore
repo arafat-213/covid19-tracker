@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src/components/Charts/StateLineChartv2.js
+src/components/Tables/StateTable/StateTablev2.js
+src/components/layout/DatePicker.css
+src/components/layout/DatePicker.js
+

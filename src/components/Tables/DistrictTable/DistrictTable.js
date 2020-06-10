@@ -1,8 +1,6 @@
 import React from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import './DistrictTable.css'
-import UpdateTime from '../../layout/UpdateTime'
-import moment from 'moment'
 
 const columns = [
 	{
@@ -34,6 +32,27 @@ const columns = [
 			) : (
 				<span>{parseInt(cell).toLocaleString('en-IN')}</span>
 			)
+	},
+	{
+		dataField: 'delta.active',
+		isDummy: true,
+		text: '',
+		formatter: (cell, row) => {
+			let deltaActive =
+				(row.delta.confirmed || 0) -
+				(row.delta.recovered || 0) -
+				(row.delta.deaths || 0)
+			let arrow =
+				deltaActive > 0 ? <span>&#8673;</span> : <span>&#8675;</span>
+			return deltaActive === 0 ? (
+				<span></span>
+			) : (
+				<span className='float-right daily-active'>
+					<span>{arrow}</span>
+					{`${deltaActive}`}
+				</span>
+			)
+		}
 	},
 	{
 		text: 'Active',
