@@ -1,7 +1,8 @@
 import React from 'react'
 import './Tested.css'
+import CountUp from 'react-countup'
 
-const Tested = ({ tested, newTest = 0, time, region, source }) => {
+const Tested = ({ tested, newTest, time, region, source }) => {
 	return (
 		<div>
 			<div className='row'>
@@ -13,9 +14,28 @@ const Tested = ({ tested, newTest = 0, time, region, source }) => {
 				<div className='col'>
 					<div className='col card-body text-right'>
 						<div className='h3 test-numbers mb-0'>
-							{parseInt(tested).toLocaleString('en-IN')}
+							{/* {parseInt(tested).toLocaleString('en-IN')} */}
+							<CountUp
+								start={0}
+								end={tested}
+								duration={2.0}
+								separator=','
+							/>
 						</div>
-						<p className='mb-0 test-numbers h5'>{`[+${newTest}]`}</p>
+
+						{newTest ? (
+							<p className='mb-0 test-numbers h5'>
+								[+
+								<CountUp
+									start={0}
+									end={parseInt(newTest)}
+									separator=','
+								/>
+								]
+							</p>
+						) : (
+							<p>[N.A.]</p>
+						)}
 						<p className='test-text mb-0'>
 							Samples tested{' '}
 							<a

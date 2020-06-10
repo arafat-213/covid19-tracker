@@ -98,7 +98,7 @@ const IndiaTracker = ({
 					)}
 					<Tested
 						tested={total.tested}
-						newTest={parseInt(delta.tested).toLocaleString('en-IN')}
+						newTest={delta.tested}
 						time={moment
 							.duration(
 								new moment().diff(
