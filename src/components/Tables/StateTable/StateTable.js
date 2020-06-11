@@ -6,6 +6,11 @@ import DistrictTable from '../DistrictTable/DistrictTable'
 import '../Table.css'
 import { Link } from 'react-router-dom'
 
+const STATE_UNASSIGNED_NOTE = `MoHFW website reports that these are the ""cases
+							that are being reassigned to states"" [Jun 8] : 519
+							cases were added to this category today at 9:30 AM.
+							After that, MoHFW reduced 1352 cases. In effect 773
+							cases were reduced from this category.`
 const columns = [
 	{
 		dataField: 'state',
@@ -17,14 +22,17 @@ const columns = [
 		dataField: 'deltaconfirmed',
 		isDummy: true,
 		text: '',
-		formatter: (cell, row) =>
-			cell === 0 ? (
+		formatter: (cell, row) => {
+			let arrow = cell > 0 ? <span>&#8673;</span> : <span>&#8675;</span>
+			return cell === 0 ? (
 				<span></span>
 			) : (
 				<span className='float-right daily-confirmed'>
-					&#8673;{`${cell}`}
+					{arrow}
+					{`${cell}`}
 				</span>
 			)
+		}
 	},
 	{
 		dataField: 'confirmed',
@@ -133,13 +141,7 @@ const StateTable = ({ data, districtData }) => {
 				<div>
 					{' '}
 					{row.statecode === 'UN' ? (
-						<p>
-							MoHFW website reports that these are the ""cases
-							that are being reassigned to states"" [Jun 8] : 519
-							cases were added to this category today at 9:30 AM.
-							After that, MoHFW reduced 1352 cases. In effect 773
-							cases were reduced from this category.
-						</p>
+						<p>{STATE_UNASSIGNED_NOTE}</p>
 					) : (
 						<p>
 							<Link

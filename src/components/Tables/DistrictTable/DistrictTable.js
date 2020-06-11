@@ -13,14 +13,17 @@ const columns = [
 		dataField: 'delta.confirmed',
 		isDummy: true,
 		text: '',
-		formatter: (cell, row) =>
-			cell === 0 ? (
+		formatter: (cell, row) => {
+			let arrow = cell > 0 ? <span>&#8673;</span> : <span>&#8675;</span>
+			return cell === 0 ? (
 				<span></span>
 			) : (
 				<span className='float-right daily-confirmed'>
-					&#8673;{parseInt(cell).toLocaleString('en-IN')}
+					{arrow}
+					{`${cell}`}
 				</span>
 			)
+		}
 	},
 	{
 		text: 'Confirmed',
