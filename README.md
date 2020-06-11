@@ -10,36 +10,37 @@ The App uses [Covid19 India API](http://api.covid19india.org) to fetch data for 
 
 #### Attach screenshots here
 
-##Desktop version
+## Desktop version
 
-###India Dashboard
+### India Dashboard
 ![India Dashboard](https://i.imgur.com/LOjM1Tw.png)
 
-###Global Dashboard
+
+### Global Dashboard
 ![Global Dashboard](https://i.imgur.com/3mXZ6zL.png)
 
-###Ratio chart
+### Ratio chart
 ![Global Dashboard](https://i.imgur.com/Of9AsQ6.png)
 
-###Daily new cases
+### Daily new cases
 ![Daily new cases](https://i.imgur.com/tQWXzBr.png)
 
-###Cumulative curve
+### Cumulative curve
 ![Curves](https://i.imgur.com/cdJmECs.png)
 
-###Latest Notifications
+### Latest Notifications
 ![Notifications](https://i.imgur.com/zQ189Pa.png)
 
-###Countries table
+### Countries table
 ![Countries](https://i.imgur.com/teo3uTS.png)
 
-##Mobile version
+## Mobile version
 
-###India Dashboard
+### India Dashboard
 ![India Dashboard](https://i.imgur.com/fqhj4AG.png)
 
-###Charts
+### Charts
 ![charts](https://i.imgur.com/15sR2Hn.png)
 
-###Latest Notifications
+### Latest Notifications
 ![Notifications](https://i.imgur.com/fnJGep5.png)
