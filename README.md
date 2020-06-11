@@ -9,3 +9,4 @@ The App uses [Covid19 India API](http://api.covid19india.org) to fetch data for 
 ### Usage
 
 #### Attach screenshots here
+[!India dashboard](https://imgur.com/LOjM1Tw)
