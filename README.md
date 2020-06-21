@@ -13,34 +13,55 @@ The App uses [Covid19 India API](http://api.covid19india.org) to fetch data for 
 ## Desktop version
 
 ### India Dashboard
+
 ![India Dashboard](https://i.imgur.com/LOjM1Tw.png)
 
-
 ### Global Dashboard
+
 ![Global Dashboard](https://i.imgur.com/3mXZ6zL.png)
 
+### State Dashboard
+
+![State Dashboard](https://i.imgur.com/J0nYwPV.png)
+
+### State Table
+
+![State table](https://i.imgur.com/vGzpQVF.png)
+
+### District Table
+
+![District table](https://i.imgur.com/5chWq9L.png)
+
+### Countries table
+
+![Countries](https://i.imgur.com/teo3uTS.png)
+
 ### Ratio chart
+
 ![Global Dashboard](https://i.imgur.com/Of9AsQ6.png)
 
 ### Daily new cases
+
 ![Daily new cases](https://i.imgur.com/tQWXzBr.png)
 
 ### Cumulative curve
+
 ![Curves](https://i.imgur.com/cdJmECs.png)
 
 ### Latest Notifications
-![Notifications](https://i.imgur.com/zQ189Pa.png)
 
-### Countries table
-![Countries](https://i.imgur.com/teo3uTS.png)
+![Notifications](https://i.imgur.com/zQ189Pa.png)
 
 ## Mobile version
 
 ### India Dashboard
+
 ![India Dashboard](https://i.imgur.com/fqhj4AG.png)
 
 ### Charts
+
 ![charts](https://i.imgur.com/15sR2Hn.png)
 
 ### Latest Notifications
+
 ![Notifications](https://i.imgur.com/fnJGep5.png)
