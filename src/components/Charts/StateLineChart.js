@@ -5,7 +5,7 @@ import axios from 'axios'
 import { CONFIRMED, RECOVERED, DECEASED } from '../../utils/colors'
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
-const StateLineChart = ({ statecode }) => {
+const StateLineChart = ({ statecode, states_daily }) => {
 	const [dailyConfirmed, setDailyConfirmed] = useState([])
 	const [dailyRecovered, setDailyRecovered] = useState([])
 	const [dailyDeceased, setDailyDeceased] = useState([])
@@ -14,13 +14,13 @@ const StateLineChart = ({ statecode }) => {
 
 	useEffect(() => {
 		generateData()
-	}, [])
+	}, [states_daily])
 
 	const generateData = async () => {
-		const res = await axios.get(
-			'https://api.covid19india.org/states_daily.json'
-		)
-		const { states_daily } = res.data
+		// const res = await axios.get(
+		// 	'https://api.covid19india.org/states_daily.json'
+		// )
+		// const { states_daily } = res.data
 
 		let dailyConfirmedList = [],
 			dailyRecoveredList = [],

@@ -6,14 +6,12 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 
 const Dashboard = ({ data: { total, delta = {}, meta = {} } }) => {
-	// TODO: Pass the dashboard data from trackers as props
-
 	// let data = region === 'India' ? india : global
 	// Handles NaN and undefined values
 	delta.confirmed = delta.confirmed || 0
 	delta.recovered = delta.recovered || 0
 	delta.deceased = delta.deceased || 0
-
+	total.deceased = total.deceased || 0
 	return (
 		<div>
 			<div className='row'>

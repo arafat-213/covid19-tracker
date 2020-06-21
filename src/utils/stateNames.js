@@ -1,4 +1,4 @@
-export default {
+export const stateNames = {
 	AN: 'Andaman & Nicobar Islands',
 	AP: 'Andhra Pradesh',
 	AR: 'Arunachal Pradesh',

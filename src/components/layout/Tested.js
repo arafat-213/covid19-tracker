@@ -1,15 +1,51 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { Link, withRouter } from 'react-router-dom'
 import './Tested.css'
 import CountUp from 'react-countup'
+import { stateNames } from '../../utils/stateNames'
+
+const renderDropdown = () => {
+	delete stateNames['UN']
+	let list = []
+	for (const key in stateNames) {
+		list.push(
+			<Link
+				key={key}
+				to={`/covid19-tracker/state/${key}`}
+				className='dropdown-item'>
+				{stateNames[key]}
+			</Link>
+		)
+	}
+	return list
+}
 
 const Tested = ({ tested, newTest, time, region, source }) => {
 	return (
 		<div>
 			<div className='row'>
 				<div className='col'>
-					<p className='display-4 region-title'>
-						{region ? region : 'Loading...'}
-					</p>
+					<div className='region-title'>
+						<p className='display-4 region-title'>
+							{region ? region : 'Loading...'}
+
+							{region !== 'India' && (
+								<Fragment>
+									<span
+										className='dropdown-toggle dropdown-toggle-split'
+										data-toggle='dropdown'
+										aria-haspopup='true'
+										aria-expanded='false'></span>
+									<span className='sr-only'>
+										Toggle Dropdown
+									</span>
+									<div className='dropdown-menu'>
+										{renderDropdown()}
+									</div>
+								</Fragment>
+							)}
+						</p>
+					</div>
 				</div>
 				<div className='col'>
 					<div className='col card-body text-right'>

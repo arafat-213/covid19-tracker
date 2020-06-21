@@ -52,7 +52,7 @@ const RatioChart = ({ active, recovered, deaths, confirmed, region }) => {
 					},
 					{
 						name: 'Deaths',
-						y: deaths,
+						y: deaths || 0,
 						z: deathsPercentage,
 						color: DECEASED
 					},

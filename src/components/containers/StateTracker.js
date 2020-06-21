@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, withRouter } from 'react-router-dom'
 import indiaAPI from '../../api/indiaAPI'
 import Dashboard from '../Dashboard/Dashboard'
 import Tested from '../layout/Tested'
@@ -7,6 +7,7 @@ import RatioChart from '../Charts/RatioChart'
 import StateLineChart from '../Charts/StateLineChart'
 import districtAPI from '../../api/districtAPI'
 import moment from 'moment'
+import axios from 'axios'
 import DistrictTable from '../Tables/DistrictTable/DistrictTable'
 // import DailyCumulative from '../Charts/DailyCumulative'
 // Redux
@@ -15,7 +16,6 @@ import { getIndiaDashboard } from '../../actions/india'
 
 const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 	let { id: statecode } = useParams()
-
 	const dashboard = states[statecode]
 	const {
 		total = {},
@@ -26,10 +26,11 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 	const [statecases, setStatecases] = useState([])
 	const [districtCases, setDistrictCases] = useState([])
 	const [region, setRegion] = useState(null)
+	const [stateDaily, setStateDaily] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
-			// getIndiaDashboard()
+			await getIndiaDashboard()
 
 			const {
 				data: { statewise }
@@ -41,6 +42,13 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 			// Fetching district cases
 			const { data } = await districtAPI.get()
 			setDistrictCases(data)
+
+			// State timeline
+			const res = await axios.get(
+				'https://api.covid19india.org/states_daily.json'
+			)
+			const { states_daily } = res.data
+			setStateDaily(states_daily)
 		}
 		fetchData()
 	}, [statecode])
@@ -50,6 +58,7 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 				<Fragment>
 					<Tested
 						tested={total.tested ? total.tested : 'N.A.'}
+						newTest={delta.tested}
 						time={moment
 							.duration(
 								new moment(tested.last_updated).diff(
@@ -80,7 +89,10 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 					</div>
 
 					<div>
-						<StateLineChart statecode={statecode.toLowerCase()} />
+						<StateLineChart
+							statecode={statecode.toLowerCase()}
+							states_daily={stateDaily}
+						/>
 					</div>
 
 					<DistrictTable row={statecases} data={districtCases} />
@@ -93,6 +105,7 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 const mapStateToProps = state => {
 	return {
 		states: state.india.states
+		// dashboard: state.india.states[this.statecode]
 	}
 }
 
