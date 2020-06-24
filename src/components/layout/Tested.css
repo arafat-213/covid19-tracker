@@ -11,3 +11,8 @@
 .test-text {
 	color: #a0a0a0;
 }
+
+.dropdown-menu {
+	max-height: 250px;
+	overflow-y: auto;
+}
