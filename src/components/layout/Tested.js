@@ -59,7 +59,7 @@ const Tested = ({ tested, newTest, time, region, source }) => {
 							/>
 						</div>
 
-						{newTest ? (
+						{newTest && (
 							<p className='mb-0 test-numbers h5'>
 								[+
 								<CountUp
@@ -69,8 +69,6 @@ const Tested = ({ tested, newTest, time, region, source }) => {
 								/>
 								]
 							</p>
-						) : (
-							<p>[N.A.]</p>
 						)}
 						<p className='test-text mb-0'>
 							Samples tested{' '}

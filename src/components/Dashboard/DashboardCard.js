@@ -2,8 +2,12 @@ import React from 'react'
 import './DashboardCard.css'
 import CountUp from 'react-countup'
 const renderDailyCount = dailyCount => {
-	if (parseInt(dailyCount) >= 0) return <small>{`[+${dailyCount}]`}</small>
-	return <small>{`[${dailyCount}]`}</small>
+	if (parseInt(dailyCount) === 0) return null
+	return parseInt(dailyCount) > 0 ? (
+		<small>{`[+${dailyCount}]`}</small>
+	) : (
+		<small>{`[${dailyCount}]`}</small>
+	)
 }
 const DashboardCard = props => {
 	return (
@@ -15,7 +19,7 @@ const DashboardCard = props => {
 						<CountUp
 							start={0}
 							end={props.count}
-							duration={2.0}
+							duration={0.5}
 							separator=','
 						/>
 					</h2>
