@@ -16,12 +16,12 @@ import { getIndiaDashboard } from '../../actions/india'
 import { getEntireTimeline, getStateTimeLine } from '../../actions/timeline'
 import { getNotifications } from '../../actions/notification'
 import LoadingPage from '../Pages/LoadingPage'
-import StateTablev2 from '../Tables/StateTable/StateTablev2'
 
 const IndiaTracker = ({
 	getIndiaDashboard,
-	getPastDashboard,
+	// getPastDashboard,
 	getNotifications,
+	getEntireTimeline,
 	dashboard,
 	dashboard: { delta = {}, meta = {}, total = {} },
 	loading
@@ -33,6 +33,9 @@ const IndiaTracker = ({
 	const [stateTestNumbers, setStateTestNumbers] = useState(0)
 	// const [casesTimeline, setCasesTimeline] = useState([])
 	const [expandNotifications, setExpandNotifications] = useState(false)
+	const [pastDate, setPastDate] = useState(
+		moment(new Date()).format('YYYY-MM-DD')
+	)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -66,6 +69,10 @@ const IndiaTracker = ({
 		fetchData()
 	}, [])
 
+	useEffect(() => {
+		// getIndiaDashboard(pastDate)
+	}, [pastDate])
+
 	return (
 		<div>
 			{loading ? (
@@ -83,12 +90,27 @@ const IndiaTracker = ({
 									? 'fa-bell-slash'
 									: 'fa-bell'
 							} `}></i>
-						<i
-							style={{ color: '#C0C0C0' }}
-							className='far fa-calendar-times mx-2'
-							title='Dashboard for past dates, coming soon'>
-							{' '}
-						</i>
+
+						{/* <div>
+							<label htmlFor='pastDate'>
+								<i
+									style={{ color: '#C0C0C0' }}
+									className='far fa-calendar-times mx-2'
+									title='Dashboard for past dates, coming soon'>
+									{' '}
+								</i>
+							</label>
+							<input
+								type='date'
+								id='pastDate'
+								min='2020-04-30'
+								max={moment(new Date()).format('YYYY-MM-DD')}
+								name='pastDate'
+								value={pastDate}
+								onChange={e =>
+									setPastDate(e.target.value)
+								}></input>
+						</div> */}
 					</div>
 
 					{expandNotifications && (
@@ -127,12 +149,6 @@ const IndiaTracker = ({
 							region='India'
 						/>
 					</div>
-					{/* <div>
-						<IndiaLineChart
-							cases={casesTimeline}
-							category='confirmed'
-						/>
-					</div> */}
 					<div>
 						<DailyCumulative statecode={'TT'} />
 					</div>
@@ -143,9 +159,6 @@ const IndiaTracker = ({
 							districtData={districtCases}
 							tested={stateTestNumbers}
 						/>
-					</div>
-					<div className='table-responsive'>
-						{/* <StateTablev2 /> */}
 					</div>
 				</Fragment>
 			)}

@@ -22,8 +22,7 @@ const DailyCumulative = ({
 	useEffect(() => {
 		getEntireTimeline(statecode)
 		generateData()
-		// this.chart.render()
-	}, [loading, statecode])
+	}, [loading, timeline])
 
 	const generateData = () => {
 		let dailyConfirmed = [],
@@ -36,53 +35,57 @@ const DailyCumulative = ({
 			totalDeceased = []
 		let arr = Object.entries(timeline)
 		for (let i = 0; i < arr.length; i++) {
-			dailyConfirmed.push({
-				x: i + 1,
-				y: arr[i][1].delta.confirmed || 0,
-				label: moment(arr[i][0]).format('D MMM')
-			})
-			dailyActive.push({
-				x: i + 1,
-				y:
-					(arr[i][1].delta.confirmed || 0) -
-					(arr[i][1].delta.recovered || 0) -
-					(arr[i][1].delta.deceased || 0)
-				// label: arr[i][0]
-			})
+			if (arr[i][1].delta) {
+				dailyConfirmed.push({
+					x: i + 1,
+					y: arr[i][1].delta.confirmed || 0,
+					label: moment(arr[i][0]).format('D MMM')
+				})
+				dailyActive.push({
+					x: i + 1,
+					y:
+						(arr[i][1].delta.confirmed || 0) -
+						(arr[i][1].delta.recovered || 0) -
+						(arr[i][1].delta.deceased || 0)
+					// label: arr[i][0]
+				})
 
-			dailyRecovered.push({
-				x: i + 1,
-				y: arr[i][1].delta.recovered || 0
-				// label: arr[i][0]
-			})
-			dailyDeceased.push({
-				x: i + 1,
-				y: arr[i][1].delta.deceased || 0
-				// label: arr[i][0]
-			})
-			totalConfirmed.push({
-				x: i + 1,
-				y: arr[i][1].total.confirmed || 0,
-				label: moment(arr[i][0]).format('D MMM')
-			})
-			totalActive.push({
-				x: i + 1,
-				y:
-					(arr[i][1].total.confirmed || 0) -
-					(arr[i][1].total.recovered || 0) -
-					(arr[i][1].total.deceased || 0)
-				// label: arr[i][0]
-			})
-			totalRecovered.push({
-				x: i + 1,
-				y: arr[i][1].total.recovered || 0
-				// label: arr[i][0]
-			})
-			totalDeceased.push({
-				x: i + 1,
-				y: arr[i][1].total.deceased || 0
-				// label: arr[i][0]
-			})
+				dailyRecovered.push({
+					x: i + 1,
+					y: arr[i][1].delta.recovered || 0
+					// label: arr[i][0]
+				})
+				dailyDeceased.push({
+					x: i + 1,
+					y: arr[i][1].delta.deceased || 0
+					// label: arr[i][0]
+				})
+			}
+			if (arr[i][1].total) {
+				totalConfirmed.push({
+					x: i + 1,
+					y: arr[i][1].total.confirmed || 0,
+					label: moment(arr[i][0]).format('D MMM')
+				})
+				totalActive.push({
+					x: i + 1,
+					y:
+						(arr[i][1].total.confirmed || 0) -
+						(arr[i][1].total.recovered || 0) -
+						(arr[i][1].total.deceased || 0)
+					// label: arr[i][0]
+				})
+				totalRecovered.push({
+					x: i + 1,
+					y: arr[i][1].total.recovered || 0
+					// label: arr[i][0]
+				})
+				totalDeceased.push({
+					x: i + 1,
+					y: arr[i][1].total.deceased || 0
+					// label: arr[i][0]
+				})
+			}
 		}
 		setDailyData({
 			dailyConfirmed,

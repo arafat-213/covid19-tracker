@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard/Dashboard'
 import Tested from '../layout/Tested'
 import RatioChart from '../Charts/RatioChart'
 import StateLineChart from '../Charts/StateLineChart'
+import DailyCumulative from '../Charts/DailyCumulative'
 import districtAPI from '../../api/districtAPI'
 import moment from 'moment'
 import axios from 'axios'
@@ -89,10 +90,11 @@ const StateTracker = ({ states, states: { loading }, getIndiaDashboard }) => {
 					</div>
 
 					<div>
-						<StateLineChart
+						{/* <StateLineChart
 							statecode={statecode.toLowerCase()}
 							states_daily={stateDaily}
-						/>
+						/> */}
+						<DailyCumulative statecode={statecode} />
 					</div>
 
 					<DistrictTable row={statecases} data={districtCases} />
