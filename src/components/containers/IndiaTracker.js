@@ -5,7 +5,6 @@ import indiaAPI from '../../api/indiaAPI'
 import _ from 'lodash'
 import districtData from '../../api/districtAPI'
 import Tested from '../layout/Tested'
-import stateTestingAPI from '../../api/stateTestingAPI'
 import RatioChart from '../Charts/RatioChart'
 import moment from 'moment'
 import DailyCumulative from '../Charts/DailyCumulative'
@@ -13,7 +12,6 @@ import Notification from '../../components/layout/Notifications'
 // Redux
 import { connect } from 'react-redux'
 import { getIndiaDashboard } from '../../actions/india'
-import { getEntireTimeline, getStateTimeLine } from '../../actions/timeline'
 import { getNotifications } from '../../actions/notification'
 import LoadingPage from '../Pages/LoadingPage'
 
@@ -21,17 +19,12 @@ const IndiaTracker = ({
 	getIndiaDashboard,
 	// getPastDashboard,
 	getNotifications,
-	getEntireTimeline,
 	dashboard,
 	dashboard: { delta = {}, meta = {}, total = {} },
 	loading
 }) => {
-	// const [IndiaCases, setIndiaCases] = useState([])
-	// const [updateTimeStamp, setUpdateTimeStamp] = useState('')
 	const [stateCases, setStateCases] = useState([])
 	const [districtCases, setDistrictCases] = useState([])
-	const [stateTestNumbers, setStateTestNumbers] = useState(0)
-	// const [casesTimeline, setCasesTimeline] = useState([])
 	const [expandNotifications, setExpandNotifications] = useState(false)
 	const [pastDate, setPastDate] = useState(
 		moment(new Date()).format('YYYY-MM-DD')
@@ -59,12 +52,6 @@ const IndiaTracker = ({
 			const districtResponse = await districtData.get()
 			const data = districtResponse.data
 			setDistrictCases(data)
-
-			//Fetching state test numbers
-			const {
-				data: { states_tested_data }
-			} = await stateTestingAPI.get()
-			setStateTestNumbers(states_tested_data)
 		}
 		fetchData()
 	}, [])
@@ -131,11 +118,7 @@ const IndiaTracker = ({
 						region='India'
 						source={meta.tested['source']}
 					/>
-					<Dashboard
-						// time={meta.last_updated}
-						data={dashboard}
-						region='India'
-					/>
+					<Dashboard data={dashboard} region='India' />
 					<div>
 						<RatioChart
 							recovered={total.recovered}
@@ -157,7 +140,6 @@ const IndiaTracker = ({
 						<StateTable
 							data={stateCases}
 							districtData={districtCases}
-							tested={stateTestNumbers}
 						/>
 					</div>
 				</Fragment>
@@ -175,8 +157,6 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
 	getIndiaDashboard,
-	getEntireTimeline,
-	getStateTimeLine,
 	getNotifications
 	// getPastDashboard
 })(IndiaTracker)

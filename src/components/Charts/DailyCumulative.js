@@ -1,20 +1,13 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import CanvasJSReact from './canvasjs.react'
-import { useEffect } from 'react'
 import { CONFIRMED, RECOVERED, DECEASED, ACTIVE } from '../../utils/colors'
-
 import { connect } from 'react-redux'
 import { getEntireTimeline } from '../../actions/timeline'
 import moment from 'moment'
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
-const DailyCumulative = ({
-	statecode,
-	getEntireTimeline,
-	timeline,
-	loading
-}) => {
+const DailyCumulative = ({ statecode, getEntireTimeline, timeline }) => {
 	const [isDaily, setIsDaily] = useState(true)
 	const [totalData, setTotalData] = useState({})
 	const [dailyData, setDailyData] = useState({})
@@ -22,7 +15,7 @@ const DailyCumulative = ({
 	useEffect(() => {
 		getEntireTimeline(statecode)
 		generateData()
-	}, [loading, timeline])
+	}, [timeline])
 
 	const generateData = () => {
 		let dailyConfirmed = [],
@@ -208,35 +201,32 @@ const DailyCumulative = ({
 
 	return (
 		<div className='mt-2'>
-			{!loading && (
-				<Fragment>
-					<div className='mx-auto' style={{ width: '175px' }}>
-						<button
-							className='btn btn-outline-secondary'
-							onClick={e => setIsDaily(true)}>
-							Daily
-						</button>
-						<button
-							className='btn btn-outline-secondary'
-							onClick={e => setIsDaily(false)}>
-							Cumulative
-						</button>
-					</div>
-					{isDaily ? (
-						<CanvasJSChart options={dailyOptions} />
-					) : (
-						<CanvasJSChart options={totalOptions} />
-					)}
-				</Fragment>
-			)}
+			<Fragment>
+				<div className='mx-auto' style={{ width: '175px' }}>
+					<button
+						className='btn btn-outline-secondary'
+						onClick={e => setIsDaily(true)}>
+						Daily
+					</button>
+					<button
+						className='btn btn-outline-secondary'
+						onClick={e => setIsDaily(false)}>
+						Cumulative
+					</button>
+				</div>
+				{isDaily ? (
+					<CanvasJSChart options={dailyOptions} />
+				) : (
+					<CanvasJSChart options={totalOptions} />
+				)}
+			</Fragment>
 		</div>
 	)
 }
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		timeline: state.timeline.province.timeline,
-		loading: state.timeline.province.loading
+		timeline: state.timeline.province.timeline
 	}
 }
 
