@@ -66,7 +66,7 @@ const IndiaTracker = ({
 				<LoadingPage />
 			) : (
 				<Fragment>
-					<div className={`mx-auto `} style={{ width: '60px' }}>
+					<div className={`mx-auto `} style={{ width: '15px' }}>
 						<i
 							title='Latest notifications'
 							onClick={() =>
@@ -77,8 +77,9 @@ const IndiaTracker = ({
 									? 'fa-bell-slash'
 									: 'fa-bell'
 							} `}></i>
+					</div>
 
-						{/* <div>
+					{/* <div>
 							<label htmlFor='pastDate'>
 								<i
 									style={{ color: '#C0C0C0' }}
@@ -98,7 +99,6 @@ const IndiaTracker = ({
 									setPastDate(e.target.value)
 								}></input>
 						</div> */}
-					</div>
 
 					{expandNotifications && (
 						<div data-aos='fade-up' data-aos-duration='750'>
@@ -119,7 +119,7 @@ const IndiaTracker = ({
 						source={meta.tested['source']}
 					/>
 					<Dashboard data={dashboard} region='India' />
-					<div>
+					<div data-aos='zoom-in-up'>
 						<RatioChart
 							recovered={total.recovered}
 							deaths={total.deceased}
@@ -132,7 +132,7 @@ const IndiaTracker = ({
 							region='India'
 						/>
 					</div>
-					<div>
+					<div data-aos='fade-right'>
 						<DailyCumulative statecode={'TT'} />
 					</div>
 

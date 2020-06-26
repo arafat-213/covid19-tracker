@@ -50,13 +50,7 @@ const Tested = ({ tested, newTest, time, region, source }) => {
 				<div className='col'>
 					<div className='col card-body text-right'>
 						<div className='h3 test-numbers mb-0'>
-							{/* {parseInt(tested).toLocaleString('en-IN')} */}
-							<CountUp
-								start={0}
-								end={tested}
-								duration={2.0}
-								separator=','
-							/>
+							{parseInt(tested).toLocaleString('en-IN')}
 						</div>
 
 						{newTest && (

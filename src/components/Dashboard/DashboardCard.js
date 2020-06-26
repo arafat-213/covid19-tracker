@@ -4,9 +4,9 @@ import CountUp from 'react-countup'
 const renderDailyCount = dailyCount => {
 	if (parseInt(dailyCount) === 0) return null
 	return parseInt(dailyCount) > 0 ? (
-		<small>{`[+${dailyCount}]`}</small>
+		<small>{`[+${dailyCount.toLocaleString('en-IN')}]`}</small>
 	) : (
-		<small>{`[${dailyCount}]`}</small>
+		<small>{`[${dailyCount.toLocaleString('en-IN')}]`}</small>
 	)
 }
 const DashboardCard = props => {
@@ -15,13 +15,7 @@ const DashboardCard = props => {
 			<div className='card-body'>
 				<div className='card-title'>
 					<h2 className='text-center total-cases'>
-						{/* {props.count + ''} */}
-						<CountUp
-							start={0}
-							end={props.count}
-							duration={0.5}
-							separator=','
-						/>
+						{parseInt(props.count).toLocaleString('en-IN')}
 					</h2>
 				</div>
 				<p className='card-text text-center h4 daily-cases'>
