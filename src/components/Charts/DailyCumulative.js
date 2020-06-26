@@ -95,6 +95,8 @@ const DailyCumulative = ({ statecode, getEntireTimeline, timeline }) => {
 	}
 
 	const dailyOptions = {
+		zoomEnabled: true,
+		zoomType: 'x',
 		animationEnabled: true,
 		animationDuration: 4000,
 		title: {
@@ -102,6 +104,13 @@ const DailyCumulative = ({ statecode, getEntireTimeline, timeline }) => {
 			fontFamily: 'Quicksand',
 			fontWeight: 600
 		},
+		subtitles: [
+			{
+				text: 'Drag area over chart to zoom in',
+				fontFamily: 'Quicksand',
+				fontWeight: 300
+			}
+		],
 		exportEnabled: true,
 		toolTip: {
 			shared: true

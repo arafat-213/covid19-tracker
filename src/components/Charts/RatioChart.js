@@ -21,7 +21,7 @@ const RatioChart = ({ active, recovered, deaths, confirmed, region }) => {
 		animationDuration: 4000,
 		exportEnabled: true,
 		title: {
-			text: 'COVID-19 cases',
+			// text: 'COVID-19 cases',
 			fontFamily: 'Quicksand',
 			fontWeight: 600
 		},
@@ -39,10 +39,11 @@ const RatioChart = ({ active, recovered, deaths, confirmed, region }) => {
 			{
 				type: 'doughnut',
 				showInLegend: true,
+				explodeOnClick: false,
 				indexLabel: `{z}%`,
 				indexLabelPlacement: 'inside',
 				indexLabelFontStyle: 'bold',
-				yValueFormatString: '#,###,###',
+				yValueFormatString: '##,##,###',
 				dataPoints: [
 					{
 						name: `Active`,
