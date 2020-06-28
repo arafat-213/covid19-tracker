@@ -14,6 +14,9 @@ const DailyCumulative = ({ statecode, getEntireTimeline, timeline }) => {
 
 	useEffect(() => {
 		getEntireTimeline(statecode)
+	}, [statecode])
+
+	useEffect(() => {
 		generateData()
 	}, [timeline])
 
