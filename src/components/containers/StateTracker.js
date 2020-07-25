@@ -61,22 +61,27 @@ const StateTracker = ({ states, states: { loading } }) => {
 						data={dashboard}
 						time={meta.last_updated}
 					/>
-					<div data-aos='zoom-in-up'>
-						<RatioChart
-							recovered={total.recovered}
-							deaths={total.deceased}
-							active={
-								total.confirmed -
-								total.recovered -
-								total.deceased
-							}
-							confirmed={total.confirmed}
-							region={region ? region : 'Loading..'}
-						/>
-					</div>
-
-					<div>
-						<DailyCumulative statecode={statecode} />
+					<div className='row w-100'>
+						<div className='col-md-6'>
+							<div data-aos='zoom-in-up'>
+								<RatioChart
+									recovered={total.recovered}
+									deaths={total.deceased}
+									active={
+										total.confirmed -
+										total.recovered -
+										total.deceased
+									}
+									confirmed={total.confirmed}
+									region={region ? region : 'Loading..'}
+								/>
+							</div>
+						</div>
+						<div className='col-md-6'>
+							<div data-aos='fade-right'>
+								<DailyCumulative statecode={statecode} />
+							</div>
+						</div>
 					</div>
 
 					<DistrictTable row={statecases} data={districtCases} />
