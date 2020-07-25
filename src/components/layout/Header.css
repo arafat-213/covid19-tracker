@@ -14,7 +14,7 @@
 }
 
 .nav-item:hover {
-	border: 1px solid #0779e4;
+	background: #eee;
 }
 
 .active {
