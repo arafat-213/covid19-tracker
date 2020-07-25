@@ -114,7 +114,7 @@ const DailyCumulative = ({ statecode, getEntireTimeline, timeline }) => {
 				fontWeight: 300
 			}
 		],
-		exportEnabled: true,
+		// exportEnabled: true,
 		toolTip: {
 			shared: true
 		},

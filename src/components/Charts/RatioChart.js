@@ -19,7 +19,7 @@ const RatioChart = ({ active, recovered, deaths, confirmed, region }) => {
 	const options = {
 		animationEnabled: true,
 		animationDuration: 4000,
-		exportEnabled: true,
+		// exportEnabled: true,
 		title: {
 			// text: 'COVID-19 cases',
 			fontFamily: 'Quicksand',

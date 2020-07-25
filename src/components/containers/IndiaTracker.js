@@ -119,21 +119,28 @@ const IndiaTracker = ({
 						source={meta.tested['source']}
 					/>
 					<Dashboard data={dashboard} region='India' />
-					<div data-aos='zoom-in-up'>
-						<RatioChart
-							recovered={total.recovered}
-							deaths={total.deceased}
-							active={
-								total.confirmed -
-								total.recovered -
-								total.deceased
-							}
-							confirmed={total.confirmed}
-							region='India'
-						/>
-					</div>
-					<div data-aos='fade-right'>
-						<DailyCumulative statecode={'TT'} />
+
+					<div className='row w-100'>
+						<div className='col-md-6'>
+							<div data-aos='zoom-in-up'>
+								<RatioChart
+									recovered={total.recovered}
+									deaths={total.deceased}
+									active={
+										total.confirmed -
+										total.recovered -
+										total.deceased
+									}
+									confirmed={total.confirmed}
+									region='India'
+								/>
+							</div>
+						</div>
+						<div className='col-md-6'>
+							<div data-aos='fade-right'>
+								<DailyCumulative statecode={'TT'} />
+							</div>
+						</div>
 					</div>
 
 					<div>
