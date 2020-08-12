@@ -120,7 +120,7 @@ const columns = [
 
 const defaultSort = [
 	{
-		dataField: 'confirmed',
+		dataField: 'active',
 		order: 'desc'
 	}
 ]

@@ -6,11 +6,6 @@ import DistrictTable from '../DistrictTable/DistrictTable'
 import '../Table.css'
 import { Link } from 'react-router-dom'
 
-const STATE_UNASSIGNED_NOTE = `MoHFW website reports that these are the ""cases
-							that are being reassigned to states"" [Jun 8] : 519
-							cases were added to this category today at 9:30 AM.
-							After that, MoHFW reduced 1352 cases. In effect 773
-							cases were reduced from this category.`
 const columns = [
 	{
 		dataField: 'state',
@@ -129,7 +124,7 @@ const columns = [
 
 const defaultSort = [
 	{
-		dataField: 'confirmed',
+		dataField: 'active',
 		order: 'desc'
 	}
 ]
@@ -139,17 +134,12 @@ const StateTable = ({ data, districtData }) => {
 		renderer: row => (
 			<div>
 				<div>
-					{' '}
-					{row.statecode === 'UN' ? (
-						<p>{STATE_UNASSIGNED_NOTE}</p>
-					) : (
-						<p>
-							<Link
-								to={`/covid19-tracker/state/${row.statecode}`}>
-								Visit State Page
-							</Link>
-						</p>
-					)}
+					<p>
+						<Link to={`/covid19-tracker/state/${row.statecode}`}>
+							Visit State Page
+						</Link>
+					</p>
+
 					<div data-aos='fade-down' data-aos-once='true'>
 						<DistrictTable row={row} data={districtData} />
 					</div>
