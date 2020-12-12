@@ -6,3 +6,8 @@
 .content-wrap {
 	padding-bottom: 2.5rem;
 }
+
+.fa-bell,
+.fa-bell-slash {
+	cursor: pointer;
+}
