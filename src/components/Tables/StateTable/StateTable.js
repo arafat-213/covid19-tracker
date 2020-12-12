@@ -136,7 +136,7 @@ const StateTable = ({ data, districtData }) => {
 				<div>
 					<p>
 						<Link to={`/covid19-tracker/state/${row.statecode}`}>
-							Visit State Page
+							See more details on {row.state}
 						</Link>
 					</p>
 
